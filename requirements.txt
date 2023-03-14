@@ -1,9 +1,7 @@
 joblib
 numpy
 pandas
-patool
 six
-sparse
 swifter
 xlrd
 XlsxWriter
