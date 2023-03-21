@@ -31,7 +31,16 @@ class FinalReport(object):
 	def handle(
 			self, file_rep: Path | str, conv_file: Path | str
 	) -> bool:
-		"""  """
+		""" Processes the FinalReport.txt file. Highlights meta information
+		and data
+
+		:param file_rep: - The file FinalReport.txt or another name.
+		:param conv_file: - The file that contains IDs of registration numbers
+			of animals
+
+		:return: - Returns true if file processing was successful, false if
+			there were errors
+		"""
 
 		if isinstance(file_rep, str):
 			file_rep = Path(file_rep)
@@ -40,8 +49,6 @@ class FinalReport(object):
 			conv_file = Path(conv_file)
 
 		if not self.read(file_rep):
-			# logger
-			print('Error')
 			return False
 
 		try:
@@ -52,7 +59,7 @@ class FinalReport(object):
 			return True
 
 		except Exception as e:
-			print(f'{e}')
+			print(e)
 			return False
 
 	def read(self, file_rep: Path) -> bool:
@@ -66,11 +73,11 @@ class FinalReport(object):
 			return True
 
 		except Exception as e:
-			# logger
+			print(e)
 			return False
 
 	def __handler_header(self) -> None:
-		"""  """
+		""" Processes data from a file, selects meta-information """
 
 		for item in self.__full_data:
 			if item == self.__class__.__PATTERN_DATA:
@@ -83,7 +90,7 @@ class FinalReport(object):
 				self.__header[key] = value
 
 	def __handler_data(self) -> None:
-		"""  """
+		""" Processes data and forms an array for further processing """
 
 		temp = 1
 		for item in self.__full_data:
@@ -100,22 +107,26 @@ class FinalReport(object):
 		).dropna()
 
 	def __convert_num(self, path_file: Path) -> None:
-		"""
+		""" Converts sample id which is in FinalReport to animal registration
+		number
 
-		:param path_file:
-		:return:
+		:param path_file: - xlsx file with animal numbers label
 		"""
 
 		map_rn = pd.read_excel(
-			path_file, header=None, names=['SID', 'UNIQ_KEY'], dtype={'SID': str}
+			path_file,
+			header=None,
+			names=['SID', 'UNIQ_KEY'],
+			dtype={'SID': str}
 		).dropna()
 
-		self.__snp_data = self.__snp_data['Sample ID'].map(
+		self.__snp_data['Sample ID'] = self.__snp_data['Sample ID'].map(
 			dict(zip(map_rn.SID, map_rn.UNIQ_KEY))
 		)
 
-	def to_txt(self, file_rep: Path, ext: str = "txt", sep=" ") -> bool:
+	def to_txt(self, file_rep: Path, ext: str = "txt", sep=" ") -> None:
 		"""  """
+		self.snp_data.to_csv()
 
 
 if __name__ == "__main__":
