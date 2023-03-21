@@ -3,7 +3,7 @@
 
 from pathlib import Path
 
-DATA_FILE = Path("./data/data_50k.txt").absolute()
+DATA_FILE = Path("./tests/data/data_50k.txt")
 
 # File for determining registration numbers
-NUM_CONV_FILE = Path("./data/data_50k.xlsx").absolute()
+NUM_CONV_FILE = Path("./tests/data/data_50k.xlsx")

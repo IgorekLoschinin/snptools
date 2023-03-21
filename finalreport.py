@@ -118,8 +118,6 @@ class FinalReport(object):
 		"""  """
 
 
-
 if __name__ == "__main__":
 	f = FinalReport()
 	f.handle("./tests/data/data_50k.txt", "./tests/data/data_50k.xlsx")
-
