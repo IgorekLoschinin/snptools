@@ -13,6 +13,10 @@ class FinalReport(object):
 	__PATTERN_DATA = "[Data]"
 
 	def __init__(self, allele: str = "AB", sep: str = "\t") -> None:
+		"""
+		:param allele:
+		:param sep:
+		"""
 		self._delimiter = sep
 		self.__full_data = None
 
@@ -79,13 +83,13 @@ class FinalReport(object):
 	def __handler_header(self) -> None:
 		""" Processes data from a file, selects meta-information """
 
-		for item in self.__full_data:
-			if item == self.__class__.__PATTERN_DATA:
+		for line in self.__full_data:
+			if line == self.__class__.__PATTERN_DATA:
 				return
 
-			if item != self.__class__.__PATTERN_HEADER:
-				key = item.strip().split("\t")[0]
-				value = item.strip().split("\t")[1]
+			if line != self.__class__.__PATTERN_HEADER:
+				key = line.strip().split("\t")[0]
+				value = line.strip().split("\t")[1]
 
 				self.__header[key] = value
 
@@ -93,8 +97,8 @@ class FinalReport(object):
 		""" Processes data and forms an array for further processing """
 
 		temp = 1
-		for item in self.__full_data:
-			if item == self.__class__.__PATTERN_DATA:
+		for line in self.__full_data:
+			if line == self.__class__.__PATTERN_DATA:
 				break
 			temp += 1
 

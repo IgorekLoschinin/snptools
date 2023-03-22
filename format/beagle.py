@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from finalreport import FinalReport
+
 
 class Beagle(object):
 
