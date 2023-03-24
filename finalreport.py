@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+import pandas as pd
 
 from pathlib import Path
-
-import pandas as pd
 
 
 class FinalReport(object):
@@ -49,8 +48,14 @@ class FinalReport(object):
 		if isinstance(file_rep, str):
 			file_rep = Path(file_rep)
 
+			if not file_rep.is_file() and not file_rep.exists():
+				return False
+
 		if isinstance(conv_file, str):
 			conv_file = Path(conv_file)
+
+			if not conv_file.is_file() and not conv_file.exists():
+				return False
 
 		if not self.read(file_rep):
 			return False
@@ -135,4 +140,6 @@ class FinalReport(object):
 
 if __name__ == "__main__":
 	f = FinalReport()
-	f.handle("./tests/data/data_50k.txt", "./tests/data/data_50k.xlsx")
+	f.handle("./tests/files/snp/FinalReport.txt", "./tests/files/snp/FinalReport.xlsx")
+
+	print(f.snp_data)
