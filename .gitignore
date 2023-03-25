@@ -17,8 +17,8 @@
 
 !requirements.txt
 
-!tests/data/*.txt
-!tests/data/*.xlsx
+!tests/files/*/*.txt
+!tests/files/*/*.xlsx
 
 *.idea*
 *__pycache__*
