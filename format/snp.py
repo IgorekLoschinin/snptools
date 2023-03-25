@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-from pathlib import Path
 
 import pandas as pd
 
@@ -27,8 +26,15 @@ class Snp(object):
 		""" Data processing and formatting. Calculation of statistical
 		information.
 
-		:param data: -
-		:return: -
+		:param data: - Data from FinalReport file. Example:
+			SNP Name  Sample ID  Allele1 - AB  Allele2 - AB  GC Score  GT Score
+			ABCA12	14814	A	A	0.4048	0.8164
+			ARS-BFGL-BAC-13031	14814	B	B	0.9083	0.8712
+			ARS-BFGL-BAC-13039	14814	A	A	0.9005	0.9096
+			ARS-BFGL-BAC-13049	14814	A	B	0.9295	0.8926
+
+		:return: - Returns true if the data was formatted successfully and
+		statistical information was calculated, false if an error.
 		"""
 		try:
 			data_snp = data.rename(columns=_MAP_FIELDS)

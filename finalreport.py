@@ -136,10 +136,3 @@ class FinalReport(object):
 	def to_txt(self, file_rep: Path, ext: str = "txt", sep=" ") -> None:
 		"""  """
 		self.snp_data.to_csv()
-
-
-if __name__ == "__main__":
-	f = FinalReport()
-	f.handle("./tests/files/snp/FinalReport.txt", "./tests/files/snp/FinalReport.xlsx")
-
-	print(f.snp_data)
