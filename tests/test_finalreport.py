@@ -112,7 +112,7 @@ class TestFinalReport(object):
 
 	def test_sample_allele_ab(self) -> None:
 		obj = FinalReport(allele="AB")
-		obj.handle(Path(f"./tests/files/fr/file4.txt"), None)
+		obj.handle(Path(f"{PATH_DIR_FILES}/fr/file4.txt"), None)
 
 		_fields = [
 			'SNP Name', 'Sample ID', 'Allele1 - AB', 'Allele2 - AB',
@@ -123,40 +123,52 @@ class TestFinalReport(object):
 
 	def test_sample_allele_forward(self) -> None:
 		obj = FinalReport(allele="Forward")
+		obj.handle(Path(f"{PATH_DIR_FILES}/fr/file4.txt"), None)
 
-		assert obj.handle(
-			Path(f"{PATH_DIR_FILES}/fr/file4.txt"),
-			None
-		)
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - Forward', 'Allele2 - Forward',
+			'GC Score', 'X', 'Y'
+		]
+
+		assert obj.snp_data.columns.difference(_fields).empty
 
 	def test_sample_allele_top(self) -> None:
 		obj = FinalReport(allele="Top")
+		obj.handle(Path(f"{PATH_DIR_FILES}/fr/file4.txt"), None)
 
-		assert obj.handle(
-			Path(f"{PATH_DIR_FILES}/fr/file4.txt"),
-			None
-		)
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - Top', 'Allele2 - Top',
+			'GC Score', 'X', 'Y'
+		]
+
+		assert obj.snp_data.columns.difference(_fields).empty
 
 	def test_sample_allele_list1(self) -> None:
 		obj = FinalReport(allele=["AB", "Top"])
+		obj.handle(Path(f"{PATH_DIR_FILES}/fr/file4.txt"), None)
 
-		assert obj.handle(
-			Path(f"{PATH_DIR_FILES}/fr/file4.txt"),
-			None
-		)
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - Top', 'Allele2 - Top',
+			'Allele1 - AB', 'Allele2 - AB', 'GC Score', 'X', 'Y'
+		]
+
+		assert obj.snp_data.columns.difference(_fields).empty
 
 	def test_sample_allele_list2(self) -> None:
 		obj = FinalReport(allele=["AB"])
+		obj.handle(Path(f"{PATH_DIR_FILES}/fr/file4.txt"), None)
 
-		assert obj.handle(
-			Path(f"{PATH_DIR_FILES}/fr/file4.txt"),
-			None
-		)
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - AB', 'Allele2 - AB',
+			'GC Score', 'X', 'Y'
+		]
+
+		assert obj.snp_data.columns.difference(_fields).empty
 
 	def test_sample_allele_not_exist(self) -> None:
 		obj = FinalReport(allele="GG")
 
-		assert obj.handle(
+		assert not obj.handle(
 			Path(f"{PATH_DIR_FILES}/fr/file4.txt"),
 			None
 		)

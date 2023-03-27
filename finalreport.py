@@ -163,33 +163,36 @@ class FinalReport(object):
 		:return: - Returns a filtered list of fields by alleles
 		"""
 
-		allele_ab_templ = r'(^Allele\d\s[:-]\s{}\b)'
-		allele_ab_pattern = None
+		allele_templ = r'(^Allele\d\s[:-]\s{}\b)'
+		allele_pattern = None
 
 		match self.__allele:
 			case None:
 				return names
 
 			case str():
-				allele_ab_pattern = re.compile(
-					allele_ab_templ.format(self.__allele)
+				allele_pattern = re.compile(
+					allele_templ.format(self.__allele)
 				)
 
 			case list() | tuple() | set():
-				allele_ab_pattern = re.compile(
-					allele_ab_templ.format("|".join(self.__allele))
+				allele_pattern = re.compile(
+					allele_templ.format("|".join(self.__allele))
 				)
 			case _:
 				return None
 
-		lst_allele_ab = reduce(
+		lst_allele = reduce(
 			lambda i, j: i + j,
-			[allele_ab_pattern.findall(item) for item in names]
+			[allele_pattern.findall(item) for item in names]
 		)
+
+		if len(lst_allele) == 0:
+			return None
 
 		exclude_alleles = [
 			item for item in names
-			if item.startswith("Allele") and item not in lst_allele_ab
+			if item.startswith("Allele") and item not in lst_allele
 		]
 
 		return list(filter(
