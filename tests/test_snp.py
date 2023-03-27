@@ -15,3 +15,5 @@ CONV_FILE = Path("./tests/files/fsnp/FinalReport.xlsx")
 #
 # 	obj_snp = Snp()
 # 	assert obj_snp.process(obj_fr.snp_data)
+
+# test_call_rate()

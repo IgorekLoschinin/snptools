@@ -9,6 +9,12 @@ from finalreport import FinalReport
 
 class TestFinalReport(object):
 
+	__FIELDS = [
+		'SNP Name', 'Sample ID', 'Allele1 - Forward', 'Allele2 - Forward',
+		'Allele1 - Top', 'Allele2 - Top', 'Allele1 - AB', 'Allele2 - AB',
+		'GC Score', 'X', 'Y'
+	]
+
 	def test_handle_1(self) -> None:
 		""" if both files do not exist """
 		obj = FinalReport()
@@ -72,7 +78,7 @@ class TestFinalReport(object):
 		)
 
 	def test_handle_7(self) -> None:
-		""" if the data file is not needed convert ID name """
+		""" if the data file is not needed to convert ID name """
 		obj = FinalReport()
 
 		obj.handle(
@@ -92,13 +98,28 @@ class TestFinalReport(object):
 			Path(f"{PATH_DIR_FILES}/fr/file1.xlsx")
 		)
 
+	def test_allele_none(self) -> None:
+		obj = FinalReport()
+		obj.handle(Path(f"{PATH_DIR_FILES}/fr/file4.txt"), None)
+
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - Forward', 'Allele2 - Forward',
+			'Allele1 - Top', 'Allele2 - Top', 'Allele1 - AB', 'Allele2 - AB',
+			'GC Score', 'X', 'Y'
+		]
+
+		assert obj.snp_data.columns.difference(_fields).empty
+
 	def test_sample_allele_ab(self) -> None:
 		obj = FinalReport(allele="AB")
+		obj.handle(Path(f"./tests/files/fr/file4.txt"), None)
 
-		assert obj.handle(
-			Path(f"{PATH_DIR_FILES}/fr/file4.txt"),
-			None
-		)
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - AB', 'Allele2 - AB',
+			'GC Score', 'X', 'Y'
+		]
+
+		assert obj.snp_data.columns.difference(_fields).empty
 
 	def test_sample_allele_forward(self) -> None:
 		obj = FinalReport(allele="Forward")

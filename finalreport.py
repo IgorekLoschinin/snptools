@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
+
+import re
+from re import Pattern
+from functools import reduce
 import pandas as pd
 
 from pathlib import Path
@@ -26,17 +30,17 @@ class FinalReport(object):
 
 	__PATTERN_HEADER = "[Header]"
 	__PATTERN_DATA = "[Data]"
-	__LIST_ALLELES = ("AB", "Forward", "Top", "Plus", "Design")
+	# __LIST_ALLELES = ("AB", "Forward", "Top", "Plus", "Design")
 
 	def __init__(
 			self,
-			allele: str | list | None = "AB",
+			allele: str | list | None = None,
 			sep: str = "\t"
 	) -> None:
 		"""
-		:param allele: - One of the possible bases/sequences that can occur at
-			the variant - a locus in the genome where there are differences
-			between individuals. Type: 'AB', 'Forward', 'Top'
+		:param allele: - A variant form of a single nucleotide polymorphism
+			(SNP), a specific polymorphic site or a whole gene detectable at
+			a locus.  Type: 'AB', 'Forward', 'Top', 'Plus', 'Design'
 		:param sep: - Delimiter to use. Default value: "\t"
 		"""
 
@@ -139,13 +143,58 @@ class FinalReport(object):
 				break
 			temp += 1
 
+		names_col = self.__sample_by_allele(
+			self._full_data[temp].split(f"{self._delimiter}")
+		)
+
 		self.__snp_data = pd.DataFrame(
 			[
 				item_data.split(f"{self._delimiter}")
 				for item_data in self._full_data[temp + 1:]
 			],
 			columns=self._full_data[temp].split(f"{self._delimiter}")
+		)[names_col]
+
+	def __sample_by_allele(self, names: list[str]) -> list[str] | None:
+		""" Method that generates a list of field names choosing which alleles
+		to keep
+
+		:param names: - List of field names in the report file
+		:return: - Returns a filtered list of fields by alleles
+		"""
+
+		allele_ab_templ = r'(^Allele\d\s[:-]\s{}\b)'
+		allele_ab_pattern = None
+
+		match self.__allele:
+			case None:
+				return names
+
+			case str():
+				allele_ab_pattern = re.compile(
+					allele_ab_templ.format(self.__allele)
+				)
+
+			case list() | tuple() | set():
+				allele_ab_pattern = re.compile(
+					allele_ab_templ.format("|".join(self.__allele))
+				)
+			case _:
+				return None
+
+		lst_allele_ab = reduce(
+			lambda i, j: i + j,
+			[allele_ab_pattern.findall(item) for item in names]
 		)
+
+		exclude_alleles = [
+			item for item in names
+			if item.startswith("Allele") and item not in lst_allele_ab
+		]
+
+		return list(filter(
+			lambda x: True if x not in exclude_alleles else False, names
+		))
 
 	def __convert_s_id(self, path_file: Path) -> None:
 		"""Converts sample id which is in FinalReport to animal registration
