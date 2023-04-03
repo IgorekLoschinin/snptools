@@ -50,7 +50,6 @@ class Snp(object):
 				self.__data_snp.groupby(by='SAMPLE_ID').sum().reset_index()
 
 		except Exception as e:
-			print(e)
 			return False
 
 		if not self.__data_snp.empty:
