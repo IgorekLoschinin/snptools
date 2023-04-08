@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from format import _MAP_FIELDS
+from ..format import _MAP_FIELDS
 
 
 class Snp(object):
