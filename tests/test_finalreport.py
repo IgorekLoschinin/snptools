@@ -19,8 +19,6 @@ class TestFinalReport(object):
 		""" if both files do not exist """
 		obj = FinalReport()
 
-		print(Path().cwd())
-
 		assert not obj.handle(
 			Path(f"{PATH_DIR_FILES}/fr/f.txt"),
 			Path(f"{PATH_DIR_FILES}/fr/f.xlsx")
