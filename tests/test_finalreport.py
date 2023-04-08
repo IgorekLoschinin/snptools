@@ -4,7 +4,7 @@
 from . import PATH_DIR_FILES
 
 from pathlib import Path
-from finalreport import FinalReport
+from ..finalreport import FinalReport
 
 
 class TestFinalReport(object):
