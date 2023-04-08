@@ -2,11 +2,10 @@
 # coding: utf-8
 
 import re
-from re import Pattern
-from functools import reduce
 import pandas as pd
 
 from pathlib import Path
+from functools import reduce
 
 
 class FinalReport(object):
@@ -30,7 +29,6 @@ class FinalReport(object):
 
 	__PATTERN_HEADER = "[Header]"
 	__PATTERN_DATA = "[Data]"
-	# __LIST_ALLELES = ("AB", "Forward", "Top", "Plus", "Design")
 
 	def __init__(
 			self,
