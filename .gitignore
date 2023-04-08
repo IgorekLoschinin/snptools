@@ -13,11 +13,15 @@
 *.7z
 *.ipynb
 *.docx
+*.dbf
 
 !requirements.txt
 
+!tests/files/*/*.txt
+!tests/files/*/*.xlsx
+
 *.idea*
 *__pycache__*
-*TestFiles*
+*.pytest_cache*
 *.ipynb_checkpoints*
-*.dbf
+
