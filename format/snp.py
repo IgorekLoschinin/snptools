@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+__author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
+
 import pandas as pd
 
 from ..format import _MAP_FIELDS

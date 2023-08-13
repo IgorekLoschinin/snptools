@@ -4,8 +4,8 @@
 from pathlib import Path
 
 from . import PATH_DIR_FILES
-from ..format.snp import Snp
-from ..finalreport import FinalReport
+from snpTools.format.snp import Snp
+from snpTools.finalreport import FinalReport
 
 
 class TestSNP(object):

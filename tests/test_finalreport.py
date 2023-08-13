@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from . import PATH_DIR_FILES
-
 from pathlib import Path
-from ..finalreport import FinalReport
+
+from snpTools.format.tests import PATH_DIR_FILES
+from snpTools.finalreport import FinalReport
 
 
 class TestFinalReport(object):
@@ -46,8 +46,7 @@ class TestFinalReport(object):
 		       not obj.snp_data.empty
 
 	def test_handle_4(self) -> None:
-		""" if the file contains only header and field
-		names """
+		""" if the file contains only header and field names """
 		obj = FinalReport()
 
 		obj.handle(

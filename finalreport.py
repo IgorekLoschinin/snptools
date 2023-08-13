@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import re
-import pandas as pd
-
 from pathlib import Path
 from functools import reduce
+
+import re
+import pandas as pd
 
 
 class FinalReport(object):
@@ -101,10 +101,10 @@ class FinalReport(object):
 						dict(zip(self.__map_rn.SID, self.__map_rn.UNIQ_KEY))
 					)
 
-			return True
-
 		except Exception as e:
 			return False
+
+		return True
 
 	def read(self, file_rep: Path) -> bool:
 		""" Reading data from the final_report file
