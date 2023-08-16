@@ -27,8 +27,6 @@ class Verification(object):
         # of each animal and potential parent must be scaled (i.e.: 95%
         # truncated down)
         self.__min_num_snp = 0.95
-
-        self.__info = []
         self.__num_conflicts = None  # Number of conflicts
 
     @property
@@ -44,11 +42,7 @@ class Verification(object):
                 return None
 
     @property
-    def info(self) -> None | str:
-        return
-
-    @property
-    def nun_conflicts(self) -> None | int:
+    def num_conflicts(self) -> None | int:
         return self.__num_conflicts
 
     def check_on(
@@ -58,17 +52,17 @@ class Verification(object):
             descendant: str,
             parent: str,
             snp_name_col: str
-    ) -> bool:
+    ) -> None:
         """ Verification of paternity according to ICAR recommendations
 
         :param data: - SNP data for descendant and parent
         :param descendant: - Columns name of the descendant in the data
         :param parent: - Columns name of the parent in the data
         :param snp_name_col: - SNP column name in data
-        :return: -
         """
+
         if self.__isag_marks is None:
-            raise Exception('Error. No array of snp names to verify')
+            raise ValueError('Error. No array of snp names to verify')
 
         num_isag_mark = len(self.__isag_marks)
         min_num_comm_snp = int(num_isag_mark - (2 * (num_isag_mark * 0.05)))
@@ -81,39 +75,18 @@ class Verification(object):
         desc_n_markers = (sample_mark[descendant] < 5).sum()
         parent_n_markers = (sample_mark[parent] < 5).sum()
 
-        comm_snp_no_missing = sample_mark.replace(5, np.nan).dropna()
-        num_comm_markers = len(comm_snp_no_missing)
-
         # According to ICAR, the number of markers not 5ok should be more
         # than 95%
         if (desc_n_markers < num_isag_mark * self.__min_num_snp) and \
                 (parent_n_markers < num_isag_mark * self.__min_num_snp):
-            self.__info.append('Calf and parent have low call rate')
+            raise Exception('Calf and parent have low call rate')
 
-            return False
+        comm_snp_no_missing = sample_mark.replace(5, np.nan).dropna()
+        num_comm_markers = len(comm_snp_no_missing)
 
         if num_comm_markers < min_num_comm_snp:
-            self.__info.append('Pair call rate is low')
-
-            return False
+            raise Exception('Pair call rate is low')
 
         self.__num_conflicts = (abs(
             comm_snp_no_missing[descendant] - comm_snp_no_missing[parent]
         ) == 2).sum()
-
-        return True
-
-
-if __name__ == '__main__':
-    df = pd.read_csv('parentage_test.csv', sep=" ")
-    parentage_markers = pd.read_pickle("isag_verif.pl")
-
-    obj = Verification(
-        isag_marks=parentage_markers.markers
-    )
-    obj.check_on(
-        data=df,
-        descendant="BY000041988163",
-        parent="EE10512586",
-        snp_name_col="SNP_Name"
-    )
