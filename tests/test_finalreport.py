@@ -3,8 +3,8 @@
 
 from pathlib import Path
 
-from snpTools.format.tests import PATH_DIR_FILES
-from snpTools.finalreport import FinalReport
+from . import PATH_DIR_FILES
+from .._finalreport import FinalReport
 
 
 class TestFinalReport(object):

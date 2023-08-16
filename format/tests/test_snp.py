@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from pathlib import Path
-
 from . import PATH_DIR_FILES
-from snpTools.format.snp import Snp
-from snpTools.finalreport import FinalReport
+from .._snp import Snp
+from snpTools._finalreport import FinalReport
 
 
 class TestSNP(object):
-	DATA_FILE = Path(f"{PATH_DIR_FILES}/fsnp/file1.txt")
-	CONV_FILE = Path(f"{PATH_DIR_FILES}/fsnp/file1.xlsx")
 
 	def test_snp_process(self) -> None:
 
@@ -18,7 +14,8 @@ class TestSNP(object):
 		self._snp = Snp()
 
 		self._fl.handle(
-			Path(self.__class__.DATA_FILE), Path(self.__class__.CONV_FILE)
+			PATH_DIR_FILES / "fsnp/file1.txt",
+			PATH_DIR_FILES / "fsnp/file1.xlsx"
 		)
 		assert self._snp.process(self._fl.snp_data)
 		assert not self._snp.data.empty and self._snp.data.SNP.isin([
