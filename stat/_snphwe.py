@@ -14,10 +14,10 @@ def hwe(
 ) -> float:
 	""" Python interpretation hwe - https://github.com/jeremymcrae/snphwe
 
-	:param obs_hets: -
-	:param obs_hom1:
-	:param obs_hom2:
-	:return:
+	:param obs_hets: - количество наблюдаемых гетерозигот
+	:param obs_hom1: - количество наблюдаемыех гомозигот1
+	:param obs_hom2: - количество наблюдаемыех гомозигот2
+	:return: -
 	"""
 
 	obs_hets = round(obs_hets)
