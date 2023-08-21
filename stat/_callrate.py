@@ -58,3 +58,6 @@ def call_rate(
 			return None
 
 		return round(1 - (data.count('5') / len(data)), 6)
+
+	else:
+		return None

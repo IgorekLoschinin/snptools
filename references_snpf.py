@@ -11,22 +11,6 @@ class Snp(pd.DataFrame):
         if precalculate_freq:
             self.alleles_freq = self.calculate_allele_freq()
 
-    def get_markers(self, markers):
-        markers_intersection = self.index.intersection(markers)
-        return self.loc[markers_intersection]
-
-    def one_parent_verification(self, calf_number, parent_number):
-        calf_parent_table = self[[calf_number, parent_number]].replace(5, np.nan).dropna()
-        only_homozygous = calf_parent_table.loc[calf_parent_table.isin([0, 2]).all(axis=1)]
-        same_genotype_bool = only_homozygous.apply(lambda x: x[0] == x[1], axis=1)
-        return len(same_genotype_bool) - same_genotype_bool.sum()
-
-    def animal_call_rate(self):
-        return self.apply(lambda x: 1 - ((x == 5).sum() / len(x)))
-
-    def marker_call_rate(self):
-        return self.apply(lambda x: 1 - ((x == 5).sum() / len(x)), axis=1)
-
     def calculate_allele_freq(self):
         drop_missing_markers = self.replace(5, np.nan)
 
@@ -39,7 +23,8 @@ class Snp(pd.DataFrame):
         return drop_missing_markers.apply(_calc_freq_for_row, axis=1)
 
     def calculate_maf(self):
-        allele_freq = self.calculate_allele_freq() if self.alleles_freq.empty else self.alleles_freq
+        allele_freq = self.calculate_allele_freq() \
+            if self.alleles_freq.empty else self.alleles_freq
 
         def _replace_freq(val):
             if val > 0.5:
@@ -48,12 +33,9 @@ class Snp(pd.DataFrame):
 
         return allele_freq.apply(lambda x: _replace_freq(x))
 
-    def linkage_disequilibrium(self):
-        df = self.replace(5, np.nan).T.astype(np.float16)
-        return df.corr().applymap(lambda x: round(x * x, 3))
-
     def hwe_test(self):
-        allele_freq = self.calculate_allele_freq() if self.alleles_freq.empty else self.alleles_freq
+        allele_freq = self.calculate_allele_freq() \
+            if self.alleles_freq.empty else self.alleles_freq
         replace_missing_markers = self.replace(5, np.nan)
         critical_value_chi = 3.841
 
@@ -93,6 +75,11 @@ class Snp(pd.DataFrame):
 
 
 if __name__ == '__main__':
-    path_to_bovine_csv = 'BovineSNP50_3_1_2022_13-50K.csv'
+    path_to_bovine_csv = '../BovineSNP50_3_1_2022_13-50K.csv'
     snp_data = Snp(path_to_bovine_csv, precalculate_freq=False)
+
+    snp_data.calculate_maf()
+    snp_data.hwe_test()
+
+
     print(snp_data.hwe_test().to_csv('hwe.csv'))

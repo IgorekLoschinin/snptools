@@ -13,10 +13,10 @@ import pandas as pd
 def data_df(request) -> pd.DataFrame:
 	match request.param:
 		case "cra":
-			return pd.read_pickle(DIR_DATA / "file_cra.pl")
+			return pd.read_pickle(DIR_DATA / "cr/file_cra.pl")
 
 		case "crm":
-			return pd.read_pickle(DIR_DATA / "file_crm.pl")
+			return pd.read_pickle(DIR_DATA / "cr/file_crm.pl")
 
 
 @pytest.fixture
@@ -33,6 +33,7 @@ class TestCallRateAnimal(object):
 		данных объект - строка
 		"""
 
+		data_df.SNP = data_df.SNP.astype(str)
 		result = cr(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
 
 		assert isinstance(result, pd.DataFrame) and not result.empty

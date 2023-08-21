@@ -87,3 +87,43 @@ def hwe(
 			p_hwe += p / _sum
 
 	return min(1.0, p_hwe)
+
+
+def hwe_test(self):
+	allele_freq = self.calculate_allele_freq() if self.alleles_freq.empty else self.alleles_freq
+	replace_missing_markers = self.replace(5, np.nan)
+	critical_value_chi = 3.841
+
+	def calc_hwe(row):
+		n_unique_values = row.nunique()
+		if n_unique_values == 1:
+			return True
+		if n_unique_values == 0:
+			return np.nan
+
+		n_genotypes = row.count()
+
+		obs = {
+			0: (row == 0).sum(),
+			1: (row == 1).sum(),
+			2: (row == 2).sum()
+		}
+		b_allele_freq = allele_freq[row.name]
+
+		est = {
+			0: ((1 - b_allele_freq) ** 2) * n_genotypes,
+			1: (2 * ((1 - b_allele_freq) * b_allele_freq)) * n_genotypes,
+			2: (b_allele_freq ** 2) * n_genotypes
+		}
+
+		chi = sum([
+			((o - e) ** 2) / e
+			for o, e in zip(obs.values(), est.values())
+		])
+
+		if chi > critical_value_chi:
+			return False
+		else:
+			return True
+
+	return replace_missing_markers.apply(calc_hwe, axis=1)
