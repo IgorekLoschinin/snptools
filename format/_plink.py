@@ -61,3 +61,12 @@ def make_ped(data, sex):
 #     df = pd.read_csv('../data_filter/filtered_data_Bovine50K.csv', index_col=0)
 #     with open('Bovine.ped', 'w') as f:
 #         f.write(make_ped(df, 1))
+
+
+def fam():
+    pass
+
+
+def lgen():
+    pass
+
