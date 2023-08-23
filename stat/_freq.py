@@ -29,17 +29,19 @@ def allele_freq(
 				if not data[seq_col].str.isdigit().all():
 					return None
 
-				return data. \
+				return data.\
 					loc[data[seq_col] != "5", [id_col, seq_col]]. \
 					groupby(by=id_col)[seq_col]. \
 					apply(lambda x: x.astype("int8").sum() / (2 * x.count())).\
-					reset_index().round(3)
+					reset_index().\
+					round(3)
 
 			return data.\
 				loc[data[seq_col] != 5, [id_col, seq_col]].\
 				groupby(by=id_col)[seq_col].\
 				apply(lambda x: x.sum() / (2 * x.count())).\
-				reset_index().round(3)
+				reset_index().\
+				round(3)
 
 		except Exception as e:
 			raise e
@@ -57,16 +59,23 @@ def allele_freq(
 		return None
 
 
-def minor_allele_freq():
+def minor_allele_freq(
+		*, data: pd.DataFrame | str, id_col: str = None, seq_col: str = None
+) -> pd.DataFrame | float | None:
 	""" The minor allele frequency is therefore the frequency at which the
 	minor allele occurs within a population. """
-	...
 
-	allele_freq = 'sdfsd'
-
-	def _replace_freq(val):
+	def _criterion_freq(val):
 		if val > 0.5:
 			return round(1 - val, 3)
 		return round(val, 3)
 
-	return allele_freq.apply(lambda x: _replace_freq(x))
+	_freq = allele_freq(data=data, id_col=id_col, seq_col=seq_col)
+	if isinstance(_freq, pd.DataFrame):
+		return _freq.apply(_criterion_freq)
+
+	elif isinstance(_freq, float):
+		return _criterion_freq(_freq)
+
+	else:
+		return None

@@ -89,9 +89,9 @@ def hwe(
 	return min(1.0, p_hwe)
 
 
-def hwe_test(self):
-	allele_freq = self.calculate_allele_freq() if self.alleles_freq.empty else self.alleles_freq
-	replace_missing_markers = self.replace(5, np.nan)
+def hwe_test(data):
+	allele_freq = None
+	replace_missing_markers = data.replace(5, np.nan)
 	critical_value_chi = 3.841
 
 	def calc_hwe(row):
