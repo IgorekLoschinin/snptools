@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import numpy as np
-
+import pandas as pd
 
 """ 
 https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/ 
@@ -17,7 +17,7 @@ def hwe(
 	:param obs_hets: - количество наблюдаемых гетерозигот
 	:param obs_hom1: - количество наблюдаемыех гомозигот1
 	:param obs_hom2: - количество наблюдаемыех гомозигот2
-	:return: -
+	:return: - сдесь возвращается p-value
 	"""
 
 	obs_hets = round(obs_hets)
@@ -89,41 +89,46 @@ def hwe(
 	return min(1.0, p_hwe)
 
 
-def hwe_test(data):
-	allele_freq = None
-	replace_missing_markers = data.replace(5, np.nan)
-	critical_value_chi = 3.841
+def hwe_test(
+		seq_snp: pd.Series, freq: float, crit_chi2: float = 3.841
+) -> bool:
+	""" The Hardy-Weinberg equilibrium is a principle stating that the genetic
+	variation in a population will remain constant from one generation to the
+	next in the absence of disturbing factors
 
-	def calc_hwe(row):
-		n_unique_values = row.nunique()
-		if n_unique_values == 1:
-			return True
-		if n_unique_values == 0:
-			return np.nan
+	:param seq_snp: -
+	:param freq: -
+	:param crit_chi2: -  The critical value for a test ("either / or":
+		observed and expected values are either one way or the other),
+		therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05
+	:return: - Возвращается решение исключить или оставить проверяемый снп
+	"""
 
-		n_genotypes = row.count()
+	_seq = seq_snp.replace(5, np.nan)
 
-		obs = {
-			0: (row == 0).sum(),
-			1: (row == 1).sum(),
-			2: (row == 2).sum()
-		}
-		b_allele_freq = allele_freq[row.name]
+	if _seq.nunique() == 1:
+		return True
 
-		est = {
-			0: ((1 - b_allele_freq) ** 2) * n_genotypes,
-			1: (2 * ((1 - b_allele_freq) * b_allele_freq)) * n_genotypes,
-			2: (b_allele_freq ** 2) * n_genotypes
-		}
+	n_genotypes = _seq.count()
 
-		chi = sum([
-			((o - e) ** 2) / e
-			for o, e in zip(obs.values(), est.values())
-		])
+	observed = {
+		0: (_seq == 0).sum(),
+		1: (_seq == 1).sum(),
+		2: (_seq == 2).sum()
+	}
 
-		if chi > critical_value_chi:
-			return False
-		else:
-			return True
+	expected = {
+		0: ((1 - freq) ** 2) * n_genotypes,
+		1: (2 * ((1 - freq) * freq)) * n_genotypes,
+		2: (freq ** 2) * n_genotypes
+	}
 
-	return replace_missing_markers.apply(calc_hwe, axis=1)
+	chi = sum([
+		((obs - exp) ** 2) / exp
+		for obs, exp in zip(observed.values(), expected.values())
+	])
+
+	if chi > crit_chi2:
+		return False
+	else:
+		return True
