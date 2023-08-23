@@ -2,7 +2,7 @@
 # coding: utf-8
 
 from . import DIR_DATA
-from .. import allele_freq, maf
+from .. import allele_freq
 
 import pytest
 import numpy as np
