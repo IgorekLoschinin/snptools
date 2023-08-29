@@ -3,6 +3,8 @@
 
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
+from pathlib import Path
+
 import pandas as pd
 
 
@@ -62,8 +64,10 @@ class Snp(object):
 
 		return True
 
-	def to_uga(self) -> bool:
+	def to_uga(self, file: Path = None) -> bool:
 		...
 
 		# self.__data_snp = \
 		# 	self.__data_snp.groupby(by='SAMPLE_ID').sum().reset_index()
+		# .apply(" ".join, axis=1).to_csv(
+		# 	"./safasdfassdfasd.txt", index=False, header=False)

@@ -42,8 +42,7 @@ class TestFinalReport(object):
 			Path(f"{PATH_DIR_FILES}/fr/file2.xlsx")
 		)
 
-		assert len(obj.header) == 0 and \
-		       not obj.snp_data.empty
+		assert len(obj.header) == 0 and not obj.snp_data.empty
 
 	def test_handle_4(self) -> None:
 		""" if the file contains only header and field names """
