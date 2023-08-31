@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from . import PATH_DIR_FILES
-
 from pathlib import Path
-from ..finalreport import FinalReport
+
+from . import PATH_DIR_FILES
+from .._finalreport import FinalReport
 
 
 class TestFinalReport(object):
@@ -42,12 +42,10 @@ class TestFinalReport(object):
 			Path(f"{PATH_DIR_FILES}/fr/file2.xlsx")
 		)
 
-		assert len(obj.header) == 0 and \
-		       not obj.snp_data.empty
+		assert len(obj.header) == 0 and not obj.snp_data.empty
 
 	def test_handle_4(self) -> None:
-		""" if the file contains only header and field
-		names """
+		""" if the file contains only header and field names """
 		obj = FinalReport()
 
 		obj.handle(

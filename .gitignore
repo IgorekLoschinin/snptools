@@ -6,19 +6,13 @@
 *.html
 *.rar
 *.zip
-*.txt
-*.csv
 *.npz
-*.xlsx
 *.7z
 *.ipynb
 *.docx
 *.dbf
 
 !requirements.txt
-
-!tests/files/*/*.txt
-!tests/files/*/*.xlsx
 
 *.idea*
 *__pycache__*

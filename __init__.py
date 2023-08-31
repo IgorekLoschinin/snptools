@@ -1,4 +1,4 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-__all__ = ['finalreport', 'format']
+from ._finalreport import FinalReport
