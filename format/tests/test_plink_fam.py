@@ -16,7 +16,7 @@ def data_fam(request) -> pd.DataFrame | None:
 class TestPlinkFormatPed(object):
 
 	@pytest.mark.parametrize("data_fam", ["file.pl"], indirect=True)
-	def test_ped_true(self, data_fam: pd.DataFrame) -> None:
+	def test_fam_true(self, data_fam: pd.DataFrame) -> None:
 		assert not make_fam(
 			data_fam,
 			"SAMPLE_ID",
@@ -29,7 +29,7 @@ class TestPlinkFormatPed(object):
 			"SAMPLE_ID"
 		).empty
 
-	def test_ped_empty(self) -> None:
+	def test_fam_empty(self) -> None:
 		assert make_fam(
 			pd.DataFrame(columns=["SAMPLE_ID", "SNP"]),
 			"SAMPLE_ID",
@@ -42,7 +42,7 @@ class TestPlinkFormatPed(object):
 		).empty
 
 	@pytest.mark.parametrize("data_fam", ["file.pl"], indirect=True)
-	def test_ped_raise_columns(self, data_fam: pd.DataFrame) -> None:
+	def test_fam_raise_columns(self, data_fam: pd.DataFrame) -> None:
 		# SID_COL
 		with pytest.raises(
 				KeyError, match="Data has not in name columns SAMPLE_ID1!"
@@ -64,7 +64,7 @@ class TestPlinkFormatPed(object):
 			)
 
 	@pytest.mark.parametrize("data_fam", ["file2.pl"], indirect=True)
-	def test_ped_raises_underscope_sid(self, data_fam: pd.DataFrame) -> None:
+	def test_fam_raises_underscope_sid(self, data_fam: pd.DataFrame) -> None:
 
 		# SID_COL
 		with pytest.raises(
@@ -78,7 +78,7 @@ class TestPlinkFormatPed(object):
 			)
 
 	@pytest.mark.parametrize("data_fam", ["file3.pl"], indirect=True)
-	def test_ped_raises_underscope_fid(self, data_fam: pd.DataFrame) -> None:
+	def test_fam_raises_underscope_fid(self, data_fam: pd.DataFrame) -> None:
 
 		# FID_COL
 		with pytest.raises(
@@ -92,7 +92,7 @@ class TestPlinkFormatPed(object):
 			)
 
 	@pytest.mark.parametrize("data_fam", ["file4.pl"], indirect=True)
-	def test_ped_check_data(self, data_fam: pd.DataFrame) -> None:
+	def test_fam_check_data(self, data_fam: pd.DataFrame) -> None:
 		res = make_fam(
 			data_fam,
 			"SAMPLE_ID",

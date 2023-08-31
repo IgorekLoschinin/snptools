@@ -232,7 +232,10 @@ def make_fam(
 
 def make_lgen(
         data: pd.DataFrame,
-        fid: pd.Series | list[str] | int = 1,
+        sid_col: str,
+        snp_name: str,
+        alleles: list[str],
+        fid_col: str = None
 ) -> pd.DataFrame | None:
     """ PLINK long-format genotype file
     https://www.cog-genomics.org/plink/1.9/formats#lgen
@@ -251,51 +254,45 @@ def make_lgen(
     original discussion for details.
 
     :param data: - data the after parsing FinalReport.txt
-    :param fid: - Family ID, default value "1"
+    :param sid_col: -
+    :param snp_name: -
+    :param fid_col: - Family ID, default value "1"
+    :param alleles: -
     :return: - Return data in formate .lgen
     """
-    _fields = ['FID', 'Sample ID', 'SNP name', 'Alell_1', 'Alell_2']
-    _sample_fields = ['Sample ID', 'SNP name', 'Alell_1', 'Alell_2']
+    _fields = ['fid', 'sid', 'snp_name', 'allele1', 'alelle2']
+    _f_dtype = dict(zip(_fields, (str for _ in range(len(_fields)))))
 
-    if _sample_fields not in data.columns:
-        raise KeyError("Data has no data to build map format!")
+    _lgen = pd.DataFrame(columns=_fields)
 
-    if data['Sample ID'].apply(_check_underscore).any():
-        raise Exception(
-            "Replace in 'Sample ID' columns '_' on another a simbols"
-        )
-
-    lgen = pd.DataFrame(columns=_fields)
-    lgen[_sample_fields] = data[_sample_fields]
-
-    if isinstance(fid, int):
-        match fid:
-            case 1:
-                lgen['FID'] = np.ones(data.shape[0], dtype=np.int8)
-
-            case 0:
-                lgen['FID'] = np.zeros(data.shape[0], dtype=np.int8)
-
-            case _:
-                lgen['FID'] = np.full(data.shape[0], fid, dtype=np.int8)
-
-    elif isinstance(fid, pd.Series):
-        if fid.apply(_check_underscore).any():
+    try:
+        # Checked Sample ID on underscope - '_'
+        _lgen["sid"] = data[sid_col].astype(str)
+        if _lgen["sid"].apply(_check_underscore).any():
             raise Exception(
-                "Replace in 'fid' columns '_' on another a simbols"
+                "Replace in 'Sample ID' columns '_' on another a simbols"
             )
 
-        lgen["FID"] = fid
+        # Checked Family ID on underscope - '_'
+        if fid_col is not None:
+            if (data[fid_col].dtype.hasobject and
+                    data[fid_col].apply(_check_underscore).any()):
+                raise Exception(
+                    "Replace in 'Family ID' columns '_' on another a simbols"
+                )
 
-    elif isinstance(fid, list):
-        if any([_check_underscore(value) for value in fid]):
-            raise Exception(
-                "Replace in 'fid' columns '_' on another a simbols"
-            )
+            _lgen["fid"] = data[fid_col]
 
-        lgen["FID"] = fid
+        else:
+            _lgen["fid"] = 1
 
-    return lgen[_fields]
+        _lgen["snp_name"] = data[snp_name]
+        _lgen[["allele1", "allele2"]] = data[alleles]
+
+    except Exception as e:
+        raise e
+
+    return _lgen[_fields].astype(_f_dtype)
 
 
 def _check_underscore(value: str) -> bool:
