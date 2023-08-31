@@ -11,7 +11,7 @@ on:
 jobs:
   test:
 
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
 
