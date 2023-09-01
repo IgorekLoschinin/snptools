@@ -28,11 +28,6 @@ class TestCallRateAnimal(object):
 
 	@pytest.mark.parametrize("data_df", ["cra"], indirect=True)
 	def test_cra_datafame_dtype_obj(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест когда все параметры заданы верно. Успешное выполнение. Тип
-		данных объект - строка
-		"""
-
 		data_df.SNP = data_df.SNP.astype(str)
 		result = cr(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
 
@@ -41,10 +36,6 @@ class TestCallRateAnimal(object):
 
 	@pytest.mark.parametrize("data_df", ["cra"], indirect=True)
 	def test_cra_datafame_dtype_int(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест Тип данных объект - целочисленное значение
-		"""
-
 		data_df.SNP = data_df.SNP.astype("int8")
 		result = cr(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
 
@@ -53,10 +44,6 @@ class TestCallRateAnimal(object):
 
 	@pytest.mark.parametrize("data_df", ["cra"], indirect=True)
 	def test_cra_datafame_dtype_float(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест Тип данных объект - вещественное значение
-		"""
-
 		data_df.SNP = data_df.SNP.astype("float32")
 		result = cr(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
 
@@ -67,10 +54,6 @@ class TestCallRateAnimal(object):
 	def test_cra_datafame_dtype_random_simbols(
 		self, data_df: pd.DataFrame
 	) -> None:
-		"""
-		тест Тип данных объект - какието символы, не цифры
-		"""
-
 		data_df.SNP = [
 			np.random.choice(["A", "C", "G", "T"])
 			for _ in range(data_df.SNP.shape[0])
@@ -80,18 +63,10 @@ class TestCallRateAnimal(object):
 		assert result is None
 
 	def test_cra_datafame_empty1(self) -> None:
-		"""
-		тест Передается неизвестный пустой датафрейм
-		"""
-
 		with pytest.raises(KeyError):
 			cr(data=pd.DataFrame(), id_col="SAMPLE_ID", snp_col="SNP")
 
 	def test_cra_datafame_empty2(self) -> None:
-		"""
-		тест Передается датафрейм без данных
-		"""
-
 		result = cr(
 			data=pd.DataFrame(columns=["SAMPLE_ID", "SNP"]),
 			id_col="SAMPLE_ID",
@@ -102,20 +77,12 @@ class TestCallRateAnimal(object):
 
 	@pytest.mark.parametrize("data_df", ["cra"], indirect=True)
 	def test_cra_datafame_fail(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест когда один или оба из параметров id_col and snp_col не переданны
-		"""
-
 		with pytest.raises(KeyError):
 			cr(data=data_df, id_col="SAMPLE_ID")
 			cr(data=data_df, snp_col="SNP")
 			cr(data=data_df)
 
 	def test_cra_str_int(self, data_str: list[str]) -> None:
-		"""
-		тестирование строкового объекта
-		"""
-
 		for sequence in data_str:
 			assert cr(data=sequence) == 0.882353
 
@@ -136,11 +103,6 @@ class TestCallRateMarker(object):
 
 	@pytest.mark.parametrize("data_df", ["crm"], indirect=True)
 	def test_crm_datafame_dtype_obj(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест когда все параметры заданы верно. Успешное выполнение. Тип
-		данных объект - строка
-		"""
-
 		data_df.SNP = data_df.SNP.astype(str)
 		result = cr(data=data_df, id_col="SNP_NAME", snp_col="SNP")
 
@@ -149,10 +111,6 @@ class TestCallRateMarker(object):
 
 	@pytest.mark.parametrize("data_df", ["crm"], indirect=True)
 	def test_crm_datafame_dtype_int(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест Тип данных объект - целочисленное значение
-		"""
-
 		data_df.SNP = data_df.SNP.astype("int8")
 		result = cr(data=data_df, id_col="SNP_NAME", snp_col="SNP")
 
@@ -161,10 +119,6 @@ class TestCallRateMarker(object):
 
 	@pytest.mark.parametrize("data_df", ["crm"], indirect=True)
 	def test_crm_datafame_dtype_float(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест Тип данных объект - вещественное значение
-		"""
-
 		data_df.SNP = data_df.SNP.astype("float32")
 		result = cr(data=data_df, id_col="SNP_NAME", snp_col="SNP")
 
@@ -175,10 +129,6 @@ class TestCallRateMarker(object):
 	def test_crm_datafame_dtype_random_simbols(
 		self, data_df: pd.DataFrame
 	) -> None:
-		"""
-		тест Тип данных объект - какието символы, не цифры
-		"""
-
 		data_df.SNP = [
 			np.random.choice(["A", "C", "G", "T"])
 			for _ in range(data_df.SNP.shape[0])
@@ -188,18 +138,10 @@ class TestCallRateMarker(object):
 		assert result is None
 
 	def test_crm_datafame_empty1(self) -> None:
-		"""
-		тест Передается неизвестный пустой датафрейм
-		"""
-
 		with pytest.raises(KeyError):
 			cr(data=pd.DataFrame(), id_col="SNP_NAME", snp_col="SNP")
 
 	def test_crm_datafame_empty2(self) -> None:
-		"""
-		тест Передается датафрейм без данных
-		"""
-
 		result = cr(
 			data=pd.DataFrame(columns=["SNP_NAME", "SNP"]),
 			id_col="SNP_NAME",
@@ -210,11 +152,6 @@ class TestCallRateMarker(object):
 
 	@pytest.mark.parametrize("data_df", ["crm"], indirect=True)
 	def test_crm_datafame_fail(self, data_df: pd.DataFrame) -> None:
-		"""
-		тест когда один или оба из параметров snp_n_col and snp_col не
-		переданны
-		"""
-
 		with pytest.raises(KeyError):
 			cr(data=data_df, id_col="SNP_NAME")
 			cr(data=data_df, snp_col="SNP")
