@@ -26,10 +26,10 @@ class Snp(object):
 		self.__data_snp = None
 
 	@property
-	def data(self) -> pd.DataFrame:
+	def data(self) -> pd.DataFrame | None:
 		return self.__data_snp
 
-	def process(self, data: pd.DataFrame) -> bool:
+	def process(self, data: pd.DataFrame) -> None:
 		""" Data processing and formatting. Calculation of statistical
 		information
 
@@ -45,7 +45,10 @@ class Snp(object):
 		"""
 
 		if not all(list(map(lambda x: x in data.columns, _FIELDS_ILLUMIN))):
-			return False
+			raise KeyError(
+				'The name of the fields does not match the finalreport.txt '
+				'file from Illumina'
+			)
 
 		self.__data_snp = data.rename(columns=_MAP_FIELDS)
 		self.__data_snp['SNP'] = \
@@ -78,17 +81,28 @@ class Snp(object):
 		if self._format_data is not None and self._format_data == "uga":
 
 			max_len = self.__data_snp["SAMPLE_ID"].str.len().max()
-			self.__data_snp["SAMPLE_ID"] = self.__data_snp["SAMPLE_ID"].\
-				apply(lambda x: "".join([x, " " * (max_len - len(x))]))
 
 			self.__data_snp.\
-				apply(" ".join, axis=1).\
-				to_csv(file_path, sep=" ", index=False, header=False)
+				apply(
+					lambda x: " ".join([self._add_space(x[0], max_len), x[1]]),
+					axis=1
+				).\
+				to_csv(file_path, index=False, header=False)
 
 			self.__data_snp["SAMPLE_ID"] = \
 				self.__data_snp["SAMPLE_ID"].str.strip()
 
 			return None
 
-		self.__data_snp.\
-			to_csv(file_path, sep=" ", index=False, header=False)
+		self.__data_snp.to_csv(file_path, sep=" ", index=False)
+
+	@staticmethod
+	def _add_space(value: str, max_len: int) -> str:
+		""" Adding spaces up to the maximum length of the value in the
+		sample_id data
+
+		:param value: - Sample_id value
+		:param max_len: - Max len sample_id value
+		:return: - Return replacing value
+		"""
+		return "".join([value, " " * (max_len - len(value))])

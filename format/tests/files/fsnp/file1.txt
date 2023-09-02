@@ -1,12 +1,3 @@
-[Header]
-GSGT Version	2.0.4
-Processing Date	9/28/2022 10:17 AM
-Content		BovineSNP50_v3_A1.bpm
-Num SNPs	53218
-Total SNPs	53218
-Num Samples	24
-Total Samples	24
-[Data]
 SNP Name	Sample ID	Allele1 - AB	Allele2 - AB	GC Score	GT Score
 ABCA12	14814	A	A	0.4048	0.8164
 ARS-BFGL-BAC-13031	14814	B	B	0.9083	0.8712
