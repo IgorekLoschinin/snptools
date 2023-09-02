@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+__author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 import numpy as np
 import pandas as pd

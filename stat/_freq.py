@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+__author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 __all__ = [
 	"allele_freq", "minor_allele_freq"
