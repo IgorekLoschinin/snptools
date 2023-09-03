@@ -11,7 +11,7 @@ on:
 jobs:
   test_mac:
 
-    runs-on: macos-last
+    runs-on: macos-latest
     strategy:
       fail-fast: false
 
