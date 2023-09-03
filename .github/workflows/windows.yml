@@ -1,6 +1,12 @@
 name: Test on Windows
 
-on: [push, pull_request]
+on:
+  push:
+    branches: ["dev_v1"]
+
+  pull_request:
+    branches: ["main"]
+
 
 jobs:
   test_wind:
