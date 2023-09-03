@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+__author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 from pathlib import Path
 from functools import reduce
@@ -45,7 +46,7 @@ class FinalReport(object):
 		self._delimiter = sep
 		self._full_data = None
 
-		self.__header = dict()
+		self.__header = {}
 		self.__snp_data = None
 		self.__allele = allele
 		self.__map_rn = None
@@ -162,7 +163,6 @@ class FinalReport(object):
 		"""
 
 		allele_templ = r'(^Allele\d\s[:-]\s{}\b)'
-		allele_pattern = None
 
 		match self.__allele:
 			case None:

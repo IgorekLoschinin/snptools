@@ -4,7 +4,7 @@
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 from pathlib import Path
-from snpTools import _FIELDS_ILLUMIN, _MAP_FIELDS, _ALLELE_CODE
+from ..finalreport import FIELDS_ILLUMIN, MAP_FIELDS
 
 import pandas as pd
 
@@ -13,6 +13,10 @@ class Snp(object):
 	""" The process of converting genomic map data - FinalReport.txt obtained
 	from Illumin. Recoding allele data into quantitative data, saving in the
 	format necessary for calculating gblup on blupf90. """
+
+	_ALLELE_CODE = {
+		'AA': 0, 'AB': 1, 'BA': 1, 'BB': 2, '--': 5
+	}
 
 	_FIELDS = ['SNP_NAME', 'SAMPLE_ID', 'SNP']
 	_F_DTYPE = dict(zip(_FIELDS, (str for _ in range(len(_FIELDS)))))
@@ -44,17 +48,17 @@ class Snp(object):
 		statistical information was calculated, false if an error.
 		"""
 
-		if not all(list(map(lambda x: x in data.columns, _FIELDS_ILLUMIN))):
+		if not all(list(map(lambda x: x in data.columns, FIELDS_ILLUMIN))):
 			raise KeyError(
 				'The name of the fields does not match the finalreport.txt '
 				'file from Illumina'
 			)
 
-		self.__data_snp = data.rename(columns=_MAP_FIELDS)
+		self.__data_snp = data.rename(columns=MAP_FIELDS)
 		self.__data_snp['SNP'] = \
 			self.__data_snp[['ALLELE1', 'ALLELE2']].\
 			sum(axis=1).\
-			map(_ALLELE_CODE)
+			map(Snp._ALLELE_CODE)
 
 		self.__data_snp = self.__data_snp[Snp._FIELDS].astype(Snp._F_DTYPE)
 

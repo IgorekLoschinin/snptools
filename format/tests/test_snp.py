@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
-import pandas as pd
+__author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 from . import DIR_FILES
 from .._snp import Snp
 
 import pytest
+import pandas as pd
 
 
 @pytest.fixture
