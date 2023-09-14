@@ -2,7 +2,7 @@
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
-from snpTools.stat._snphwe import hwe_test
+from .. import hwe_test
 
 import pytest
 import pandas as pd
