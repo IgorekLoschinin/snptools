@@ -3,12 +3,12 @@
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 from ._snphwe import hwe, hwe_test
-from ._callrate import call_rate as cr
+from ._callrate import call_rate
 from ._freq import allele_freq, minor_allele_freq
 
 
 __all__ = [
-	"cr",
+	"call_rate",
 	"allele_freq",
 	"minor_allele_freq",
 	"hwe",
