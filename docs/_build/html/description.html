@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; snptools version 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5c1c9e08"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="snptools" href="modules.html" />
+    <link rel="prev" title="Welcome to snptools documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            snptools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#current-features">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#the-dataexplore-application">The DataExplore application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#links">Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#for-dataexplore">For Dataexplore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pandastable-library">pandastable library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mac-osx">Mac OSX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">snptools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">snptools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/description.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>The pandastable library provides a table widget for Tkinter with
+plotting and data manipulation functionality. It uses the pandas
+DataFrame class to store table data. Pandas is an open source Python
+library providing high-performance data structures and data analysis
+tools. Tkinter is the standard GUI toolkit for python. It is intended
+for the following uses:</p>
+<ul class="simple">
+<li><p>for python/tkinter GUI developers who want to include a table in
+their application that can store and process large amounts of data</p></li>
+<li><p>for non-programmers who are not familiar with Python or the pandas
+API and want to use the included DataExplore application to
+manipulate/view their data</p></li>
+<li><p>it may also be useful for data analysts and programmers who want to
+get an initial interactive look at their tabular data without coding</p></li>
+</ul>
+</section>
+<section id="current-features">
+<h1>Current Features<a class="headerlink" href="#current-features" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>add, remove rows and columns</p></li>
+<li><p>spreadsheet-like drag, shift-click, ctrl-click selection</p></li>
+<li><p>edit individual cells</p></li>
+<li><p>sort by column, rename columns</p></li>
+<li><p>reorder columns dynamically by mouse drags</p></li>
+<li><p>set some basic formatting such as font, text size and column width</p></li>
+<li><p>save the DataFrame to supported pandas formats</p></li>
+<li><p>import/export of supported text files</p></li>
+<li><p>rendering of very large tables is only memory limited</p></li>
+<li><p>interactive plots with matplotlib, mostly using the pandas plot functions</p></li>
+<li><p>basic table manipulations like aggregate and pivot</p></li>
+<li><p>filter table using built in dataframe functionality</p></li>
+<li><p>graphical way to perform split-apply-combine operations</p></li>
+</ul>
+</section>
+<section id="the-dataexplore-application">
+<h1>The DataExplore application<a class="headerlink" href="#the-dataexplore-application" title="Link to this heading"></a></h1>
+<p>Installing the package creates a command <em>dataexplore</em> in your path. Just run this to open the program. This is a standalone application for data manipulation and plotting meant for education and basic data analysis. More details are in the ‘Using dataexplore’ section. Also see the home page for this application at <a class="reference external" href="http://dmnfarrell.github.io/pandastable/">http://dmnfarrell.github.io/pandastable/</a></p>
+</section>
+<section id="links">
+<h1>Links<a class="headerlink" href="#links" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="http://openresearchsoftware.metajnl.com/articles/10.5334/jors.94/">http://openresearchsoftware.metajnl.com/articles/10.5334/jors.94/</a></p>
+<p><a class="reference external" href="http://dmnfarrell.github.io/pandastable/">http://dmnfarrell.github.io/pandastable/</a></p>
+<p><a class="reference external" href="https://youtu.be/Ss0QIFywt74">https://youtu.be/Ss0QIFywt74</a></p>
+</section>
+<section id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h1>
+<p>If you use this software in your work please cite the following article:</p>
+<p>Farrell, D 2016 DataExplore: An Application for General Data Analysis in Research and Education. Journal of Open Research Software, 4: e9, DOI: <a class="reference external" href="http://dx.doi.org/10.5334/jors.94">http://dx.doi.org/10.5334/jors.94</a></p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="for-dataexplore">
+<h2>For Dataexplore<a class="headerlink" href="#for-dataexplore" title="Link to this heading"></a></h2>
+<p>For <strong>Windows users</strong> there is an MSI installer for the DataExplore application. This is recommended for anyone using windows not using the library directly as a widget.</p>
+<p><strong>On linux</strong> snaps are highly recommended:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snap</span> <span class="n">install</span> <span class="n">dataexplore</span>
+</pre></div>
+</div>
+</section>
+<section id="pandastable-library">
+<h2>pandastable library<a class="headerlink" href="#pandastable-library" title="Link to this heading"></a></h2>
+<p>On all operating systems installations of Python should include the pip tool. If not use your distributions package manager to install pip first. Then a simple call as follows should install all dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandastable</span>
+</pre></div>
+</div>
+<p>This might not work well in some cases because matplotlib has library dependencies that users might find confusing. Though it should work ok on recent versions of Ubuntu. Advice for each OS is given below.</p>
+<p><strong>Dependencies</strong></p>
+<ul class="simple">
+<li><p>numpy</p></li>
+<li><p>pandas</p></li>
+<li><p>matplotlib</p></li>
+<li><p>numexpr</p></li>
+</ul>
+<p><strong>Optional dependencies</strong></p>
+<ul class="simple">
+<li><p>statsmodels</p></li>
+<li><p>seaborn (requires scipy)</p></li>
+</ul>
+</section>
+<section id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
+<p>For the python linbrary using easy_install or pip should work well but for matplotlib might require more packages such as python headers for compiling the extension. You need the tk8.6-dev package to provide the tkagg backend.</p>
+<p>Otherwise, to use the package manager in Ubuntu/Debian based distributions you can issue the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">matplotlib</span>
+</pre></div>
+</div>
+<p>You should install pandas with pip as it will provide the most recent version. This will likely be done automatically anyway:</p>
+<p>For python 3 installs</p>
+<p>You need to use the command pip3 instead if python 2 is also on your system, like in Ubuntu. When installing packages with apt you likely need to specify python 3. e.g. python3-numpy instead of python-numpy.</p>
+<p>For python 2.7 ONLY</p>
+<p>You will also need the future package. Run <cite>pip install future</cite> to install them. Python 2.6 has NOT been tested and probably won’t work.</p>
+</section>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
+<p>It is much easier to install matplotlib in windows using the binary installer rather than using pip. You can download this [here](<a class="reference external" href="http://matplotlib.org/downloads.html">http://matplotlib.org/downloads.html</a>). Pick the appropriate file for your python version  e.g. ‘matplotlib-1.4.3.win32-py3.4.exe’ for python 3.4.</p>
+<p>pandas should install ok with the pip installer. In windows pip.exe is located under C:Python34Scripts. The future package is needed for python 2.7.</p>
+<p>Note that the Python pydata stack can also be installed at once using miniconda, <a class="reference external" href="http://conda.pydata.org/miniconda.html">http://conda.pydata.org/miniconda.html</a>. This includes a version of Python itself.</p>
+</section>
+<section id="mac-osx">
+<h2>Mac OSX<a class="headerlink" href="#mac-osx" title="Link to this heading"></a></h2>
+<p>There are multiple packaged installers for scientific Python, the best of which is probably anaconda. Miniconda is a smaller version if you don’t want all the packages. To use it download and run the Mac OS X installer from <a class="reference external" href="http://conda.pydata.org/miniconda.html">http://conda.pydata.org/miniconda.html</a>. The installer will automatically configure your system to use the Anaconda Python. You can then use pip to install the package.</p>
+<p>If using macports:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">port</span> <span class="n">install</span> <span class="n">py34</span><span class="o">-</span><span class="n">pip</span>
+<span class="n">sudo</span> <span class="n">pip</span><span class="o">-</span><span class="mf">3.4</span> <span class="n">install</span> <span class="n">matplotlib</span> <span class="n">numpy</span> <span class="n">pandas</span> <span class="n">numexpr</span>
+</pre></div>
+</div>
+<p>Using the source distribution file</p>
+<p>You can download the latest tar.gz file [here](<a class="reference external" href="https://github.com/dmnfarrell/pandastable/releases/latest/">https://github.com/dmnfarrell/pandastable/releases/latest/</a>) and do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">pandastable</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">pandastable</span>
+<span class="n">sudo</span> <span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Note that you still need to have installed the dependencies as above.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to snptools documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="snptools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Igor Locshinin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

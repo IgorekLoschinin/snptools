@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>parentage.tests.test_verif &mdash; snptools version 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5c1c9e08"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            snptools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">snptools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">parentage.tests.test_verif</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for parentage.tests.test_verif</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Igor Loschinin (igor.loschinin@gmail.com)&quot;</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">DIR_DATA</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Verification</span><span class="p">,</span> <span class="n">isag_verif</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="data">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.data">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+	<span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_DATA</span> <span class="o">/</span> <span class="s2">&quot;parentage_test_verf.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="obj_verification">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.obj_verification">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">obj_verification</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Verification</span><span class="p">:</span>
+	<span class="k">return</span> <span class="n">Verification</span><span class="p">(</span><span class="n">isag_marks</span><span class="o">=</span><span class="n">isag_verif</span><span class="p">()</span><span class="o">.</span><span class="n">markers</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TestVerification">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification">[docs]</a>
+<span class="k">class</span> <span class="nc">TestVerification</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestVerification.test_check_on_0">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_0">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_check_on_0</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		successfully!</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+			<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+			<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+			<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+			<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+		<span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="o">==</span> <span class="mi">31</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Excluded&quot;</span></div>
+
+
+<div class="viewcode-block" id="TestVerification.test_check_on_1">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_1">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_check_on_1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		тест проверяет исключение на отсутствие данных о маркерах для</span>
+<span class="sd">		верификации</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">obj_verification</span> <span class="o">=</span> <span class="n">Verification</span><span class="p">()</span>
+
+		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span>
+			<span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Error. No array of snp names to verify&quot;</span>
+		<span class="p">):</span>
+			<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+				<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+				<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+				<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+				<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+			<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="TestVerification.test_check_on_2">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_2">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_check_on_2</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		исключение на низкий call rate у обоих животных</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span>
+			<span class="ne">Exception</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Calf and parent have low call rate&quot;</span>
+		<span class="p">):</span>
+			<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+				<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span>
+				<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+				<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+				<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+			<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="TestVerification.test_check_on_3">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_3">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_check_on_3</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		исключение когда парный call rate ниже порогового значения</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">228</span><span class="p">:,</span> <span class="s1">&#39;BY000041988163&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+		<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">239</span><span class="p">:,</span> <span class="s1">&#39;EE10512586&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span>
+			<span class="ne">Exception</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Pair call rate is low&quot;</span>
+		<span class="p">):</span>
+			<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+				<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+				<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+				<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+				<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+			<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="TestVerification.test_search_parent_4">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_search_parent_4">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_search_parent_4</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		тест если передаваемые названия жифотных отсутствуют в датафрейме</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="c1"># For descendant</span>
+		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
+			<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+				<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+				<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY00004198816&quot;</span><span class="p">,</span>
+				<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+				<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+			<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="ow">is</span> <span class="kc">None</span>
+
+		<span class="c1"># For parents</span>
+		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
+			<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+				<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+				<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+				<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE105125864&quot;</span><span class="p">,</span>
+				<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+			<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="TestVerification.test_search_parent_5">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_search_parent_5">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_search_parent_5</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		тест когда все данные снп не прочитанны - равны 5</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">data</span><span class="p">[[</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span> <span class="s2">&quot;EE10512586&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">5</span>
+
+		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span>
+			<span class="ne">Exception</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Calf and parent have low call rate&quot;</span>
+		<span class="p">):</span>
+			<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+				<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+				<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+				<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+				<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+			<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="TestVerification.test_search_parent_6">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_search_parent_6">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_search_parent_6</span><span class="p">(</span>
+			<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		тест когда полное совпадение</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">data</span><span class="p">[[</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span> <span class="s2">&quot;EE10512586&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">2</span>
+
+		<span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+			<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+			<span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span>
+			<span class="n">parent</span><span class="o">=</span><span class="s2">&quot;EE10512586&quot;</span><span class="p">,</span>
+			<span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+		<span class="p">)</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Accept&quot;</span>
+		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span> <span class="o">==</span> <span class="mi">0</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Igor Locshinin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
