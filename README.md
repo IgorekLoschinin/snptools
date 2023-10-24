@@ -1,50 +1,58 @@
-# SNPTools
+# snptools
 
-SNPTools - это инструмент для обработки данных SNP (Single Nucleotide Polymorphism), вычисления парентажа и оценки call rate.
+**Snptools** is a tool for SNP (Single Nucleotide Polymorphism) data processing, 
+parentage calculation and call rate estimation.
 
-## Введение
+## Introduction
 
-SNP (Single Nucleotide Polymorphism) представляют собой генетические вариации, которые могут быть использованы для анализа генетических данных. SNPTools предоставляет набор функций для работы с данными SNP, включая следующие возможности:
+SNP (Single Nucleotide Polymorphism) represent genetic variations, that can 
+be used to analyze genetic data. SNPTools provides a set of tools for working 
+with SNP data, including the following capabilities:
 
-- Обработка данных SNP
-- Вычисление парентажа
-- Оценка call rate (процент отсутствующих данных)
+- SNP data processing - FinalReport.
+- Parentage Verification and Parentage Discovery Based on SNP Genotypes (ICAR). 
+- Call rate estimation (percentage of missing data).
+- Processing and preparation of data in plink formats.
 
-## Установка
+## Installation
 
-Для установки SNPTools, выполните следующие шаги:
+To install SNPTools, follow the steps below:
 
-1. Склонируйте репозиторий:
-
-   ```sh
+1. Clone the repository into your project directory:
+   ```
    git clone https://github.com/yourusername/snpTools.git
-2. Установите зависимости:
+   ```
+2. Set dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Use SNPTools:
+   ```
+   import snptools
+   ```
+   
+## Usage
+Snptools provides commands for a variety of operations. Here are examples of 
+usage:
 
-pip install -r requirements.txt
-Запустите SNPTools:
+#### SNP data processing:
+```
+from snptools import format
+```
 
-python snpTools.py
-## Использование
-SNPTools предоставляет команды для различных операций. Вот примеры использования:
+#### Computation of parentage:
+```
+from snptools import parentage
+```
 
-#### Обработка данных SNP:
-python snpTools.py preprocess input.vcf output.vcf
+#### Call rate estimation:
+```
+from snptools import stat
+```
 
-#### Вычисление парентажа:
-python snpTools.py parentage input.vcf pedigree.txt output.txt
+## Documentation
+Detailed documentation on how to use SNPTools is available see the docs.
 
-#### Оценка call rate:
-python snpTools.py callrate input.vcf
-
-## Документация
-Подробная документация по использованию SNPTools доступна в файле Документация.
-
-## Содействие
-Если у вас есть предложения по улучшению SNPTools или вы обнаружили баги, пожалуйста, откройте новый issue в разделе Issues.
-
-## Лицензия
-Этот проект лицензирован под MIT License - подробности см. в файле LICENSE.
-
-
-
-Помните заменить `yourusername` на вашу учетную запись GitHub и дополнить файл `Документация` подробностями о командах и функциях `SNPTools`.
+## License
+This project is licensed under the GNU General Public License - see the 
+LICENSE file for details.

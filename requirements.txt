@@ -7,3 +7,5 @@ XlsxWriter
 openpyxl
 pydantic
 pytest
+sphinx
+sphinx_rtd_theme
