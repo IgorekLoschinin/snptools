@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>finalreport package &mdash; snptools version 1.0 documentation</title>
+  <title>finalreport &mdash; snptools version 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="finalreport.tests package" href="finalreport.tests.html" />
+    <link rel="next" title="finalreport.tests.test_finalreport module" href="finalreport.tests.html" />
     <link rel="prev" title="snptools" href="modules.html" /> 
 </head>
 
@@ -42,22 +42,27 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#current-features">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#the-dataexplore-application">The DataExplore application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#links">Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#installation">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">snptools</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">finalreport package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-finalreport">Module contents</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">finalreport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-finalreport">finalreport package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#finalreport.FinalReport"><code class="docutils literal notranslate"><span class="pre">FinalReport</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html">finalreport.tests package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tests-package">tests package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html">finalreport.tests.test_finalreport module</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="format.html">format package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parentage.html">parentage package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format.html">format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parentage.html">parentage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stat.html">stat package</a></li>
 </ul>
 </li>
@@ -78,7 +83,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">snptools</a></li>
-      <li class="breadcrumb-item active">finalreport package</li>
+      <li class="breadcrumb-item active">finalreport</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/finalreport.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,10 +93,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="finalreport-package">
-<h1>finalreport package<a class="headerlink" href="#finalreport-package" title="Link to this heading"></a></h1>
+  <section id="finalreport">
+<h1>finalreport<a class="headerlink" href="#finalreport" title="Link to this heading"></a></h1>
 <section id="module-finalreport">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finalreport" title="Link to this heading"></a></h2>
+<span id="finalreport-package"></span><h2>finalreport package<a class="headerlink" href="#module-finalreport" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="finalreport.FinalReport">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finalreport.</span></span><span class="sig-name descname"><span class="pre">FinalReport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allele</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'\t'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finalreport/_finalreport.html#FinalReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finalreport.FinalReport" title="Link to this definition"></a></dt>
@@ -231,35 +236,30 @@ and data</p>
 </dd></dl>
 
 </section>
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<section id="tests-package">
+<h2>tests package<a class="headerlink" href="#tests-package" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="finalreport.tests.html">finalreport.tests package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="finalreport.tests.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finalreport.tests.html#module-finalreport.tests.test_finalreport">finalreport.tests.test_finalreport module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport"><code class="docutils literal notranslate"><span class="pre">TestFinalReport</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_allele_none"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_allele_none()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_1"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_1()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_2"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_3"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_3()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_4"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_4()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_5"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_5()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_6"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_6()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_7"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_7()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_8"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_8()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_ab"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_ab()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_forward"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_list1"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_list1()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_list2"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_list2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_not_exist"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_not_exist()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_top"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_top()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="finalreport.tests.html">finalreport.tests.test_finalreport module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport"><code class="docutils literal notranslate"><span class="pre">TestFinalReport</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_allele_none"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_allele_none()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_1"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_2"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_3"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_3()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_4"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_5"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_6"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_6()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_7"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_7()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_8"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_handle_8()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_ab"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_ab()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_forward"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_list1"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_list1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_list2"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_list2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_not_exist"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_not_exist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_sample_allele_top"><code class="docutils literal notranslate"><span class="pre">TestFinalReport.test_sample_allele_top()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.report"><code class="docutils literal notranslate"><span class="pre">report()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="finalreport.tests.html#module-finalreport.tests">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finalreport.tests.html#finalreport.tests.test_finalreport.report"><code class="docutils literal notranslate"><span class="pre">report()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -272,7 +272,7 @@ and data</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="modules.html" class="btn btn-neutral float-left" title="snptools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="finalreport.tests.html" class="btn btn-neutral float-right" title="finalreport.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="finalreport.tests.html" class="btn btn-neutral float-right" title="finalreport.tests.test_finalreport module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

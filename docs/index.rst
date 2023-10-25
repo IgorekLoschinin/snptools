@@ -8,8 +8,8 @@ Welcome to snptools documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   description
    modules
 
 Indices and tables

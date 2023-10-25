@@ -4,7 +4,7 @@
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 from pathlib import Path
-from ..finalreport import FIELDS_ILLUMIN, MAP_FIELDS
+from .__settings import FIELDS_ILLUMIN, MAP_FIELDS
 
 import pandas as pd
 

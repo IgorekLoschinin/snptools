@@ -1,18 +1,18 @@
+parentage
+=========
+
 parentage package
-=================
-
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   parentage.tests
-
-Module contents
----------------
+-------------------
 
 .. automodule:: parentage
    :members:
    :undoc-members:
    :show-inheritance:
+
+tests package
+--------------
+
+.. toctree::
+   :maxdepth: 3
+
+   parentage.tests

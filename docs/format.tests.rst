@@ -1,8 +1,5 @@
-format.tests package
+tests.plink package
 ====================
-
-Submodules
-----------
 
 format.tests.test\_plink\_fam module
 ------------------------------------
@@ -36,18 +33,13 @@ format.tests.test\_plink\_ped module
    :undoc-members:
    :show-inheritance:
 
+tests.snp package
+====================
+
 format.tests.test\_snp module
 -----------------------------
 
 .. automodule:: format.tests.test_snp
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: format.tests
    :members:
    :undoc-members:
    :show-inheritance:

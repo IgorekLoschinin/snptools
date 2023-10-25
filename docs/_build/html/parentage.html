@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>parentage package &mdash; snptools version 1.0 documentation</title>
+  <title>parentage &mdash; snptools version 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="parentage.tests package" href="parentage.tests.html" />
-    <link rel="prev" title="format.tests package" href="format.tests.html" /> 
+    <link rel="prev" title="tests.plink package" href="format.tests.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,21 +42,26 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#current-features">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#the-dataexplore-application">The DataExplore application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#links">Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#installation">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">snptools</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="finalreport.html">finalreport package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="format.html">format package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">parentage package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html">parentage.tests package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-parentage">Module contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finalreport.html">finalreport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format.html">format</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">parentage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-parentage">parentage package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#parentage.Discovery"><code class="docutils literal notranslate"><span class="pre">Discovery</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parentage.Verification"><code class="docutils literal notranslate"><span class="pre">Verification</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parentage.isag_disc"><code class="docutils literal notranslate"><span class="pre">isag_disc()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parentage.isag_verif"><code class="docutils literal notranslate"><span class="pre">isag_verif()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tests-package">tests package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html">parentage.tests package</a></li>
 </ul>
 </li>
 </ul>
@@ -81,7 +86,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">snptools</a></li>
-      <li class="breadcrumb-item active">parentage package</li>
+      <li class="breadcrumb-item active">parentage</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/parentage.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,52 +96,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="parentage-package">
-<h1>parentage package<a class="headerlink" href="#parentage-package" title="Link to this heading"></a></h1>
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="parentage.tests.html">parentage.tests package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parentage.tests.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parentage.tests.html#module-parentage.tests.test_discov">parentage.tests.test_discov module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery"><code class="docutils literal notranslate"><span class="pre">TestDiscovery</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_0"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_0()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_1"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_1()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_2"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_3"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_3()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_4"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_4()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_5"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_5()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery.test_search_parent_6"><code class="docutils literal notranslate"><span class="pre">TestDiscovery.test_search_parent_6()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.obj_discovery"><code class="docutils literal notranslate"><span class="pre">obj_discovery()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="parentage.tests.html#module-parentage.tests.test_verif">parentage.tests.test_verif module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification"><code class="docutils literal notranslate"><span class="pre">TestVerification</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_0"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_check_on_0()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_1"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_check_on_1()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_2"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_check_on_2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_3"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_check_on_3()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_search_parent_4"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_search_parent_4()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_search_parent_5"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_search_parent_5()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification.test_search_parent_6"><code class="docutils literal notranslate"><span class="pre">TestVerification.test_search_parent_6()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.obj_verification"><code class="docutils literal notranslate"><span class="pre">obj_verification()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="parentage.tests.html#module-parentage.tests">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
+  <section id="parentage">
+<h1>parentage<a class="headerlink" href="#parentage" title="Link to this heading"></a></h1>
 <section id="module-parentage">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-parentage" title="Link to this heading"></a></h2>
+<span id="parentage-package"></span><h2>parentage package<a class="headerlink" href="#module-parentage" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="parentage.Discovery">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">parentage.</span></span><span class="sig-name descname"><span class="pre">Discovery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isag_markers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">set</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parentage/_discov.html#Discovery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parentage.Discovery" title="Link to this definition"></a></dt>
@@ -249,13 +212,35 @@
 <dd></dd></dl>
 
 </section>
+<section id="tests-package">
+<h2>tests package<a class="headerlink" href="#tests-package" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="parentage.tests.html">parentage.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parentage.tests.html#module-parentage.tests.test_discov">parentage.tests.test_discov module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.TestDiscovery"><code class="docutils literal notranslate"><span class="pre">TestDiscovery</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_discov.obj_discovery"><code class="docutils literal notranslate"><span class="pre">obj_discovery()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parentage.tests.html#module-parentage.tests.test_verif">parentage.tests.test_verif module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.TestVerification"><code class="docutils literal notranslate"><span class="pre">TestVerification</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parentage.tests.html#parentage.tests.test_verif.obj_verification"><code class="docutils literal notranslate"><span class="pre">obj_verification()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="format.tests.html" class="btn btn-neutral float-left" title="format.tests package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="format.tests.html" class="btn btn-neutral float-left" title="tests.plink package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="parentage.tests.html" class="btn btn-neutral float-right" title="parentage.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

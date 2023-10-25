@@ -1,18 +1,18 @@
-finalreport package
+finalreport
 ===================
 
-Module contents
----------------
+finalreport package
+-------------------
 
 .. automodule:: finalreport
    :members:
    :undoc-members:
    :show-inheritance:
 
-Subpackages
+tests package
 -----------
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    finalreport.tests
