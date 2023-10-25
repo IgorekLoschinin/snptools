@@ -2,10 +2,6 @@
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
-__all__ = [
-	"allele_freq", "minor_allele_freq"
-]
-
 import pandas as pd
 
 
@@ -15,10 +11,10 @@ def allele_freq(
 	""" The allele frequency represents the incidence of a gene variant in a
 	population
 
-	:param data: - Data array
-	:param id_col: - Columns with snp names
-	:param seq_col: - Columns with value snp in format ucg - 0, 1, 2, 5
-	:return: - Return the alleles frequency
+	:param data: Data array
+	:param id_col: Columns with snp names
+	:param seq_col: Columns with value snp in format ucg - 0, 1, 2, 5
+	:return: Return the alleles frequency
 	"""
 
 	if isinstance(data, pd.DataFrame):

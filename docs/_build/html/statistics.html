@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statistics &mdash; snptools version 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5c1c9e08"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="statistics.tests package" href="statistics.tests.html" />
+    <link rel="prev" title="parentage.tests package" href="parentage.tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            snptools
+              <img src="_static/logo3.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#current-features">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#the-dataexplore-application">The DataExplore application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#links">Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#installation">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">snptools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="finalreport.html">finalreport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format.html">format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parentage.html">parentage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-statistics">statistics package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#statistics.allele_freq"><code class="docutils literal notranslate"><span class="pre">allele_freq()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics.call_rate"><code class="docutils literal notranslate"><span class="pre">call_rate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics.hwe"><code class="docutils literal notranslate"><span class="pre">hwe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics.hwe_test"><code class="docutils literal notranslate"><span class="pre">hwe_test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics.minor_allele_freq"><code class="docutils literal notranslate"><span class="pre">minor_allele_freq()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tests-package">tests package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statistics.tests.html">statistics.tests package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">snptools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">snptools</a></li>
+      <li class="breadcrumb-item active">statistics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/statistics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="statistics">
+<h1>statistics<a class="headerlink" href="#statistics" title="Link to this heading"></a></h1>
+<section id="module-statistics">
+<span id="statistics-package"></span><h2>statistics package<a class="headerlink" href="#module-statistics" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="statistics.allele_freq">
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">allele_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/statistics/_freq.html#allele_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.allele_freq" title="Link to this definition"></a></dt>
+<dd><p>The allele frequency represents the incidence of a gene variant in a
+population</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – Data array</p></li>
+<li><p><strong>id_col</strong> – Columns with snp names</p></li>
+<li><p><strong>seq_col</strong> – Columns with value snp in format ucg - 0, 1, 2, 5</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the alleles frequency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statistics.call_rate">
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">call_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snp_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/statistics/_callrate.html#call_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.call_rate" title="Link to this definition"></a></dt>
+<dd><p>The call rate for a given SNP is defined as the proportion of
+individuals in the study for which the corresponding SNP information is
+not missing. In the following example, we filter using a call rate of 95%,
+meaning we retain SNPs for which there is less than 5% missing data.</p>
+<blockquote>
+<div><p>Of the say, 54K markers in the chip, 50K have been genotyped for a</p>
+</div></blockquote>
+<dl class="simple">
+<dt>particular animal, the “call rate animal” is 50K/54K=93%</dt><dd><p>Of the say, 900 animals genotyped for marker CL635944_160.1, how many</p>
+</dd>
+</dl>
+<p>have actually been successfully read? Assume that 600 have been read, then
+the “call rate marker” is 600/900 = 67%</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – Pre-processed data on which the call rate is calculated</p></li>
+<li><p><strong>id_col</strong> – The name of the column with the id of the animals or
+markers</p></li>
+<li><p><strong>snp_col</strong> – The name of the column with the snp sequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return dataframe with call rates for each animal if a dataframe
+is transmitted. The number if the snp sequence is passed as a string.
+None if there were errors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statistics.hwe">
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">hwe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs_hets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_hom1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_hom2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/statistics/_snphwe.html#hwe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.hwe" title="Link to this definition"></a></dt>
+<dd><p>Python interpretation hwe - <a class="reference external" href="https://github.com/jeremymcrae/snphwe">https://github.com/jeremymcrae/snphwe</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obs_hets</strong> – <ul>
+<li><p>количество наблюдаемых гетерозигот</p></li>
+</ul>
+</p></li>
+<li><p><strong>obs_hom1</strong> – <ul>
+<li><p>количество наблюдаемыех гомозигот1</p></li>
+</ul>
+</p></li>
+<li><p><strong>obs_hom2</strong> – <ul>
+<li><p>количество наблюдаемыех гомозигот2</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>сдесь возвращается p-value</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statistics.hwe_test">
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">hwe_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crit_chi2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.841</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/statistics/_snphwe.html#hwe_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.hwe_test" title="Link to this definition"></a></dt>
+<dd><p>The Hardy-Weinberg equilibrium is a principle stating that the genetic
+variation in a population will remain constant from one generation to the
+next in the absence of disturbing factors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq_snp</strong> – <ul>
+<li></li>
+</ul>
+</p></li>
+<li><p><strong>freq</strong> – <ul>
+<li></li>
+</ul>
+</p></li>
+<li><p><strong>crit_chi2</strong> – <ul>
+<li><p>The critical value for a test (“either / or”:</p></li>
+</ul>
+<p>observed and expected values are either one way or the other),
+therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Возвращается решение исключить или оставить проверяемый снп</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statistics.minor_allele_freq">
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">minor_allele_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/statistics/_freq.html#minor_allele_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.minor_allele_freq" title="Link to this definition"></a></dt>
+<dd><p>The minor allele frequency is therefore the frequency at which the
+minor allele occurs within a population</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – <ul class="simple">
+<li><p>allele frequency</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Return the minor alleles frequency</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="tests-package">
+<h2>tests package<a class="headerlink" href="#tests-package" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics.tests.html">statistics.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statistics.tests.html#statistics-tests-test-callrate-module">statistics.tests.test_callrate module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal"><code class="docutils literal notranslate"><span class="pre">TestCallRateAnimal</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker"><code class="docutils literal notranslate"><span class="pre">TestCallRateMarker</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_callrate.data_df"><code class="docutils literal notranslate"><span class="pre">data_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_callrate.data_str"><code class="docutils literal notranslate"><span class="pre">data_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.tests.html#module-statistics.tests.test_freq_allele">stat.tests.test_freq_allele module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_freq_allele.TestAlleleFreq"><code class="docutils literal notranslate"><span class="pre">TestAlleleFreq</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_freq_allele.data_df"><code class="docutils literal notranslate"><span class="pre">data_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_freq_allele.data_str"><code class="docutils literal notranslate"><span class="pre">data_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.tests.html#module-statistics.tests.test_freq_maf">stat.tests.test_freq_maf module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_freq_maf.TestMinorAlleleFreq"><code class="docutils literal notranslate"><span class="pre">TestMinorAlleleFreq</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.tests.html#module-statistics.tests.test_hwe_t">stat.tests.test_hwe_t module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_hwe_t.TestHWE"><code class="docutils literal notranslate"><span class="pre">TestHWE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.tests.html#module-statistics.tests.test_snphwe">stat.tests.test_snphwe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics.tests.html#statistics.tests.test_snphwe.TestHWE"><code class="docutils literal notranslate"><span class="pre">TestHWE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parentage.tests.html" class="btn btn-neutral float-left" title="parentage.tests package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="statistics.tests.html" class="btn btn-neutral float-right" title="statistics.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Igor Locshinin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

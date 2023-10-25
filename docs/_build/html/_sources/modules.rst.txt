@@ -7,4 +7,4 @@ snptools
    finalreport
    format
    parentage
-   stat
+   statistics

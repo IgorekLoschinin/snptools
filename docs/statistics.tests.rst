@@ -1,13 +1,10 @@
-stat.tests package
+statistics.tests package
 ==================
 
-Submodules
-----------
-
-stat.tests.test\_callrate module
+statistics.tests.test\_callrate module
 --------------------------------
 
-.. automodule:: stat.tests.test_callrate
+.. automodule:: statistics.tests.test_callrate
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +12,7 @@ stat.tests.test\_callrate module
 stat.tests.test\_freq\_allele module
 ------------------------------------
 
-.. automodule:: stat.tests.test_freq_allele
+.. automodule:: statistics.tests.test_freq_allele
    :members:
    :undoc-members:
    :show-inheritance:
@@ -23,7 +20,7 @@ stat.tests.test\_freq\_allele module
 stat.tests.test\_freq\_maf module
 ---------------------------------
 
-.. automodule:: stat.tests.test_freq_maf
+.. automodule:: statistics.tests.test_freq_maf
    :members:
    :undoc-members:
    :show-inheritance:
@@ -31,7 +28,7 @@ stat.tests.test\_freq\_maf module
 stat.tests.test\_hwe\_t module
 ------------------------------
 
-.. automodule:: stat.tests.test_hwe_t
+.. automodule:: statistics.tests.test_hwe_t
    :members:
    :undoc-members:
    :show-inheritance:
@@ -39,15 +36,7 @@ stat.tests.test\_hwe\_t module
 stat.tests.test\_snphwe module
 ------------------------------
 
-.. automodule:: stat.tests.test_snphwe
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: stat.tests
+.. automodule:: statistics.tests.test_snphwe
    :members:
    :undoc-members:
    :show-inheritance:
