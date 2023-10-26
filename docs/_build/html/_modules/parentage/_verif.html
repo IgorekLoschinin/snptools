@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -91,15 +92,14 @@
 <a class="viewcode-back" href="../../parentage.html#parentage.Verification">[docs]</a>
 <span class="k">class</span> <span class="nc">Verification</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Verification of paternity according to ICAR recommendations</span>
+<span class="sd">    Verification of paternity according to ICAR recommendations.</span>
+
+<span class="sd">    :argument isag_marks: Fixed sample of markers to confirm paternity.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">isag_marks</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span> <span class="o">|</span> <span class="nb">list</span> <span class="o">|</span> <span class="nb">set</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param isag_marks: fixed sample of markers to confirm paternity</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__isag_marks</span> <span class="o">=</span> <span class="n">isag_marks</span>
 
         <span class="c1"># The minimum number of SNP available in the profile</span>
@@ -134,12 +134,12 @@
             <span class="n">parent</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">snp_name_col</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Verification of paternity according to ICAR recommendations</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Verification of paternity according to ICAR recommendations.</span>
 
-<span class="sd">        :param data: - SNP data for descendant and parent</span>
-<span class="sd">        :param descendant: - Columns name of the descendant in the data</span>
-<span class="sd">        :param parent: - Columns name of the parent in the data</span>
-<span class="sd">        :param snp_name_col: - SNP column name in data</span>
+<span class="sd">        :param data: SNP data for descendant and parent.</span>
+<span class="sd">        :param descendant: Columns name of the descendant in the data.</span>
+<span class="sd">        :param parent: Columns name of the parent in the data.</span>
+<span class="sd">        :param snp_name_col: SNP column name in data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isag_marks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

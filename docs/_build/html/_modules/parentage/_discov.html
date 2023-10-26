@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -89,14 +90,14 @@
 <div class="viewcode-block" id="Discovery">
 <a class="viewcode-back" href="../../parentage.html#parentage.Discovery">[docs]</a>
 <span class="k">class</span> <span class="nc">Discovery</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Search for paternity according to ICAR recommendations &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Search for paternity according to ICAR recommendations</span>
+
+<span class="sd">    :argument isag_markers: Fixed sample of markers to confirm paternity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">isag_markers</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span> <span class="o">|</span> <span class="nb">list</span> <span class="o">|</span> <span class="nb">set</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param isag_markers: fixed sample of markers to confirm paternity</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__isag_markers</span> <span class="o">=</span> <span class="n">isag_markers</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__num_conflicts</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Number of conflicts</span>
@@ -104,7 +105,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; The status of each parent discovered &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; The status of each parent discovered. &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__perc_conflicts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__perc_conflicts</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -134,12 +135,12 @@
             <span class="n">parents</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">snp_name_col</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Search for paternity</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Search for paternity.</span>
 
-<span class="sd">        :param data: - SNP data for descendant and parent</span>
-<span class="sd">        :param descendant: - Columns name of the descendant in the data</span>
-<span class="sd">        :param parents: - Columns name or list name of the parents in the data</span>
-<span class="sd">        :param snp_name_col: - SNP columns name is data</span>
+<span class="sd">        :param data: SNP data for descendant and parent.</span>
+<span class="sd">        :param descendant: Columns name of the descendant in the data.</span>
+<span class="sd">        :param parents: Columns name or list name of the parents in the data.</span>
+<span class="sd">        :param snp_name_col: SNP columns name is data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isag_markers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

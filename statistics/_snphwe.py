@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 """ 
-https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/ 
+
 """
 
 
@@ -15,10 +15,10 @@ def hwe(
 ) -> float:
 	""" Python interpretation hwe - https://github.com/jeremymcrae/snphwe
 
-	:param obs_hets: - количество наблюдаемых гетерозигот
-	:param obs_hom1: - количество наблюдаемыех гомозигот1
-	:param obs_hom2: - количество наблюдаемыех гомозигот2
-	:return: - сдесь возвращается p-value
+	:param obs_hets: Number of observed heterozygotes
+	:param obs_hom1: Number of observed homozygotes1
+	:param obs_hom2: Number of observed homozygotes2
+	:return: This is where the p-value is returned
 	"""
 
 	obs_hets = round(obs_hets)
@@ -95,14 +95,15 @@ def hwe_test(
 ) -> bool:
 	""" The Hardy-Weinberg equilibrium is a principle stating that the genetic
 	variation in a population will remain constant from one generation to the
-	next in the absence of disturbing factors
+	next in the absence of disturbing factors.
+	https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/
 
-	:param seq_snp: -
-	:param freq: -
-	:param crit_chi2: -  The critical value for a test ("either / or":
+	:param seq_snp: SNP sequence, - '2212120'
+	:param freq: Allele frequency
+	:param crit_chi2: The critical value for a test ("either / or":
 		observed and expected values are either one way or the other),
 		therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05
-	:return: - Возвращается решение исключить или оставить проверяемый снп
+	:return: A decision is returned to exclude or retain the inspected snp
 	"""
 
 	_seq = seq_snp.replace(5, np.nan)

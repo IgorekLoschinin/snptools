@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -90,7 +91,10 @@
 <span class="k">class</span> <span class="nc">Snp</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">	</span><span class="sd">&quot;&quot;&quot; The process of converting genomic map data - FinalReport.txt obtained</span>
 <span class="sd">	from Illumin. Recoding allele data into quantitative data, saving in the</span>
-<span class="sd">	format necessary for calculating gblup on blupf90. &quot;&quot;&quot;</span>
+<span class="sd">	format necessary for calculating gblup on blupf90.</span>
+
+<span class="sd">	:argument fmt: Data format to use snp in plink and blupf90. Default</span>
+<span class="sd">		value &quot;uga&quot;. &quot;&quot;&quot;</span>
 
 	<span class="n">_ALLELE_CODE</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;BA&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">:</span> <span class="mi">5</span>
@@ -100,10 +104,6 @@
 	<span class="n">_F_DTYPE</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">_FIELDS</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_FIELDS</span><span class="p">)))))</span>
 
 	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;uga&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		:param fmt: - Data format to use snp in plink and blupf90. Default</span>
-<span class="sd">			value &quot;uga&quot;.</span>
-<span class="sd">		&quot;&quot;&quot;</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_format_data</span> <span class="o">=</span> <span class="n">fmt</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">__data_snp</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -117,15 +117,15 @@
 <span class="w">		</span><span class="sd">&quot;&quot;&quot; Data processing and formatting. Calculation of statistical</span>
 <span class="sd">		information</span>
 
-<span class="sd">		:param data: - Data from FinalReport file. Example:</span>
+<span class="sd">		:param data: Data from FinalReport file. Example:</span>
 <span class="sd">			SNP Name  Sample ID  Allele1 - AB  Allele2 - AB  GC Score  GT Score</span>
 <span class="sd">			ABCA12	14814	A	A	0.4048	0.8164</span>
 <span class="sd">			ARS-BFGL-BAC-13031	14814	B	B	0.9083	0.8712</span>
 <span class="sd">			ARS-BFGL-BAC-13039	14814	A	A	0.9005	0.9096</span>
 <span class="sd">			ARS-BFGL-BAC-13049	14814	A	B	0.9295	0.8926</span>
 
-<span class="sd">		:return: - Returns true if the data was formatted successfully and</span>
-<span class="sd">		statistical information was calculated, false if an error.</span>
+<span class="sd">		:return: Returns true if the data was formatted successfully and</span>
+<span class="sd">			statistical information was calculated, false if an error.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">FIELDS_ILLUMIN</span><span class="p">))):</span>
@@ -152,7 +152,7 @@
 <a class="viewcode-back" href="../../format.html#format.Snp._format_uga">[docs]</a>
 	<span class="nd">@staticmethod</span>
 	<span class="k">def</span> <span class="nf">_format_uga</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; Data format to use snp in plink and blupf90 &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; Data format to use snp in plink and blupf90. &quot;&quot;&quot;</span>
 
 		<span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SAMPLE_ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span></div>
 
@@ -160,9 +160,9 @@
 <div class="viewcode-block" id="Snp.to_file">
 <a class="viewcode-back" href="../../format.html#format.Snp.to_file">[docs]</a>
 	<span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; Saving data to a file</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; Saving data to a file.</span>
 
-<span class="sd">		:param file_path: - Path to file</span>
+<span class="sd">		:param file_path: Path to file</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -192,11 +192,11 @@
 	<span class="nd">@staticmethod</span>
 	<span class="k">def</span> <span class="nf">_add_space</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot; Adding spaces up to the maximum length of the value in the</span>
-<span class="sd">		sample_id data</span>
+<span class="sd">		sample_id data.</span>
 
-<span class="sd">		:param value: - Sample_id value</span>
-<span class="sd">		:param max_len: - Max len sample_id value</span>
-<span class="sd">		:return: - Return replacing value</span>
+<span class="sd">		:param value: Sample_id value</span>
+<span class="sd">		:param max_len: Max len sample_id value</span>
+<span class="sd">		:return: Return replacing value</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">))])</span></div>
 </div>

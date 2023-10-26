@@ -13,15 +13,14 @@ https://www.icar.org/Documents/GenoEx/ICAR%20Guidelines%20for%20Parentage%20Veri
 
 class Verification(object):
     """
-    Verification of paternity according to ICAR recommendations
+    Verification of paternity according to ICAR recommendations.
+
+    :argument isag_marks: Fixed sample of markers to confirm paternity.
     """
 
     def __init__(
             self, isag_marks: pd.Series | list | set | None = None
     ) -> None:
-        """
-        :param isag_marks: fixed sample of markers to confirm paternity
-        """
         self.__isag_marks = isag_marks
 
         # The minimum number of SNP available in the profile
@@ -54,12 +53,12 @@ class Verification(object):
             parent: str,
             snp_name_col: str
     ) -> None:
-        """ Verification of paternity according to ICAR recommendations
+        """ Verification of paternity according to ICAR recommendations.
 
-        :param data: - SNP data for descendant and parent
-        :param descendant: - Columns name of the descendant in the data
-        :param parent: - Columns name of the parent in the data
-        :param snp_name_col: - SNP column name in data
+        :param data: SNP data for descendant and parent.
+        :param descendant: Columns name of the descendant in the data.
+        :param parent: Columns name of the parent in the data.
+        :param snp_name_col: SNP column name in data.
         """
 
         if self.__isag_marks is None:

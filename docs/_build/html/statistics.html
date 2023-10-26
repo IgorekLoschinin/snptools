@@ -106,17 +106,17 @@
 <dt class="sig sig-object py" id="statistics.allele_freq">
 <span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">allele_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/statistics/_freq.html#allele_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.allele_freq" title="Link to this definition"></a></dt>
 <dd><p>The allele frequency represents the incidence of a gene variant in a
-population</p>
+population.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – Data array</p></li>
-<li><p><strong>id_col</strong> – Columns with snp names</p></li>
-<li><p><strong>seq_col</strong> – Columns with value snp in format ucg - 0, 1, 2, 5</p></li>
+<li><p><strong>data</strong> – Data array.</p></li>
+<li><p><strong>id_col</strong> – Columns with snp names.</p></li>
+<li><p><strong>seq_col</strong> – Columns with value snp in format ucg - 0, 1, 2, 5.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Return the alleles frequency</p>
+<dd class="field-even"><p>Return the alleles frequency.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -140,16 +140,16 @@ the “call rate marker” is 600/900 = 67%</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – Pre-processed data on which the call rate is calculated</p></li>
+<li><p><strong>data</strong> – Pre-processed data on which the call rate is calculated.</p></li>
 <li><p><strong>id_col</strong> – The name of the column with the id of the animals or
-markers</p></li>
-<li><p><strong>snp_col</strong> – The name of the column with the snp sequence</p></li>
+markers.</p></li>
+<li><p><strong>snp_col</strong> – The name of the column with the snp sequence.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Return dataframe with call rates for each animal if a dataframe
 is transmitted. The number if the snp sequence is passed as a string.
-None if there were errors</p>
+None if there were errors.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -161,25 +161,13 @@ None if there were errors</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>obs_hets</strong> – <ul>
-<li><p>количество наблюдаемых гетерозигот</p></li>
-</ul>
-</p></li>
-<li><p><strong>obs_hom1</strong> – <ul>
-<li><p>количество наблюдаемыех гомозигот1</p></li>
-</ul>
-</p></li>
-<li><p><strong>obs_hom2</strong> – <ul>
-<li><p>количество наблюдаемыех гомозигот2</p></li>
-</ul>
-</p></li>
+<li><p><strong>obs_hets</strong> – Number of observed heterozygotes</p></li>
+<li><p><strong>obs_hom1</strong> – Number of observed homozygotes1</p></li>
+<li><p><strong>obs_hom2</strong> – Number of observed homozygotes2</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>сдесь возвращается p-value</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>This is where the p-value is returned</p>
 </dd>
 </dl>
 </dd></dl>
@@ -189,31 +177,20 @@ None if there were errors</p>
 <span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">hwe_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crit_chi2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.841</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/statistics/_snphwe.html#hwe_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.hwe_test" title="Link to this definition"></a></dt>
 <dd><p>The Hardy-Weinberg equilibrium is a principle stating that the genetic
 variation in a population will remain constant from one generation to the
-next in the absence of disturbing factors</p>
+next in the absence of disturbing factors.
+<a class="reference external" href="https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/">https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seq_snp</strong> – <ul>
-<li></li>
-</ul>
-</p></li>
-<li><p><strong>freq</strong> – <ul>
-<li></li>
-</ul>
-</p></li>
-<li><p><strong>crit_chi2</strong> – <ul>
-<li><p>The critical value for a test (“either / or”:</p></li>
-</ul>
-<p>observed and expected values are either one way or the other),
-therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05</p>
-</p></li>
+<li><p><strong>seq_snp</strong> – SNP sequence, - ‘2212120’</p></li>
+<li><p><strong>freq</strong> – Allele frequency</p></li>
+<li><p><strong>crit_chi2</strong> – The critical value for a test (“either / or”:
+observed and expected values are either one way or the other),
+therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>Возвращается решение исключить или оставить проверяемый снп</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>A decision is returned to exclude or retain the inspected snp</p>
 </dd>
 </dl>
 </dd></dl>
@@ -222,19 +199,13 @@ therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05</p>
 <dt class="sig sig-object py" id="statistics.minor_allele_freq">
 <span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">minor_allele_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/statistics/_freq.html#minor_allele_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statistics.minor_allele_freq" title="Link to this definition"></a></dt>
 <dd><p>The minor allele frequency is therefore the frequency at which the
-minor allele occurs within a population</p>
+minor allele occurs within a population.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> – <ul class="simple">
-<li><p>allele frequency</p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><strong>value</strong> – Allele frequency</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>Return the minor alleles frequency</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>Return the minor alleles frequency</p>
 </dd>
 </dl>
 </dd></dl>

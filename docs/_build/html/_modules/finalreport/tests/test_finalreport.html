@@ -30,6 +30,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -100,7 +101,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_1">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if both files do not exist &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If both files do not exist &quot;&quot;&quot;</span>
 
 		<span class="k">assert</span> <span class="ow">not</span> <span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/f.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/f.xlsx&quot;</span><span class="p">,</span>
@@ -111,7 +112,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_2">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if the file to convert does not exist &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If the file to convert does not exist &quot;&quot;&quot;</span>
 
 		<span class="k">assert</span> <span class="ow">not</span> <span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file1.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/f.xlsx&quot;</span><span class="p">,</span>
@@ -122,7 +123,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_3">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if the data does not contain header data &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If the data does not contain header data &quot;&quot;&quot;</span>
 
 		<span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file2.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file2.xlsx&quot;</span><span class="p">,</span>
@@ -135,7 +136,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_4">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if the file contains only header and field names &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If the file contains only header and field names &quot;&quot;&quot;</span>
 
 		<span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file3.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file3.xlsx&quot;</span><span class="p">,</span>
@@ -148,7 +149,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_5">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if the data file is empty &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If the data file is empty &quot;&quot;&quot;</span>
 
 		<span class="k">assert</span> <span class="ow">not</span> <span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file5.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file5.xlsx&quot;</span><span class="p">,</span>
@@ -159,7 +160,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_6">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_6</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if the conversion file is empty &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If the conversion file is empty &quot;&quot;&quot;</span>
 
 		<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file6.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file6.xlsx&quot;</span><span class="p">,</span>
@@ -170,7 +171,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_7">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_7</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if the data file is not needed to convert ID name &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If the data file is not needed to convert ID name &quot;&quot;&quot;</span>
 
 		<span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file4.txt&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
@@ -182,7 +183,7 @@
 <a class="viewcode-back" href="../../../finalreport.tests.html#finalreport.tests.test_finalreport.TestFinalReport.test_handle_8">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_handle_8</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinalReport</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; if files exist &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; If files exist &quot;&quot;&quot;</span>
 
 		<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
 			<span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file1.txt&quot;</span><span class="p">,</span> <span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;fr/file1.xlsx&quot;</span><span class="p">,</span>

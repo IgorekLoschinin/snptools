@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -82,17 +83,17 @@
 
 
 <div class="viewcode-block" id="allele_freq">
-<a class="viewcode-back" href="../../stat.html#statistics.allele_freq">[docs]</a>
+<a class="viewcode-back" href="../../statistics.html#statistics.allele_freq">[docs]</a>
 <span class="k">def</span> <span class="nf">allele_freq</span><span class="p">(</span>
 		<span class="o">*</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">id_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">seq_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">	</span><span class="sd">&quot;&quot;&quot; The allele frequency represents the incidence of a gene variant in a</span>
-<span class="sd">	population</span>
+<span class="sd">	population.</span>
 
-<span class="sd">	:param data: Data array</span>
-<span class="sd">	:param id_col: Columns with snp names</span>
-<span class="sd">	:param seq_col: Columns with value snp in format ucg - 0, 1, 2, 5</span>
-<span class="sd">	:return: Return the alleles frequency</span>
+<span class="sd">	:param data: Data array.</span>
+<span class="sd">	:param id_col: Columns with snp names.</span>
+<span class="sd">	:param seq_col: Columns with value snp in format ucg - 0, 1, 2, 5.</span>
+<span class="sd">	:return: Return the alleles frequency.</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 
 	<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
@@ -133,13 +134,13 @@
 
 
 <div class="viewcode-block" id="minor_allele_freq">
-<a class="viewcode-back" href="../../stat.html#statistics.minor_allele_freq">[docs]</a>
+<a class="viewcode-back" href="../../statistics.html#statistics.minor_allele_freq">[docs]</a>
 <span class="k">def</span> <span class="nf">minor_allele_freq</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">	</span><span class="sd">&quot;&quot;&quot; The minor allele frequency is therefore the frequency at which the</span>
-<span class="sd">	minor allele occurs within a population</span>
+<span class="sd">	minor allele occurs within a population.</span>
 
-<span class="sd">	:param value: - allele frequency</span>
-<span class="sd">	:return: - Return the minor alleles frequency</span>
+<span class="sd">	:param value: Allele frequency</span>
+<span class="sd">	:return: Return the minor alleles frequency</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 
 	<span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>

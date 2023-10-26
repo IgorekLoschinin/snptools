@@ -22,13 +22,13 @@ def call_rate(
 	have actually been successfully read? Assume that 600 have been read, then
 	the “call rate marker” is 600/900 = 67%
 
-	:param data: Pre-processed data on which the call rate is calculated
+	:param data: Pre-processed data on which the call rate is calculated.
 	:param id_col: The name of the column with the id of the animals or
-		markers
-	:param snp_col: The name of the column with the snp sequence
+		markers.
+	:param snp_col: The name of the column with the snp sequence.
 	:return: Return dataframe with call rates for each animal if a dataframe
 		is transmitted. The number if the snp sequence is passed as a string.
-		None if there were errors
+		None if there were errors.
 	"""
 
 	if isinstance(data, pd.DataFrame):

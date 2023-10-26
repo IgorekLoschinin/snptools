@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -92,8 +93,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; PLINK text fileset variant information file</span>
 <span class="sd">    https://www.cog-genomics.org/plink/1.9/formats#map</span>
 
-<span class="sd">        A text file with no header line, and one line per variant with the</span>
-<span class="sd">    following 3-4 fields:</span>
+<span class="sd">    A text file with no header line, and one line per variant with the following 3-4 fields:</span>
 
 <span class="sd">        1. Chromosome code. PLINK 1.9 also permits contig names here, but most</span>
 <span class="sd">            older programs do not.</span>
@@ -105,11 +105,11 @@
 <span class="sd">        All lines must have the same number of columns (so either no lines</span>
 <span class="sd">    contain the morgans/centimorgans column, or all of them do).</span>
 
-<span class="sd">    :param manifest: - The file that is taken on the Illumina website with</span>
-<span class="sd">        full information about the chip</span>
+<span class="sd">    :param manifest: The file that is taken on the Illumina website with full</span>
+<span class="sd">    information about the chip</span>
 <span class="sd">    https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html</span>
 
-<span class="sd">    :return: - Return data in formate .map</span>
+<span class="sd">    :return: Return data in formate .map</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Chr&#39;</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;MapInfo&#39;</span><span class="p">]</span>
@@ -171,16 +171,16 @@
 <span class="sd">        6963 6963 0 0 0 0 A A C C T T G G A A C C G G C C T T T T</span>
 <span class="sd">        6968 6968 0 0 0 0 C C C C G G G G G G G G G G C C T T T T</span>
 
-<span class="sd">    :param data: - Snp data that contain full or partial information on the</span>
+<span class="sd">    :param data: Snp data that contain full or partial information on the</span>
 <span class="sd">        animal</span>
-<span class="sd">    :param sid_col: - Sample ID. Column name in data</span>
-<span class="sd">    :param snp_col: - Snp column name in data</span>
-<span class="sd">    :param fid_col: - Family ID column name in data (if unknown use the same</span>
+<span class="sd">    :param sid_col: Sample ID. Column name in data</span>
+<span class="sd">    :param snp_col: Snp column name in data</span>
+<span class="sd">    :param fid_col: Family ID column name in data (if unknown use the same</span>
 <span class="sd">        id as for the sample id in column two)</span>
-<span class="sd">    :param father_col: - Paternal ID column name in data (if unknown use 0)</span>
-<span class="sd">    :param mother_col: - Maternal ID column name in data (if unknown use 0)</span>
-<span class="sd">    :param sex_col: - Sex column name in data (if unknown use 0)</span>
-<span class="sd">    :return: - Returns an array of data in ped format to work with the plink</span>
+<span class="sd">    :param father_col: Paternal ID column name in data (if unknown use 0)</span>
+<span class="sd">    :param mother_col: Maternal ID column name in data (if unknown use 0)</span>
+<span class="sd">    :param sex_col: Sex column name in data (if unknown use 0)</span>
+<span class="sd">    :return: Returns an array of data in ped format to work with the plink</span>
 <span class="sd">        program</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -257,22 +257,22 @@
 <span class="sd">        6. Phenotype value (&#39;1&#39; = control, &#39;2&#39; = case, &#39;-9&#39;/&#39;0&#39;/non-numeric =</span>
 <span class="sd">            missing data if case/control)</span>
 
-<span class="sd">    :param data: - Snp data that contain full or partial information on the</span>
+<span class="sd">    :param data: Snp data that contain full or partial information on the</span>
 <span class="sd">        animal</span>
-<span class="sd">    :param fid_col: - Family ID, default value &quot;1&quot;. Must not contain</span>
+<span class="sd">    :param fid_col: Family ID, default value &quot;1&quot;. Must not contain</span>
 <span class="sd">        underline - &quot;_&quot;</span>
-<span class="sd">    :param sid_col: - Within-family ID (&#39;IID&#39;; cannot be &#39;0&#39;). Must not contain</span>
+<span class="sd">    :param sid_col: Within-family ID (&#39;IID&#39;; cannot be &#39;0&#39;). Must not contain</span>
 <span class="sd">        underline - &quot;_&quot;</span>
-<span class="sd">    :param father_col: - Within-family ID of father (&#39;0&#39; if father isn&#39;t in</span>
+<span class="sd">    :param father_col: Within-family ID of father (&#39;0&#39; if father isn&#39;t in</span>
 <span class="sd">        dataset)</span>
-<span class="sd">    :param mother_col: - Within-family ID of mother (&#39;0&#39; if mother isn&#39;t in</span>
+<span class="sd">    :param mother_col: Within-family ID of mother (&#39;0&#39; if mother isn&#39;t in</span>
 <span class="sd">        dataset)</span>
-<span class="sd">    :param sex_col: - Sex column name in data</span>
-<span class="sd">    :param sex_val: - Sex code (&#39;1&#39; = male, &#39;2&#39; = female, &#39;0&#39; = unknown)</span>
-<span class="sd">    :param pheno_col: - Pheno column name in data</span>
-<span class="sd">    :param pheno_val: - Phenotype value (&#39;1&#39; = control, &#39;2&#39; = case,</span>
+<span class="sd">    :param sex_col: Sex column name in data</span>
+<span class="sd">    :param sex_val: Sex code (&#39;1&#39; = male, &#39;2&#39; = female, &#39;0&#39; = unknown)</span>
+<span class="sd">    :param pheno_col: Pheno column name in data</span>
+<span class="sd">    :param pheno_val: Phenotype value (&#39;1&#39; = control, &#39;2&#39; = case,</span>
 <span class="sd">        &#39;-9&#39;/&#39;0&#39;/non-numeric = missing data if case/control)</span>
-<span class="sd">    :return: - Return data in formate .fam</span>
+<span class="sd">    :return: Return data in formate .fam</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">,</span> <span class="s1">&#39;sid&#39;</span><span class="p">,</span> <span class="s1">&#39;father&#39;</span><span class="p">,</span> <span class="s1">&#39;mother&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;pheno&#39;</span><span class="p">]</span>
@@ -340,11 +340,11 @@
 <span class="sd">        There are several variations which are also handled by PLINK; see the</span>
 <span class="sd">    original discussion for details.</span>
 
-<span class="sd">    :param data: - data the after parsing FinalReport.txt</span>
-<span class="sd">    :param sid_col: -</span>
-<span class="sd">    :param snp_name: -</span>
-<span class="sd">    :param fid_col: - Family ID, default value &quot;1&quot;</span>
-<span class="sd">    :param alleles: -</span>
+<span class="sd">    :param data: Data the after parsing FinalReport.txt</span>
+<span class="sd">    :param sid_col:</span>
+<span class="sd">    :param snp_name:</span>
+<span class="sd">    :param fid_col: Family ID, default value &quot;1&quot;</span>
+<span class="sd">    :param alleles:</span>
 <span class="sd">    :return: - Return data in formate .lgen</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">,</span> <span class="s1">&#39;sid&#39;</span><span class="p">,</span> <span class="s1">&#39;snp_name&#39;</span><span class="p">,</span> <span class="s1">&#39;allele1&#39;</span><span class="p">,</span> <span class="s1">&#39;alelle2&#39;</span><span class="p">]</span>
@@ -386,7 +386,7 @@
 <span class="k">def</span> <span class="nf">_check_underscore</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking for underscore in a string</span>
 
-<span class="sd">    :param value: - String for checked</span>
+<span class="sd">    :param value: String for checked</span>
 <span class="sd">    :return: Return True if there is an underline in the string, False if not</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_under_l</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>

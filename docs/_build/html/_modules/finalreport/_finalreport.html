@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -88,7 +89,12 @@
 <div class="viewcode-block" id="FinalReport">
 <a class="viewcode-back" href="../../finalreport.html#finalreport.FinalReport">[docs]</a>
 <span class="k">class</span> <span class="nc">FinalReport</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">	</span><span class="sd">&quot;&quot;&quot; File that contains SNP information</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot; File that contains SNP information.</span>
+
+<span class="sd">	:argument allele: A variant form of a single nucleotide polymorphism</span>
+<span class="sd">		(SNP), a specific polymorphic site or a whole gene detectable at</span>
+<span class="sd">		a locus.  Type: &#39;AB&#39;, &#39;Forward&#39;, &#39;Top&#39;, &#39;Plus&#39;, &#39;Design&#39;</span>
+<span class="sd">	:argument sep: Delimiter to use. Default value: &quot;\\t&quot;</span>
 
 <span class="sd">	Example:</span>
 <span class="sd">		[Header]</span>
@@ -114,13 +120,6 @@
 			<span class="n">allele</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 			<span class="n">sep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		:param allele: - A variant form of a single nucleotide polymorphism</span>
-<span class="sd">			(SNP), a specific polymorphic site or a whole gene detectable at</span>
-<span class="sd">			a locus.  Type: &#39;AB&#39;, &#39;Forward&#39;, &#39;Top&#39;, &#39;Plus&#39;, &#39;Design&#39;</span>
-<span class="sd">		:param sep: - Delimiter to use. Default value: &quot;\t&quot;</span>
-<span class="sd">		&quot;&quot;&quot;</span>
-
 		<span class="bp">self</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">=</span> <span class="n">sep</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_full_data</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -143,14 +142,13 @@
 			<span class="bp">self</span><span class="p">,</span> <span class="n">file_rep</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conv_file</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot; Processes the FinalReport.txt file. Highlights meta information</span>
-<span class="sd">		and data</span>
+<span class="sd">		and data.</span>
 
-<span class="sd">		:param file_rep: - The file FinalReport.txt or another name.</span>
-<span class="sd">		:param conv_file: - The file that contains IDs of registration numbers</span>
-<span class="sd">			of animals</span>
-
-<span class="sd">		:return: - Returns true if file processing was successful, false if</span>
-<span class="sd">			there were errors</span>
+<span class="sd">		:param file_rep: The file FinalReport.txt or another name.</span>
+<span class="sd">		:param conv_file: The file that contains IDs of registration numbers</span>
+<span class="sd">			of animals.</span>
+<span class="sd">		:return: Returns true if file processing was successful, false if</span>
+<span class="sd">			there were errors.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="k">try</span><span class="p">:</span>
@@ -193,8 +191,8 @@
 	<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_rep</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot; Reading data from the final_report file</span>
 
-<span class="sd">		:param file_rep: - path, pointer to the file to be read</span>
-<span class="sd">		:return: - Returns true if the read was successful, false if it failed</span>
+<span class="sd">		:param file_rep: path, pointer to the file to be read.</span>
+<span class="sd">		:return: Returns true if the read was successful, false if it failed.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="k">try</span><span class="p">:</span>
 			<span class="bp">self</span><span class="o">.</span><span class="n">_full_data</span> <span class="o">=</span> <span class="n">file_rep</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -205,7 +203,7 @@
 
 
 	<span class="k">def</span> <span class="nf">__handler_header</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; Processes data from a file, selects meta-information &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; Processes data from a file, selects meta-information. &quot;&quot;&quot;</span>
 
 		<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_full_data</span><span class="p">:</span>
 			<span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__PATTERN_DATA</span><span class="p">:</span>
@@ -218,7 +216,7 @@
 				<span class="bp">self</span><span class="o">.</span><span class="n">__header</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
 	<span class="k">def</span> <span class="nf">__handler_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot; Processes data and forms an array for further processing &quot;&quot;&quot;</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot; Processes data and forms an array for further processing. &quot;&quot;&quot;</span>
 
 		<span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span>
 		<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_full_data</span><span class="p">:</span>
@@ -242,8 +240,8 @@
 <span class="w">		</span><span class="sd">&quot;&quot;&quot; Method that generates a list of field names choosing which alleles</span>
 <span class="sd">		to keep</span>
 
-<span class="sd">		:param names: - List of field names in the report file</span>
-<span class="sd">		:return: - Returns a filtered list of fields by alleles</span>
+<span class="sd">		:param names: List of field names in the report file.</span>
+<span class="sd">		:return: Returns a filtered list of fields by alleles.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="n">allele_templ</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(^Allele\d\s[:-]\s</span><span class="si">{}</span><span class="s1">\b)&#39;</span>
@@ -283,9 +281,9 @@
 
 	<span class="k">def</span> <span class="nf">__convert_s_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts sample id which is in FinalReport to animal registration</span>
-<span class="sd">		number</span>
+<span class="sd">		number.</span>
 
-<span class="sd">		:param path_file: - xlsx file with animal numbers label</span>
+<span class="sd">		:param path_file: xlsx file with animal numbers label</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">__map_rn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>

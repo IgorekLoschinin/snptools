@@ -110,6 +110,12 @@
 <p>The process of converting genomic map data - FinalReport.txt obtained
 from Illumin. Recoding allele data into quantitative data, saving in the
 format necessary for calculating gblup on blupf90.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fmt</strong> – Data format to use snp in plink and blupf90. Default
+value “uga”.</p>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="format.Snp._ALLELE_CODE">
 <span class="sig-name descname"><span class="pre">_ALLELE_CODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'--':</span> <span class="pre">5,</span> <span class="pre">'AA':</span> <span class="pre">0,</span> <span class="pre">'AB':</span> <span class="pre">1,</span> <span class="pre">'BA':</span> <span class="pre">1,</span> <span class="pre">'BB':</span> <span class="pre">2}</span></em><a class="headerlink" href="#format.Snp._ALLELE_CODE" title="Link to this definition"></a></dt>
@@ -129,25 +135,16 @@ format necessary for calculating gblup on blupf90.</p>
 <dt class="sig sig-object py" id="format.Snp._add_space">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_add_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/format/_snp.html#Snp._add_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.Snp._add_space" title="Link to this definition"></a></dt>
 <dd><p>Adding spaces up to the maximum length of the value in the
-sample_id data</p>
+sample_id data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> – <ul>
-<li><p>Sample_id value</p></li>
-</ul>
-</p></li>
-<li><p><strong>max_len</strong> – <ul>
-<li><p>Max len sample_id value</p></li>
-</ul>
-</p></li>
+<li><p><strong>value</strong> – Sample_id value</p></li>
+<li><p><strong>max_len</strong> – Max len sample_id value</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>Return replacing value</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>Return replacing value</p>
 </dd>
 </dl>
 </dd></dl>
@@ -155,7 +152,7 @@ sample_id data</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="format.Snp._format_uga">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_format_uga</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/format/_snp.html#Snp._format_uga"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.Snp._format_uga" title="Link to this definition"></a></dt>
-<dd><p>Data format to use snp in plink and blupf90</p>
+<dd><p>Data format to use snp in plink and blupf90.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -170,36 +167,27 @@ sample_id data</p>
 information</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> – <ul class="simple">
-<li><p>Data from FinalReport file. Example:</p></li>
-</ul>
-<p>SNP Name  Sample ID  Allele1 - AB  Allele2 - AB  GC Score  GT Score
+<dd class="field-odd"><p><strong>data</strong> – Data from FinalReport file. Example:
+SNP Name  Sample ID  Allele1 - AB  Allele2 - AB  GC Score  GT Score
 ABCA12  14814   A       A       0.4048  0.8164
 ARS-BFGL-BAC-13031      14814   B       B       0.9083  0.8712
 ARS-BFGL-BAC-13039      14814   A       A       0.9005  0.9096
 ARS-BFGL-BAC-13049      14814   A       B       0.9295  0.8926</p>
-</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>Returns true if the data was formatted successfully and</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>Returns true if the data was formatted successfully and
+statistical information was calculated, false if an error.</p>
 </dd>
 </dl>
-<p>statistical information was calculated, false if an error.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="format.Snp.to_file">
 <span class="sig-name descname"><span class="pre">to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/_snp.html#Snp.to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.Snp.to_file" title="Link to this definition"></a></dt>
-<dd><p>Saving data to a file</p>
+<dd><p>Saving data to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>file_path</strong> – <ul class="simple">
-<li><p>Path to file</p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><strong>file_path</strong> – Path to file</p>
 </dd>
 </dl>
 </dd></dl>
@@ -232,55 +220,25 @@ ARS-BFGL-BAC-13049      14814   A       B       0.9295  0.8926</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – <ul>
-<li><p>Snp data that contain full or partial information on the</p></li>
-</ul>
-<p>animal</p>
-</p></li>
-<li><p><strong>fid_col</strong> – <ul>
-<li><p>Family ID, default value “1”. Must not contain</p></li>
-</ul>
-<p>underline - “_”</p>
-</p></li>
-<li><p><strong>sid_col</strong> – <ul>
-<li><p>Within-family ID (‘IID’; cannot be ‘0’). Must not contain</p></li>
-</ul>
-<p>underline - “_”</p>
-</p></li>
-<li><p><strong>father_col</strong> – <ul>
-<li><p>Within-family ID of father (‘0’ if father isn’t in</p></li>
-</ul>
-<p>dataset)</p>
-</p></li>
-<li><p><strong>mother_col</strong> – <ul>
-<li><p>Within-family ID of mother (‘0’ if mother isn’t in</p></li>
-</ul>
-<p>dataset)</p>
-</p></li>
-<li><p><strong>sex_col</strong> – <ul>
-<li><p>Sex column name in data</p></li>
-</ul>
-</p></li>
-<li><p><strong>sex_val</strong> – <ul>
-<li><p>Sex code (‘1’ = male, ‘2’ = female, ‘0’ = unknown)</p></li>
-</ul>
-</p></li>
-<li><p><strong>pheno_col</strong> – <ul>
-<li><p>Pheno column name in data</p></li>
-</ul>
-</p></li>
-<li><p><strong>pheno_val</strong> – <ul>
-<li><p>Phenotype value (‘1’ = control, ‘2’ = case,</p></li>
-</ul>
-<p>’-9’/’0’/non-numeric = missing data if case/control)</p>
-</p></li>
+<li><p><strong>data</strong> – Snp data that contain full or partial information on the
+animal</p></li>
+<li><p><strong>fid_col</strong> – Family ID, default value “1”. Must not contain
+underline - “_”</p></li>
+<li><p><strong>sid_col</strong> – Within-family ID (‘IID’; cannot be ‘0’). Must not contain
+underline - “_”</p></li>
+<li><p><strong>father_col</strong> – Within-family ID of father (‘0’ if father isn’t in
+dataset)</p></li>
+<li><p><strong>mother_col</strong> – Within-family ID of mother (‘0’ if mother isn’t in
+dataset)</p></li>
+<li><p><strong>sex_col</strong> – Sex column name in data</p></li>
+<li><p><strong>sex_val</strong> – Sex code (‘1’ = male, ‘2’ = female, ‘0’ = unknown)</p></li>
+<li><p><strong>pheno_col</strong> – Pheno column name in data</p></li>
+<li><p><strong>pheno_val</strong> – Phenotype value (‘1’ = control, ‘2’ = case,
+‘-9’/’0’/non-numeric = missing data if case/control)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>Return data in formate .fam</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>Return data in formate .fam</p>
 </dd>
 </dl>
 </dd></dl>
@@ -309,26 +267,11 @@ the following five fields:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – <ul>
-<li><p>data the after parsing FinalReport.txt</p></li>
-</ul>
-</p></li>
-<li><p><strong>sid_col</strong> – <ul>
-<li></li>
-</ul>
-</p></li>
-<li><p><strong>snp_name</strong> – <ul>
-<li></li>
-</ul>
-</p></li>
-<li><p><strong>fid_col</strong> – <ul>
-<li><p>Family ID, default value “1”</p></li>
-</ul>
-</p></li>
-<li><p><strong>alleles</strong> – <ul>
-<li></li>
-</ul>
-</p></li>
+<li><p><strong>data</strong> – Data the after parsing FinalReport.txt</p></li>
+<li><p><strong>sid_col</strong> – </p></li>
+<li><p><strong>snp_name</strong> – </p></li>
+<li><p><strong>fid_col</strong> – Family ID, default value “1”</p></li>
+<li><p><strong>alleles</strong> – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -345,10 +288,7 @@ the following five fields:</p>
 <span class="sig-prename descclassname"><span class="pre">format.</span></span><span class="sig-name descname"><span class="pre">make_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manifest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/format/_plink.html#make_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.make_map" title="Link to this definition"></a></dt>
 <dd><p>PLINK text fileset variant information file
 <a class="reference external" href="https://www.cog-genomics.org/plink/1.9/formats#map">https://www.cog-genomics.org/plink/1.9/formats#map</a></p>
-<blockquote>
-<div><p>A text file with no header line, and one line per variant with the</p>
-</div></blockquote>
-<p>following 3-4 fields:</p>
+<p>A text file with no header line, and one line per variant with the following 3-4 fields:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><dl class="simple">
@@ -369,20 +309,14 @@ the following five fields:</p>
 <p>contain the morgans/centimorgans column, or all of them do).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>manifest</strong> – <ul class="simple">
-<li><p>The file that is taken on the Illumina website with</p></li>
-</ul>
-<p>full information about the chip</p>
-</p>
+<dd class="field-odd"><p><strong>manifest</strong> – The file that is taken on the Illumina website with full</p>
 </dd>
 </dl>
-<p><a class="reference external" href="https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html">https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html</a></p>
+<p>information about the chip
+<a class="reference external" href="https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html">https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p>Return data in formate .map</p></li>
-</ul>
-</p>
+<dd class="field-odd"><p>Return data in formate .map</p>
 </dd>
 </dl>
 </dd></dl>
@@ -425,44 +359,20 @@ first six columns hold the following information:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – <ul>
-<li><p>Snp data that contain full or partial information on the</p></li>
-</ul>
-<p>animal</p>
-</p></li>
-<li><p><strong>sid_col</strong> – <ul>
-<li><p>Sample ID. Column name in data</p></li>
-</ul>
-</p></li>
-<li><p><strong>snp_col</strong> – <ul>
-<li><p>Snp column name in data</p></li>
-</ul>
-</p></li>
-<li><p><strong>fid_col</strong> – <ul>
-<li><p>Family ID column name in data (if unknown use the same</p></li>
-</ul>
-<p>id as for the sample id in column two)</p>
-</p></li>
-<li><p><strong>father_col</strong> – <ul>
-<li><p>Paternal ID column name in data (if unknown use 0)</p></li>
-</ul>
-</p></li>
-<li><p><strong>mother_col</strong> – <ul>
-<li><p>Maternal ID column name in data (if unknown use 0)</p></li>
-</ul>
-</p></li>
-<li><p><strong>sex_col</strong> – <ul>
-<li><p>Sex column name in data (if unknown use 0)</p></li>
-</ul>
-</p></li>
+<li><p><strong>data</strong> – Snp data that contain full or partial information on the
+animal</p></li>
+<li><p><strong>sid_col</strong> – Sample ID. Column name in data</p></li>
+<li><p><strong>snp_col</strong> – Snp column name in data</p></li>
+<li><p><strong>fid_col</strong> – Family ID column name in data (if unknown use the same
+id as for the sample id in column two)</p></li>
+<li><p><strong>father_col</strong> – Paternal ID column name in data (if unknown use 0)</p></li>
+<li><p><strong>mother_col</strong> – Maternal ID column name in data (if unknown use 0)</p></li>
+<li><p><strong>sex_col</strong> – Sex column name in data (if unknown use 0)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>Returns an array of data in ped format to work with the plink</p></li>
-</ul>
-<p>program</p>
-</p>
+<dd class="field-even"><p>Returns an array of data in ped format to work with the plink
+program</p>
 </dd>
 </dl>
 </dd></dl>

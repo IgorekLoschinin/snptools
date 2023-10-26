@@ -30,6 +30,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             snptools
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -82,7 +83,7 @@
 
 
 <div class="viewcode-block" id="call_rate">
-<a class="viewcode-back" href="../../stat.html#statistics.call_rate">[docs]</a>
+<a class="viewcode-back" href="../../statistics.html#statistics.call_rate">[docs]</a>
 <span class="k">def</span> <span class="nf">call_rate</span><span class="p">(</span>
 		<span class="o">*</span><span class="p">,</span>
 		<span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
@@ -100,13 +101,13 @@
 <span class="sd">	have actually been successfully read? Assume that 600 have been read, then</span>
 <span class="sd">	the “call rate marker” is 600/900 = 67%</span>
 
-<span class="sd">	:param data: Pre-processed data on which the call rate is calculated</span>
+<span class="sd">	:param data: Pre-processed data on which the call rate is calculated.</span>
 <span class="sd">	:param id_col: The name of the column with the id of the animals or</span>
-<span class="sd">		markers</span>
-<span class="sd">	:param snp_col: The name of the column with the snp sequence</span>
+<span class="sd">		markers.</span>
+<span class="sd">	:param snp_col: The name of the column with the snp sequence.</span>
 <span class="sd">	:return: Return dataframe with call rates for each animal if a dataframe</span>
 <span class="sd">		is transmitted. The number if the snp sequence is passed as a string.</span>
-<span class="sd">		None if there were errors</span>
+<span class="sd">		None if there were errors.</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 
 	<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>

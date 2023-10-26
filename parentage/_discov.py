@@ -11,14 +11,14 @@ https://www.icar.org/Documents/GenoEx/ICAR%20Guidelines%20for%20Parentage%20Veri
 
 
 class Discovery(object):
-    """ Search for paternity according to ICAR recommendations """
+    """ Search for paternity according to ICAR recommendations
+
+    :argument isag_markers: Fixed sample of markers to confirm paternity.
+    """
 
     def __init__(
             self, isag_markers: pd.Series | list | set | None = None
     ) -> None:
-        """
-        :param isag_markers: fixed sample of markers to confirm paternity
-        """
         self.__isag_markers = isag_markers
 
         self.__num_conflicts = None  # Number of conflicts
@@ -26,7 +26,7 @@ class Discovery(object):
 
     @property
     def status(self) -> None | str:
-        """ The status of each parent discovered """
+        """ The status of each parent discovered. """
 
         if self.__perc_conflicts is not None:
             if 0 <= self.__perc_conflicts < 1:
@@ -54,12 +54,12 @@ class Discovery(object):
             parents: str,
             snp_name_col: str
     ) -> None:
-        """ Search for paternity
+        """ Search for paternity.
 
-        :param data: - SNP data for descendant and parent
-        :param descendant: - Columns name of the descendant in the data
-        :param parents: - Columns name or list name of the parents in the data
-        :param snp_name_col: - SNP columns name is data
+        :param data: SNP data for descendant and parent.
+        :param descendant: Columns name of the descendant in the data.
+        :param parents: Columns name or list name of the parents in the data.
+        :param snp_name_col: SNP columns name is data.
         """
 
         if self.__isag_markers is None:

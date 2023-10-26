@@ -30,6 +30,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -105,14 +106,11 @@
 <a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification">[docs]</a>
 <span class="k">class</span> <span class="nc">TestVerification</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-<div class="viewcode-block" id="TestVerification.test_check_on_0">
-<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_0">[docs]</a>
-	<span class="k">def</span> <span class="nf">test_check_on_0</span><span class="p">(</span>
+<div class="viewcode-block" id="TestVerification.test_check_on_successfully">
+<a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_successfully">[docs]</a>
+	<span class="k">def</span> <span class="nf">test_check_on_successfully</span><span class="p">(</span>
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		successfully!</span>
-<span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="k">assert</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
 			<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -128,8 +126,7 @@
 <a class="viewcode-back" href="../../../parentage.tests.html#parentage.tests.test_verif.TestVerification.test_check_on_1">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_check_on_1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		тест проверяет исключение на отсутствие данных о маркерах для</span>
-<span class="sd">		верификации</span>
+<span class="sd">		The test checks the exception for missing token data for verification.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="n">obj_verification</span> <span class="o">=</span> <span class="n">Verification</span><span class="p">()</span>
 
@@ -152,7 +149,7 @@
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		исключение на низкий call rate у обоих животных</span>
+<span class="sd">		Exception for low call rate in both animals.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span>
@@ -174,7 +171,7 @@
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		исключение когда парный call rate ниже порогового значения</span>
+<span class="sd">		Exception when paired call rate is below threshold.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">228</span><span class="p">:,</span> <span class="s1">&#39;BY000041988163&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
@@ -199,7 +196,7 @@
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		тест если передаваемые названия жифотных отсутствуют в датафрейме</span>
+<span class="sd">		Test if the transmitted animal names are not in the dataframe.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 
 		<span class="c1"># For descendant</span>
@@ -231,7 +228,7 @@
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		тест когда все данные снп не прочитанны - равны 5</span>
+<span class="sd">		Test when all snp data is not read - equal to 5</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="n">data</span><span class="p">[[</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span> <span class="s2">&quot;EE10512586&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">5</span>
 
@@ -254,7 +251,7 @@
 			<span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">obj_verification</span><span class="p">:</span> <span class="n">Verification</span>
 	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		тест когда полное совпадение</span>
+<span class="sd">		Test when there is a complete match</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="n">data</span><span class="p">[[</span><span class="s2">&quot;BY000041988163&quot;</span><span class="p">,</span> <span class="s2">&quot;EE10512586&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">2</span>
 
