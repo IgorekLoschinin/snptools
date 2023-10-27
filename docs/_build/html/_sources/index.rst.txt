@@ -10,6 +10,7 @@ Welcome to snptools documentation!
    :maxdepth: 2
 
    description
+   examples
    modules
 
 Indices and tables

@@ -37,17 +37,26 @@ usage:
 
 #### SNP data processing:
 ```
-from snptools import format
+from snptools.finalreport import FinalReport
 ```
 
 #### Computation of parentage:
 ```
-from snptools import parentage
+from snptools.parentage import Discovery, Verification
 ```
 
-#### Call rate estimation:
+#### Preparation format files:
 ```
-from snptools import stat
+from snptools.format import (
+   Snp, make_fam, make_ped, make_lgen, make_map
+)
+```
+
+#### Stat:
+```
+from snptools.statistics import (
+   hwe, hwe_test, call_rate, allele_freq, minor_allele_freq
+)
 ```
 
 ## Documentation
