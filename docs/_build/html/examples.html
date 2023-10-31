@@ -56,7 +56,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#plink-format">plink format</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#data-filtering">Data filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-filtering">Data filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#call-rate">Call Rate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frequence-allele">Frequence Allele</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hwe-hardy-weinberg-equilibrium">HWE (Hardy-Weinberg equilibrium)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#parentage">Parentage</a></li>
 </ul>
 </li>
@@ -387,9 +392,139 @@ information about the chip
 <h2>Data filtering<a class="headerlink" href="#data-filtering" title="Link to this heading"></a></h2>
 <p>Poor quality or uninformative SNPs can be excluded from the analysis. This
 helps to reduce noise and improve the accuracy of the results.</p>
+<section id="call-rate">
+<h3>Call Rate<a class="headerlink" href="#call-rate" title="Link to this heading"></a></h3>
+<p>The call rate for a given SNP is defined as the proportion of
+individuals in the study for which the corresponding SNP information is
+not missing. In the following example, we filter using a call rate of 95%,
+meaning we retain SNPs for which there is less than 5% missing data.</p>
+<p><strong>call rate marker</strong></p>
+<p>Of the say, 54K markers in the chip, 50K have been genotyped for a
+particular animal, the “call rate animal” is 50K/54K=93%</p>
+<p>in_data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">SNP_NAME</span> <span class="n">SAMPLE_ID</span> <span class="n">SNP</span>
+            <span class="n">ABCA12</span> <span class="mi">1100</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1100</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1100</span> <span class="mi">5</span>
+            <span class="n">ABCA12</span> <span class="mi">1101</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1101</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1101</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1102</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1102</span> <span class="mi">5</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1102</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1103</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1103</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1103</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1104</span> <span class="mi">5</span>
+             <span class="n">APAF1</span> <span class="mi">1104</span> <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1104</span> <span class="mi">1</span>
+            <span class="n">ABCA12</span> <span class="mi">1105</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1105</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1105</span> <span class="mi">5</span>
+            <span class="n">ABCA12</span> <span class="mi">1106</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1106</span> <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1106</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1107</span> <span class="mi">5</span>
+             <span class="n">APAF1</span> <span class="mi">1107</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1107</span> <span class="mi">1</span>
+            <span class="n">ABCA12</span> <span class="mi">1108</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1108</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1108</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1109</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1109</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1109</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1110</span> <span class="mi">5</span>
+             <span class="n">APAF1</span> <span class="mi">1110</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1110</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">call_rate</span>
+
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SNP_NAME&quot;</span><span class="p">,</span> <span class="n">snp_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="n">SNP_NAME</span>       <span class="n">SNP</span>
+            <span class="n">ABCA12</span>  <span class="mf">0.727273</span>
+             <span class="n">APAF1</span>  <span class="mf">0.909091</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span>  <span class="mf">0.818182</span>
+</pre></div>
+</div>
+<p><strong>call rate animal</strong></p>
+<p>Of the say, 900 animals genotyped for marker CL635944_160.1, how many
+have actually been successfully read? Assume that 600 have been read, then
+the “call rate marker” is 600/900 = 67%</p>
+<p>in_data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="n">SNP_NAME</span> <span class="n">SAMPLE_ID</span> <span class="n">SNP</span>
+            <span class="n">ABCA12</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13031</span>     <span class="mi">14814</span>   <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13039</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13049</span>     <span class="mi">14814</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13059</span>     <span class="mi">14814</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13086</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13093</span>     <span class="mi">14814</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13110</span>     <span class="mi">14814</span>   <span class="mi">5</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13111</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13113</span>     <span class="mi">14814</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15633</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15634</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15637</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15659</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15668</span>     <span class="mi">14814</span>   <span class="mi">5</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15708</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15718</span>     <span class="mi">14814</span>   <span class="mi">0</span>
+            <span class="n">ABCA12</span>     <span class="mi">14815</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13031</span>     <span class="mi">14815</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13039</span>     <span class="mi">14815</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13049</span>     <span class="mi">14815</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13059</span>     <span class="mi">14815</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13086</span>     <span class="mi">14815</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13093</span>     <span class="mi">14815</span>   <span class="mi">5</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13110</span>     <span class="mi">14815</span>   <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13111</span>     <span class="mi">14815</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">13113</span>     <span class="mi">14815</span>   <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15633</span>     <span class="mi">14815</span>   <span class="mi">0</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15634</span>     <span class="mi">14815</span>   <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15637</span>     <span class="mi">14815</span>   <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15659</span>     <span class="mi">14815</span>   <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15668</span>     <span class="mi">14815</span>   <span class="mi">5</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15708</span>     <span class="mi">14815</span>   <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15718</span>     <span class="mi">14815</span>   <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">call_rate</span>
+
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_df</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SAMPLE_ID&quot;</span><span class="p">,</span> <span class="n">snp_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SAMPLE_ID</span>       <span class="n">SNP</span>
+    <span class="mi">14814</span>  <span class="mf">0.882353</span>
+    <span class="mi">14815</span>  <span class="mf">0.882353</span>
+</pre></div>
+</div>
+</section>
+<section id="frequence-allele">
+<h3>Frequence Allele<a class="headerlink" href="#frequence-allele" title="Link to this heading"></a></h3>
+<p>The allele frequency represents the incidence of a gene variant in a
+population.</p>
+<p>The minor allele frequency is therefore the frequency at which the
+minor allele occurs within a population.</p>
+</section>
+<section id="hwe-hardy-weinberg-equilibrium">
+<h3>HWE (Hardy-Weinberg equilibrium)<a class="headerlink" href="#hwe-hardy-weinberg-equilibrium" title="Link to this heading"></a></h3>
+<p>The Hardy-Weinberg equilibrium is a principle stating that the genetic
+variation in a population will remain constant from one generation to the
+next in the absence of disturbing factors.
+<a class="reference external" href="https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/">https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/</a></p>
 <p>Once the data have been prepared, statistical analysis to identify associations,
 patterns, or relationships between SNPs and the phenotypes or diseases of
 interest (GWAS). phenotypes or diseases of interest (GWAS).</p>
+</section>
 </section>
 <section id="parentage">
 <h2>Parentage<a class="headerlink" href="#parentage" title="Link to this heading"></a></h2>

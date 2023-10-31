@@ -324,6 +324,156 @@ Poor quality or uninformative SNPs can be excluded from the analysis. This
 helps to reduce noise and improve the accuracy of the results.
 
 
+Call Rate
+_________
+
+The call rate for a given SNP is defined as the proportion of
+individuals in the study for which the corresponding SNP information is
+not missing. In the following example, we filter using a call rate of 95%,
+meaning we retain SNPs for which there is less than 5% missing data.
+
+**call rate marker**
+
+Of the say, 54K markers in the chip, 50K have been genotyped for a
+particular animal, the “call rate animal” is 50K/54K=93%
+
+in_data::
+
+        SNP_NAME SAMPLE_ID SNP
+                ABCA12 1100 0
+                 APAF1 1100 2
+    ARS-BFGL-BAC-10172 1100 5
+                ABCA12 1101 0
+                 APAF1 1101 2
+    ARS-BFGL-BAC-10172 1101 2
+                ABCA12 1102 0
+                 APAF1 1102 5
+    ARS-BFGL-BAC-10172 1102 2
+                ABCA12 1103 0
+                 APAF1 1103 2
+    ARS-BFGL-BAC-10172 1103 2
+                ABCA12 1104 5
+                 APAF1 1104 1
+    ARS-BFGL-BAC-10172 1104 1
+                ABCA12 1105 0
+                 APAF1 1105 2
+    ARS-BFGL-BAC-10172 1105 5
+                ABCA12 1106 0
+                 APAF1 1106 1
+    ARS-BFGL-BAC-10172 1106 2
+                ABCA12 1107 5
+                 APAF1 1107 2
+    ARS-BFGL-BAC-10172 1107 1
+                ABCA12 1108 0
+                 APAF1 1108 2
+    ARS-BFGL-BAC-10172 1108 2
+                ABCA12 1109 0
+                 APAF1 1109 2
+    ARS-BFGL-BAC-10172 1109 2
+                ABCA12 1110 5
+                 APAF1 1110 2
+    ARS-BFGL-BAC-10172 1110 2
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.statistics import call_rate
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+    result = call_rate(data=input_data, id_col="SNP_NAME", snp_col="SNP")
+
+result::
+
+                 SNP_NAME       SNP
+                   ABCA12  0.727273
+                    APAF1  0.909091
+       ARS-BFGL-BAC-10172  0.818182
+
+**call rate animal**
+
+Of the say, 900 animals genotyped for marker CL635944_160.1, how many
+have actually been successfully read? Assume that 600 have been read, then
+the “call rate marker” is 600/900 = 67%
+
+in_data::
+
+                  SNP_NAME SAMPLE_ID SNP
+                    ABCA12     14814   0
+        ARS-BFGL-BAC-13031     14814   2
+        ARS-BFGL-BAC-13039     14814   0
+        ARS-BFGL-BAC-13049     14814   1
+        ARS-BFGL-BAC-13059     14814   1
+        ARS-BFGL-BAC-13086     14814   0
+        ARS-BFGL-BAC-13093     14814   1
+        ARS-BFGL-BAC-13110     14814   5
+        ARS-BFGL-BAC-13111     14814   0
+        ARS-BFGL-BAC-13113     14814   1
+        ARS-BFGL-BAC-15633     14814   0
+        ARS-BFGL-BAC-15634     14814   0
+        ARS-BFGL-BAC-15637     14814   0
+        ARS-BFGL-BAC-15659     14814   0
+        ARS-BFGL-BAC-15668     14814   5
+        ARS-BFGL-BAC-15708     14814   0
+        ARS-BFGL-BAC-15718     14814   0
+                    ABCA12     14815   0
+        ARS-BFGL-BAC-13031     14815   1
+        ARS-BFGL-BAC-13039     14815   1
+        ARS-BFGL-BAC-13049     14815   1
+        ARS-BFGL-BAC-13059     14815   0
+        ARS-BFGL-BAC-13086     14815   1
+        ARS-BFGL-BAC-13093     14815   5
+        ARS-BFGL-BAC-13110     14815   2
+        ARS-BFGL-BAC-13111     14815   1
+        ARS-BFGL-BAC-13113     14815   2
+        ARS-BFGL-BAC-15633     14815   0
+        ARS-BFGL-BAC-15634     14815   2
+        ARS-BFGL-BAC-15637     14815   2
+        ARS-BFGL-BAC-15659     14815   2
+        ARS-BFGL-BAC-15668     14815   5
+        ARS-BFGL-BAC-15708     14815   1
+        ARS-BFGL-BAC-15718     14815   2
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.statistics import call_rate
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+    result = call_rate(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
+
+result::
+
+      SAMPLE_ID       SNP
+          14814  0.882353
+          14815  0.882353
+
+
+Frequence Allele
+________________
+
+The allele frequency represents the incidence of a gene variant in a
+population.
+
+
+
+The minor allele frequency is therefore the frequency at which the
+minor allele occurs within a population.
+
+
+HWE (Hardy-Weinberg equilibrium)
+________________________________
+
+The Hardy-Weinberg equilibrium is a principle stating that the genetic
+variation in a population will remain constant from one generation to the
+next in the absence of disturbing factors.
+https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/
+
+
+
+
+
+
+
 
 Once the data have been prepared, statistical analysis to identify associations,
 patterns, or relationships between SNPs and the phenotypes or diseases of

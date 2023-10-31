@@ -1,8 +1,8 @@
 statistics.tests package
-==================
+========================
 
 statistics.tests.test\_callrate module
---------------------------------
+--------------------------------------
 
 .. automodule:: statistics.tests.test_callrate
    :members:

@@ -30,6 +30,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -41,11 +42,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../description.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#current-features">Current Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#the-dataexplore-application">The DataExplore application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#links">Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../description.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">snptools</a></li>
 </ul>
 
@@ -87,7 +86,7 @@
 
 
 <div class="viewcode-block" id="data_df">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.data_df">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.data_df">[docs]</a>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">data_df</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 	<span class="k">match</span> <span class="n">request</span><span class="o">.</span><span class="n">param</span><span class="p">:</span>
@@ -100,7 +99,7 @@
 
 
 <div class="viewcode-block" id="data_str">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.data_str">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.data_str">[docs]</a>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">data_str</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 	<span class="k">return</span> <span class="p">[</span><span class="s1">&#39;02011015010000500&#39;</span><span class="p">,</span> <span class="s1">&#39;01110152120222512&#39;</span><span class="p">]</span></div>
@@ -108,11 +107,11 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal">[docs]</a>
 <span class="k">class</span> <span class="nc">TestCallRateAnimal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_dtype_obj">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_obj">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_obj">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;cra&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_dtype_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -123,7 +122,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_dtype_int">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_int">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_int">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;cra&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_dtype_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
@@ -134,7 +133,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_dtype_float">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_float">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_float">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;cra&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_dtype_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
@@ -145,7 +144,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_dtype_random_simbols">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_random_simbols">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_dtype_random_simbols">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;cra&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_dtype_random_simbols</span><span class="p">(</span>
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
@@ -160,14 +159,14 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_empty1">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_empty1">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_empty1">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_empty1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
 			<span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(),</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SAMPLE_ID&quot;</span><span class="p">,</span> <span class="n">snp_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_empty2">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_empty2">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_empty2">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_empty2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">result</span> <span class="o">=</span> <span class="n">call_rate</span><span class="p">(</span>
 			<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SAMPLE_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;SNP&quot;</span><span class="p">]),</span>
@@ -179,7 +178,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_datafame_fail">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_fail">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_datafame_fail">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;cra&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_cra_datafame_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
@@ -189,14 +188,14 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_str_int">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_int">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_int">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_cra_str_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_str</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">data_str</span><span class="p">:</span>
 			<span class="k">assert</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">sequence</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.882353</span></div>
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_str_simbols">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_simbols">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_simbols">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_cra_str_simbols</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_str</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GCATGAGGTATACTCTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CGCCATGCTGTATATCC&#39;</span><span class="p">]</span>
 
@@ -205,13 +204,13 @@
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_str_empty">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_empty">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_empty">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_cra_str_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">assert</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="TestCallRateAnimal.test_cra_str_mixid">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_mixid">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateAnimal.test_cra_str_mixid">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_cra_str_mixid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">assert</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;GCATGAG3G4T6A67TACTCTA&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span></div>
 </div>
@@ -219,11 +218,11 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker">[docs]</a>
 <span class="k">class</span> <span class="nc">TestCallRateMarker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_dtype_obj">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_obj">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_obj">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;crm&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_dtype_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -234,7 +233,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_dtype_int">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_int">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_int">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;crm&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_dtype_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
@@ -245,7 +244,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_dtype_float">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_float">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_float">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;crm&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_dtype_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">SNP</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
@@ -256,7 +255,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_dtype_random_simbols">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_random_simbols">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_dtype_random_simbols">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;crm&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_dtype_random_simbols</span><span class="p">(</span>
 		<span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
@@ -271,14 +270,14 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_empty1">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_empty1">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_empty1">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_empty1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
 			<span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(),</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SNP_NAME&quot;</span><span class="p">,</span> <span class="n">snp_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_empty2">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_empty2">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_empty2">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_empty2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">result</span> <span class="o">=</span> <span class="n">call_rate</span><span class="p">(</span>
 			<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNP_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;SNP&quot;</span><span class="p">]),</span>
@@ -290,7 +289,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_datafame_fail">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_fail">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_datafame_fail">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_df&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;crm&quot;</span><span class="p">],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 	<span class="k">def</span> <span class="nf">test_crm_datafame_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
@@ -300,7 +299,7 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_str_simbols">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_str_simbols">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_str_simbols">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_crm_str_simbols</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="n">data_str</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GCATGAGGTATACTCTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CGCCATGCTGTATATCC&#39;</span><span class="p">]</span>
 
@@ -309,13 +308,13 @@
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_str_empty">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_str_empty">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_str_empty">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_crm_str_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">assert</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="TestCallRateMarker.test_crm_str_mixid">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_str_mixid">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_callrate.TestCallRateMarker.test_crm_str_mixid">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_crm_str_mixid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 		<span class="k">assert</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;GCATGAG3G4T6A67TACTCTA&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span></div>
 </div>
