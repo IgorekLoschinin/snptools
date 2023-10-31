@@ -64,7 +64,7 @@ def make_ped(
         mother_col: str = None,
         sex_col: str = None,
 ) -> pd.DataFrame | None:
-    """Original standard text format for sample pedigree information and
+    """ Original standard text format for sample pedigree information and
     genotype calls. Normally must be accompanied by a .map file.
     https://www.cog-genomics.org/plink/1.9/formats#ped
 
@@ -259,7 +259,7 @@ def make_lgen(
     :param alleles:
     :return: - Return data in formate .lgen
     """
-    _fields = ['fid', 'sid', 'snp_name', 'allele1', 'alelle2']
+    _fields = ['fid', 'sid', 'snp_name', 'allele1', 'allele2']
     _f_dtype = dict(zip(_fields, (str for _ in range(len(_fields)))))
 
     _lgen = pd.DataFrame(columns=_fields)

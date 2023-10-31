@@ -42,11 +42,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../description.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#current-features">Current Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#the-dataexplore-application">The DataExplore application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#links">Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../description.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Code Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">snptools</a></li>
 </ul>
 
@@ -146,7 +144,7 @@
         <span class="n">mother_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">sex_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Original standard text format for sample pedigree information and</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Original standard text format for sample pedigree information and</span>
 <span class="sd">    genotype calls. Normally must be accompanied by a .map file.</span>
 <span class="sd">    https://www.cog-genomics.org/plink/1.9/formats#ped</span>
 
@@ -347,7 +345,7 @@
 <span class="sd">    :param alleles:</span>
 <span class="sd">    :return: - Return data in formate .lgen</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">,</span> <span class="s1">&#39;sid&#39;</span><span class="p">,</span> <span class="s1">&#39;snp_name&#39;</span><span class="p">,</span> <span class="s1">&#39;allele1&#39;</span><span class="p">,</span> <span class="s1">&#39;alelle2&#39;</span><span class="p">]</span>
+    <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">,</span> <span class="s1">&#39;sid&#39;</span><span class="p">,</span> <span class="s1">&#39;snp_name&#39;</span><span class="p">,</span> <span class="s1">&#39;allele1&#39;</span><span class="p">,</span> <span class="s1">&#39;allele2&#39;</span><span class="p">]</span>
     <span class="n">_f_dtype</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">_fields</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_fields</span><span class="p">)))))</span>
 
     <span class="n">_lgen</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">_fields</span><span class="p">)</span>

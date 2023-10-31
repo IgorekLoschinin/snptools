@@ -1,7 +1,9 @@
 Code Examples
 =============
 
-**Head file FinalReport**::
+Head file FinalReport
+---------------------
+adfafrfa rfer f::
 
     [Header]
     GSGT Version	2.0.4
@@ -21,49 +23,313 @@ Code Examples
     ARS-BFGL-BAC-10375	HO840M003135245650	A	G	A	G	A	B	0.9348	0.430	0.494
     ...
 
-**Processing the Finalreport.txt**
-__________________________________
-::
+Processing the Finalreport.txt
+------------------------------
 
-    from snptools.finalreport import FinalReport
+Override the right click popup menu
 
-    obj_report = FinalReport()
-    obj_report.handle("path/to/finalreport.txt")
+.. code-block:: python
 
-    header = obj_report.header
-    data = obj_report.snp_data
+        from snptools.finalreport import FinalReport
+
+        obj_report = FinalReport()
+        obj_report.handle("path/to/finalreport.txt")
+
+        header = obj_report.header
+        data = obj_report.snp_data
 
 Output pd.Dataframe::
 
-    "SNP Name" "Sample ID" "Allele1 - Forward" "Allele2 - Forward" "Allele1 - Top" "Allele2 - Top" "Allele1 - AB" "Allele2 - AB" "GC Score" X Y
-    ARS-BFGL-BAC-10172 HO840M003135245650 G G G G B B 0.9420 0.069 0.801
-    ARS-BFGL-BAC-1020 HO840M003135245650 G G G G B B 0.9489 0.033 0.700
-    ARS-BFGL-BAC-10245 HO840M003135245650 C C G G B B 0.7277 0.152 1.504
-    ARS-BFGL-BAC-10345 HO840M003135245650 A C A C A B 0.9411 0.598 0.572
-    ARS-BFGL-BAC-10375 HO840M003135245650 A G A G A B 0.9348 0.430 0.494
+        "SNP Name" "Sample ID" "Allele1 - Forward" "Allele2 - Forward" "Allele1 - Top" "Allele2 - Top" "Allele1 - AB" "Allele2 - AB" "GC Score" X Y
+        ARS-BFGL-BAC-10172 HO840M003135245650 G G G G B B 0.9420 0.069 0.801
+        ARS-BFGL-BAC-1020 HO840M003135245650 G G G G B B 0.9489 0.033 0.700
+        ARS-BFGL-BAC-10245 HO840M003135245650 C C G G B B 0.7277 0.152 1.504
+        ARS-BFGL-BAC-10345 HO840M003135245650 A C A C A B 0.9411 0.598 0.572
+        ARS-BFGL-BAC-10375 HO840M003135245650 A G A G A B 0.9348 0.430 0.494
 
 
-Select alleles - AB or Top or Forward::
+Select alleles - AB or Top or Forward
 
-    alleles_ab = FinalReport(allele="AB")
-    alleles_ab.handle("path/to/finalreport.txt")
-    data_ab = alleles_ab.snp_data
+.. code-block:: python
 
-    alleles_top = FinalReport(allele="Top")
-    alleles_top.handle("path/to/finalreport.txt")
-    data_top = alleles_top.snp_data
+        alleles_ab = FinalReport(allele="AB")
+        alleles_ab.handle("path/to/finalreport.txt")
+        data_ab = alleles_ab.snp_data
 
-    alleles_forward = FinalReport(allele="Forward")
-    alleles_forward.handle("path/to/finalreport.txt")
-    data_forward = alleles_forward.snp_data
+        alleles_top = FinalReport(allele="Top")
+        alleles_top.handle("path/to/finalreport.txt")
+        data_top = alleles_top.snp_data
+
+        alleles_forward = FinalReport(allele="Forward")
+        alleles_forward.handle("path/to/finalreport.txt")
+        data_forward = alleles_forward.snp_data
 
 Output::
 
-    "SNP Name" "Sample ID" "Allele1 - AB" "Allele2 - AB" "GC Score" X Y
-    ARS-BFGL-BAC-10172 HO840M003135245650 B B 0.9420 0.069 0.801
-    ARS-BFGL-BAC-1020 HO840M003135245650 B B 0.9489 0.033 0.700
-    ARS-BFGL-BAC-10245 HO840M003135245650 B B 0.7277 0.152 1.504
-    ARS-BFGL-BAC-10345 HO840M003135245650 A B 0.9411 0.598 0.572
-    ARS-BFGL-BAC-10375 HO840M003135245650 A B 0.9348 0.430 0.494f
+        "SNP Name" "Sample ID" "Allele1 - AB" "Allele2 - AB" "GC Score" X Y
+        ARS-BFGL-BAC-10172 HO840M003135245650 B B 0.9420 0.069 0.801
+        ARS-BFGL-BAC-1020 HO840M003135245650 B B 0.9489 0.033 0.700
+        ARS-BFGL-BAC-10245 HO840M003135245650 B B 0.7277 0.152 1.504
+        ARS-BFGL-BAC-10345 HO840M003135245650 A B 0.9411 0.598 0.572
+        ARS-BFGL-BAC-10375 HO840M003135245650 A B 0.9348 0.430 0.494f
 
-    ...
+        ...
+
+Preparation SNP files
+---------------------
+
+After processing the raw data, FinalReports.txt, for further analysis
+several steps of SNP (Single Nucleotide Polymorphism) file preparation are
+necessary.
+
+Data formatting
+---------------
+
+The received data often requires formatting to bring it to a standardized form.
+The proposed module includes data formatting for the programs blupf90 and
+plink - GBLUP, ssGBLUP, GWAS.
+
+blupf90 format
+______________
+The input data for obtaining the ``snp.txt`` file used for the genomic
+blupf90 evaluation is the data file - processed file ``finalreport.txt``
+
+**uga**
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.format import Snp
+
+    data_finalreport = pd.read_csv("file.txt", sep="\t")
+
+    obj = Snp(fmt="uga")
+    obj_snp.process(data_finalreport)
+    obj_snp.to_file("./snp.txt")
+
+Data after snp processing in ``uga`` (blupf90) format - obj_snp.data::
+
+      SAMPLE_ID                SNP
+    0     14814  02011015010000500
+    1     14815  01110152120222512
+
+Default result::
+
+                    SNP_NAME SAMPLE_ID SNP
+    0               ABCA12     14814   0
+    1   ARS-BFGL-BAC-13031     14814   2
+    2   ARS-BFGL-BAC-13039     14814   0
+    3   ARS-BFGL-BAC-13049     14814   1
+                    ...
+    17              ABCA12     14815   0
+    18  ARS-BFGL-BAC-13031     14815   1
+    19  ARS-BFGL-BAC-13039     14815   1
+    20  ARS-BFGL-BAC-13049     14815   1
+                    ...
+
+plink format
+____________
+
+This page describes specialized PLINK input and output file formats which are
+identifiable by file extension. https://www.cog-genomics.org/plink/1.9/formats
+Распространненные фомраты для проведения GWAS анализа - ``ped``, ``map``, ``fam``, ``lgen``...
+
+**map** - https://www.cog-genomics.org/plink/1.9/formats#map
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.format import make_map
+
+    input_data = pd.read_csv(DIR_FILES / "./file_bovinesnp50.csv")
+    data_map = make_map(input_data)
+
+Output data view::
+
+        Chr                Name  morgans  MapInfo
+         0  BovineHD0100037694        0        0
+         0  BovineHD0100037699        0        0
+         0  BovineHD0100037703        0        0
+         0  BovineHD0100037704        0        0
+
+.. note::
+    file_bovinesnp50.csv - The file that is taken on the Illumina website with full
+    information about the chip
+    https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html
+
+
+**ped** - https://www.cog-genomics.org/plink/1.9/formats#ped
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.format import make_ped
+
+    input_data = pd.read_csv("file.txt")
+    data_ped = make_ped(
+        input_data, "SAMPLE_ID", "SNP", fid_col="SAMPLE_ID"
+    )
+
+    or
+
+    data_ped = make_ped(
+        input_data,
+        "SAMPLE_ID",
+        "SNP",
+        fid_col="FAMILY_ID",
+        father_col="father",
+        mother_col="mother",
+        sex_col="sex"
+    )
+
+Input data view::
+
+   SAMPLE_ID  SNP
+        1100  025
+        1101  022
+        1102  052
+        1103  022
+
+    or
+
+   SAMPLE_ID  SNP  FAMILY_ID  father  mother  sex
+        1100  025       1100       1       5    1
+        1101  022       1101       2       6    2
+        1102  052       1102       3       7    1
+        1103  022       1103       4       8    0
+
+Output data view::
+
+    fid   sid father mother sex not_used          snp
+   1100  1100      0      0   0        0  A A B B 0 0
+   1101  1101      0      0   0        0  A A B B B B
+   1102  1102      0      0   0        0  A A 0 0 B B
+   1103  1103      0      0   0        0  A A B B B B
+
+    or
+
+    fid   sid father mother sex not_used          snp
+   1100  1100      1      5   1        0  A A B B 0 0
+   1101  1101      2      6   2        0  A A B B B B
+   1102  1102      3      7   1        0  A A 0 0 B B
+   1103  1103      4      8   0        0  A A B B B B
+
+
+**fam** - https://www.cog-genomics.org/plink/1.9/formats#fam
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.format import make_fam
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+    data_fam = make_fam(input_data, "SAMPLE_ID", "SAMPLE_ID")
+
+    or
+
+    make_fam(
+        input_data,
+        "SAMPLE_ID",
+        "FAMILY_ID",
+        father_col="father",
+        mother_col="mother",
+        sex_col="sex",
+        pheno_col="pheno"
+    )
+
+Input data view::
+
+   SAMPLE_ID  SNP
+        1100  025
+        1101  022
+        1102  052
+        1103  022
+
+    or
+
+   SAMPLE_ID  SNP  FAMILY_ID  father  mother  sex  pheno
+       1100  025       1100       1       5    1     12
+       1101  022       1101       2       6    2     13
+       1102  052       1102       3       7    1     14
+       1103  022       1103       4       8    0     15
+
+Output data view::
+
+     fid   sid father mother sex pheno
+    1100  1100      0      0   0    -9
+    1101  1101      0      0   0    -9
+    1102  1102      0      0   0    -9
+    1103  1103      0      0   0    -9
+
+    or
+
+     fid   sid father mother sex pheno
+    1100  1100      1      5   1    12
+    1101  1101      2      6   2    13
+    1102  1102      3      7   1    14
+    1103  1103      4      8   0    15
+
+
+**lgen** - https://www.cog-genomics.org/plink/1.9/formats#lgen
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.format import make_lgen
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+    data_lgen = make_lgen(
+        input_data, "Sample ID", "SNP Name", ["Allele1 - AB", "Allele2 - AB"]
+    )
+
+Input data view::
+
+     "SNP Name" "Sample ID" "Allele1 - AB" "Allele2 - AB" "GC Score" "GT Score"
+                  ABCA12 107232207 A A 0.4048 0.8164
+      ARS-BFGL-BAC-13031 107232207 B B 0.9083 0.8712
+      ARS-BFGL-BAC-13039 107232207 A A 0.9005 0.9096
+      ARS-BFGL-BAC-13049 107232207 A B 0.9295 0.8926
+        ...
+                   ABCA12 107237284 A A 0.4048 0.8164
+       ARS-BFGL-BAC-13031 107237284 A B 0.9566 0.9257
+       ARS-BFGL-BAC-13039 107237284 A B 0.3098 0.8555
+       ARS-BFGL-BAC-13049 107237284 A B 0.8613 0.8319
+        ...
+
+
+Output data view::
+
+    fid       sid            snp_name allele1 allele2
+     1  107232207              ABCA12       A       A
+     1  107232207  ARS-BFGL-BAC-13031       B       B
+     1  107232207  ARS-BFGL-BAC-13039       A       A
+     1  107232207  ARS-BFGL-BAC-13049       A       B
+     1  107232207  ARS-BFGL-BAC-13059       A       B
+
+     ...
+
+     1  107237284              ABCA12       A       A
+     1  107237284  ARS-BFGL-BAC-13031       A       B
+     1  107237284  ARS-BFGL-BAC-13039       A       B
+     1  107237284  ARS-BFGL-BAC-13049       A       B
+     1  107237284  ARS-BFGL-BAC-13059       A       A
+     ...
+
+
+
+Data filtering
+--------------
+
+Poor quality or uninformative SNPs can be excluded from the analysis. This
+helps to reduce noise and improve the accuracy of the results.
+
+
+
+Once the data have been prepared, statistical analysis to identify associations,
+patterns, or relationships between SNPs and the phenotypes or diseases of
+interest (GWAS). phenotypes or diseases of interest (GWAS).
+
+
+
+Parentage
+---------
