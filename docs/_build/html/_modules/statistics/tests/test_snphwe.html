@@ -30,6 +30,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -41,11 +42,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../description.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#current-features">Current Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#the-dataexplore-application">The DataExplore application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#links">Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../description.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">snptools</a></li>
 </ul>
 
@@ -84,11 +83,11 @@
 
 
 <div class="viewcode-block" id="TestHWE">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_snphwe.TestHWE">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_snphwe.TestHWE">[docs]</a>
 <span class="k">class</span> <span class="nc">TestHWE</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <div class="viewcode-block" id="TestHWE.test_snphwe">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_snphwe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		 check snphwe gives expected p-values</span>
@@ -98,7 +97,7 @@
 
 
 <div class="viewcode-block" id="TestHWE.test_snphwe_odd_inputs">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe_odd_inputs">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe_odd_inputs">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_snphwe_odd_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		check snphwe with odd inputs</span>
@@ -113,7 +112,7 @@
 
 
 <div class="viewcode-block" id="TestHWE.test_snphwe_large_input">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe_large_input">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe_large_input">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_snphwe_large_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		check snphwe doesn&#39;t give errors with large sample sizes</span>
@@ -122,7 +121,7 @@
 
 
 <div class="viewcode-block" id="TestHWE.test_snphwe_uncertain_genotypes">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe_uncertain_genotypes">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_snphwe.TestHWE.test_snphwe_uncertain_genotypes">[docs]</a>
 	<span class="k">def</span> <span class="nf">test_snphwe_uncertain_genotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		check uncertain genotypes give correct p-values</span>

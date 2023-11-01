@@ -5,19 +5,15 @@ __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 import numpy as np
 import pandas as pd
 
-""" 
-
-"""
-
 
 def hwe(
 		obs_hets: int | float, obs_hom1: int | float, obs_hom2: int | float
 ) -> float:
 	""" Python interpretation hwe - https://github.com/jeremymcrae/snphwe
 
-	:param obs_hets: Number of observed heterozygotes
-	:param obs_hom1: Number of observed homozygotes1
-	:param obs_hom2: Number of observed homozygotes2
+	:param obs_hets: Number of observed heterozygotes (AB, BA)
+	:param obs_hom1: Number of observed homozygotes1 (AA)
+	:param obs_hom2: Number of observed homozygotes2 (BB)
 	:return: This is where the p-value is returned
 	"""
 
@@ -98,7 +94,7 @@ def hwe_test(
 	next in the absence of disturbing factors.
 	https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/
 
-	:param seq_snp: SNP sequence, - '2212120'
+	:param seq_snp: SNP sequence
 	:param freq: Allele frequency
 	:param crit_chi2: The critical value for a test ("either / or":
 		observed and expected values are either one way or the other),

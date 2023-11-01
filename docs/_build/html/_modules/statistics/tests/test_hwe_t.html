@@ -30,6 +30,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -41,11 +42,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../description.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#current-features">Current Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#the-dataexplore-application">The DataExplore application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#links">Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../description.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../description.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">snptools</a></li>
 </ul>
 
@@ -85,11 +84,11 @@
 
 
 <div class="viewcode-block" id="TestHWE">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_hwe_t.TestHWE">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_hwe_t.TestHWE">[docs]</a>
 <span class="k">class</span> <span class="nc">TestHWE</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <div class="viewcode-block" id="TestHWE.test_hweT_true">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_hwe_t.TestHWE.test_hweT_true">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_hwe_t.TestHWE.test_hweT_true">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
 		<span class="s2">&quot;seq, freq&quot;</span><span class="p">,</span>
 		<span class="p">[</span>
@@ -112,7 +111,7 @@
 
 
 <div class="viewcode-block" id="TestHWE.test_hweT_false">
-<a class="viewcode-back" href="../../../stat.tests.html#statistics.tests.test_hwe_t.TestHWE.test_hweT_false">[docs]</a>
+<a class="viewcode-back" href="../../../statistics.tests.html#statistics.tests.test_hwe_t.TestHWE.test_hweT_false">[docs]</a>
 	<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;seq, freq&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;000000000102&#39;</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">)])</span>
 	<span class="k">def</span> <span class="nf">test_hweT_false</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">freq</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>

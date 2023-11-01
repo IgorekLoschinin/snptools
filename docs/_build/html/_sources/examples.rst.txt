@@ -454,10 +454,70 @@ ________________
 The allele frequency represents the incidence of a gene variant in a
 population.
 
+**allele freq**
 
+in_data::
+
+        SNP_NAME SAMPLE_ID SNP
+                ABCA12 1100 0
+                 APAF1 1100 2
+    ARS-BFGL-BAC-10172 1100 5
+                ABCA12 1101 0
+                 APAF1 1101 2
+    ARS-BFGL-BAC-10172 1101 2
+                ABCA12 1102 0
+                 APAF1 1102 5
+    ARS-BFGL-BAC-10172 1102 2
+                ABCA12 1103 0
+                 APAF1 1103 2
+    ARS-BFGL-BAC-10172 1103 2
+                ABCA12 1104 5
+                 APAF1 1104 1
+    ARS-BFGL-BAC-10172 1104 1
+                ABCA12 1105 0
+                 APAF1 1105 2
+    ARS-BFGL-BAC-10172 1105 5
+                ABCA12 1106 0
+                 APAF1 1106 1
+    ARS-BFGL-BAC-10172 1106 2
+                ABCA12 1107 5
+                 APAF1 1107 2
+    ARS-BFGL-BAC-10172 1107 1
+                ABCA12 1108 0
+                 APAF1 1108 2
+    ARS-BFGL-BAC-10172 1108 2
+                ABCA12 1109 0
+                 APAF1 1109 2
+    ARS-BFGL-BAC-10172 1109 2
+                ABCA12 1110 5
+                 APAF1 1110 2
+    ARS-BFGL-BAC-10172 1110 2
+
+.. code-block:: python
+
+    import pandas as pd
+    from snptools.statistics import allele_freq
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+    result = allele_freq(data=input_data, id_col="SNP_NAME", seq_col="SNP")
+
+result::
+
+                 SNP_NAME    SNP
+                   ABCA12  0.000
+                    APAF1  0.900
+       ARS-BFGL-BAC-10172  0.889
 
 The minor allele frequency is therefore the frequency at which the
 minor allele occurs within a population.
+
+**maf**
+
+.. code-block:: python
+
+    from snptools.statistics import minor_allele_freq as maf
+
+    result = maf(0.22)  # result == 0.22
 
 
 HWE (Hardy-Weinberg equilibrium)
@@ -468,18 +528,122 @@ variation in a population will remain constant from one generation to the
 next in the absence of disturbing factors.
 https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/
 
+To test the hypothesis that the data are within the HWE, a statistic a chi2
+distribution with 1 degree of freedom:
+
+.. code-block:: python
+
+    from snptools.statistics import hwe_test
+
+    result = hwe_test(seq_snp=pd.Series(list(map(int, "2212120"))), freq=0.714)  # True
+    result = hwe_test(seq_snp=pd.Series(list(map(int, "02011015010000500"))), freq=0.2)  # True
+    result = hwe_test(seq_snp=pd.Series(list(map(int, "000000000102"))), freq=0.125)  # False
 
 
+The p-value used here is:
 
+.. code-block:: python
 
+    from snptools.statistics import hwe
 
+    hom1 = 10
+    hets = 500
+    hom2 = 5000
 
+    result = hwe(hets, hom1, hom2)  # 0.6515718999145375 (p-value)
 
 Once the data have been prepared, statistical analysis to identify associations,
 patterns, or relationships between SNPs and the phenotypes or diseases of
 interest (GWAS). phenotypes or diseases of interest (GWAS).
 
-
-
 Parentage
 ---------
+https://www.icar.org/Documents/GenoEx/ICAR%20Guidelines%20for%20Parentage%20Verification%20and%20Parentage%20Discovery%20based%20on%20SNP.pdf
+
+
+.. note::
+    A list of isag verification and discovery macerators can be found here.
+    See Appendix list - https://www.icar.org/Guidelines/04-DNA-Technology.pdf
+
+    List of SNP to be used for either parentage verification or parentage discovery (appendix 11):
+    https://www.icar.org/Guidelines/04-DNA-Technology-App-11-SNP-list-for-parentage-verification-or-discovery.pdf
+
+
+Verification
+____________
+
+Verification of paternity according to ICAR recommendations.
+
+input data::
+
+                       SNP_Name      ID41988163  ID10512586
+    0                    ABCA12               0           0
+    1                     APAF1               2           2
+    2        ARS-BFGL-BAC-10172               2           2
+    3         ARS-BFGL-BAC-1020               1           1
+    4        ARS-BFGL-BAC-10245               1           1
+    ..                      ...             ...         ...
+    239  Hapmap55441-rs29010990               1           1
+    240  Hapmap59876-rs29018046               1           0
+    241  Hapmap60017-rs29023471               2           1
+    242           UA-IFASA-5034               0           1
+    243           UA-IFASA-6532               0           0
+
+
+.. code-block:: python
+
+    from snptools.parentage import Verification, isag_verif
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+
+    obj_verification = Verification(isag_marks=isag_verif().markers)
+    result = obj_verification.check_on(
+        data=input_data,
+        descendant="ID41988163",
+        parent="ID10512586",
+        snp_name_col="SNP_Name"
+    )
+
+    # Result
+    print(obj_verification.num_conflicts)  # 31
+    print(obj_verification.status)  # "Excluded"
+
+
+Discovery
+_________
+
+Search for paternity according to ICAR recommendations.
+
+input data::
+
+                   SNP_Name      ID41988163  ID10512586
+    0                ABCA12               0           0
+    1                 APAF1               2           2
+    2    ARS-BFGL-BAC-10172               2           2
+    3     ARS-BFGL-BAC-1020               1           1
+    4    ARS-BFGL-BAC-10245               1           1
+    ..                  ...             ...         ...
+    617       UA-IFASA-5034               0           1
+    618       UA-IFASA-6154               2           0
+    619       UA-IFASA-6532               0           0
+    620       UA-IFASA-8658               1           0
+    621       UA-IFASA-8833               0           0
+
+.. code-block:: python
+
+    from snptools.parentage import Discovery, isag_disc
+
+    input_data = pd.read_csv("file.txt", sep=" ")
+
+    obj_discovery = Discovery(isag_marks=isag_disc().markers)
+    result = obj_discovery.search_parent(
+        data=input_data,
+        descendant="ID41988163",
+        parents="ID10512586",
+        snp_name_col="SNP_Name"
+    )
+
+    # Result
+    print(obj_discovery.num_conflicts)  # 77
+    print(obj_discovery.status)  # "Excluded"
+    print(obj_discovery.perc_conflicts)  # 14.86 %

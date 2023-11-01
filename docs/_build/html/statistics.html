@@ -159,9 +159,9 @@ None if there were errors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>obs_hets</strong> – Number of observed heterozygotes</p></li>
-<li><p><strong>obs_hom1</strong> – Number of observed homozygotes1</p></li>
-<li><p><strong>obs_hom2</strong> – Number of observed homozygotes2</p></li>
+<li><p><strong>obs_hets</strong> – Number of observed heterozygotes (AB, BA)</p></li>
+<li><p><strong>obs_hom1</strong> – Number of observed homozygotes1 (AA)</p></li>
+<li><p><strong>obs_hom2</strong> – Number of observed homozygotes2 (BB)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -180,7 +180,7 @@ next in the absence of disturbing factors.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seq_snp</strong> – SNP sequence, - ‘2212120’</p></li>
+<li><p><strong>seq_snp</strong> – SNP sequence</p></li>
 <li><p><strong>freq</strong> – Allele frequency</p></li>
 <li><p><strong>crit_chi2</strong> – The critical value for a test (“either / or”:
 observed and expected values are either one way or the other),

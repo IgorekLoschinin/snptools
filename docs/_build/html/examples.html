@@ -62,7 +62,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#hwe-hardy-weinberg-equilibrium">HWE (Hardy-Weinberg equilibrium)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#parentage">Parentage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parentage">Parentage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discovery">Discovery</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">snptools</a></li>
@@ -512,8 +516,66 @@ the “call rate marker” is 600/900 = 67%</p>
 <h3>Frequence Allele<a class="headerlink" href="#frequence-allele" title="Link to this heading"></a></h3>
 <p>The allele frequency represents the incidence of a gene variant in a
 population.</p>
+<p><strong>allele freq</strong></p>
+<p>in_data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">SNP_NAME</span> <span class="n">SAMPLE_ID</span> <span class="n">SNP</span>
+            <span class="n">ABCA12</span> <span class="mi">1100</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1100</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1100</span> <span class="mi">5</span>
+            <span class="n">ABCA12</span> <span class="mi">1101</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1101</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1101</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1102</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1102</span> <span class="mi">5</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1102</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1103</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1103</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1103</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1104</span> <span class="mi">5</span>
+             <span class="n">APAF1</span> <span class="mi">1104</span> <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1104</span> <span class="mi">1</span>
+            <span class="n">ABCA12</span> <span class="mi">1105</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1105</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1105</span> <span class="mi">5</span>
+            <span class="n">ABCA12</span> <span class="mi">1106</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1106</span> <span class="mi">1</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1106</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1107</span> <span class="mi">5</span>
+             <span class="n">APAF1</span> <span class="mi">1107</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1107</span> <span class="mi">1</span>
+            <span class="n">ABCA12</span> <span class="mi">1108</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1108</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1108</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1109</span> <span class="mi">0</span>
+             <span class="n">APAF1</span> <span class="mi">1109</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1109</span> <span class="mi">2</span>
+            <span class="n">ABCA12</span> <span class="mi">1110</span> <span class="mi">5</span>
+             <span class="n">APAF1</span> <span class="mi">1110</span> <span class="mi">2</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1110</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">allele_freq</span>
+
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">allele_freq</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SNP_NAME&quot;</span><span class="p">,</span> <span class="n">seq_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="n">SNP_NAME</span>    <span class="n">SNP</span>
+            <span class="n">ABCA12</span>  <span class="mf">0.000</span>
+             <span class="n">APAF1</span>  <span class="mf">0.900</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span>  <span class="mf">0.889</span>
+</pre></div>
+</div>
 <p>The minor allele frequency is therefore the frequency at which the
 minor allele occurs within a population.</p>
+<p><strong>maf</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">minor_allele_freq</span> <span class="k">as</span> <span class="n">maf</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">maf</span><span class="p">(</span><span class="mf">0.22</span><span class="p">)</span>  <span class="c1"># result == 0.22</span>
+</pre></div>
+</div>
 </section>
 <section id="hwe-hardy-weinberg-equilibrium">
 <h3>HWE (Hardy-Weinberg equilibrium)<a class="headerlink" href="#hwe-hardy-weinberg-equilibrium" title="Link to this heading"></a></h3>
@@ -521,6 +583,25 @@ minor allele occurs within a population.</p>
 variation in a population will remain constant from one generation to the
 next in the absence of disturbing factors.
 <a class="reference external" href="https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/">https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/</a></p>
+<p>To test the hypothesis that the data are within the HWE, a statistic a chi2
+distribution with 1 degree of freedom:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">hwe_test</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">hwe_test</span><span class="p">(</span><span class="n">seq_snp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;2212120&quot;</span><span class="p">))),</span> <span class="n">freq</span><span class="o">=</span><span class="mf">0.714</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">hwe_test</span><span class="p">(</span><span class="n">seq_snp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;02011015010000500&quot;</span><span class="p">))),</span> <span class="n">freq</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">hwe_test</span><span class="p">(</span><span class="n">seq_snp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;000000000102&quot;</span><span class="p">))),</span> <span class="n">freq</span><span class="o">=</span><span class="mf">0.125</span><span class="p">)</span>  <span class="c1"># False</span>
+</pre></div>
+</div>
+<p>The p-value used here is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">hwe</span>
+
+<span class="n">hom1</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">hets</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">hom2</span> <span class="o">=</span> <span class="mi">5000</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">hwe</span><span class="p">(</span><span class="n">hets</span><span class="p">,</span> <span class="n">hom1</span><span class="p">,</span> <span class="n">hom2</span><span class="p">)</span>  <span class="c1"># 0.6515718999145375 (p-value)</span>
+</pre></div>
+</div>
 <p>Once the data have been prepared, statistical analysis to identify associations,
 patterns, or relationships between SNPs and the phenotypes or diseases of
 interest (GWAS). phenotypes or diseases of interest (GWAS).</p>
@@ -528,6 +609,87 @@ interest (GWAS). phenotypes or diseases of interest (GWAS).</p>
 </section>
 <section id="parentage">
 <h2>Parentage<a class="headerlink" href="#parentage" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://www.icar.org/Documents/GenoEx/ICAR%20Guidelines%20for%20Parentage%20Verification%20and%20Parentage%20Discovery%20based%20on%20SNP.pdf">https://www.icar.org/Documents/GenoEx/ICAR%20Guidelines%20for%20Parentage%20Verification%20and%20Parentage%20Discovery%20based%20on%20SNP.pdf</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A list of isag verification and discovery macerators can be found here.
+See Appendix list - <a class="reference external" href="https://www.icar.org/Guidelines/04-DNA-Technology.pdf">https://www.icar.org/Guidelines/04-DNA-Technology.pdf</a></p>
+<p>List of SNP to be used for either parentage verification or parentage discovery (appendix 11):
+<a class="reference external" href="https://www.icar.org/Guidelines/04-DNA-Technology-App-11-SNP-list-for-parentage-verification-or-discovery.pdf">https://www.icar.org/Guidelines/04-DNA-Technology-App-11-SNP-list-for-parentage-verification-or-discovery.pdf</a></p>
+</div>
+<section id="verification">
+<h3>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h3>
+<p>Verification of paternity according to ICAR recommendations.</p>
+<p>input data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                   <span class="n">SNP_Name</span>      <span class="n">ID41988163</span>  <span class="n">ID10512586</span>
+<span class="mi">0</span>                    <span class="n">ABCA12</span>               <span class="mi">0</span>           <span class="mi">0</span>
+<span class="mi">1</span>                     <span class="n">APAF1</span>               <span class="mi">2</span>           <span class="mi">2</span>
+<span class="mi">2</span>        <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span>               <span class="mi">2</span>           <span class="mi">2</span>
+<span class="mi">3</span>         <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">1020</span>               <span class="mi">1</span>           <span class="mi">1</span>
+<span class="mi">4</span>        <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10245</span>               <span class="mi">1</span>           <span class="mi">1</span>
+<span class="o">..</span>                      <span class="o">...</span>             <span class="o">...</span>         <span class="o">...</span>
+<span class="mi">239</span>  <span class="n">Hapmap55441</span><span class="o">-</span><span class="n">rs29010990</span>               <span class="mi">1</span>           <span class="mi">1</span>
+<span class="mi">240</span>  <span class="n">Hapmap59876</span><span class="o">-</span><span class="n">rs29018046</span>               <span class="mi">1</span>           <span class="mi">0</span>
+<span class="mi">241</span>  <span class="n">Hapmap60017</span><span class="o">-</span><span class="n">rs29023471</span>               <span class="mi">2</span>           <span class="mi">1</span>
+<span class="mi">242</span>           <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">5034</span>               <span class="mi">0</span>           <span class="mi">1</span>
+<span class="mi">243</span>           <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">6532</span>               <span class="mi">0</span>           <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.parentage</span> <span class="kn">import</span> <span class="n">Verification</span><span class="p">,</span> <span class="n">isag_verif</span>
+
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="n">obj_verification</span> <span class="o">=</span> <span class="n">Verification</span><span class="p">(</span><span class="n">isag_marks</span><span class="o">=</span><span class="n">isag_verif</span><span class="p">()</span><span class="o">.</span><span class="n">markers</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">obj_verification</span><span class="o">.</span><span class="n">check_on</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span>
+    <span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;ID41988163&quot;</span><span class="p">,</span>
+    <span class="n">parent</span><span class="o">=</span><span class="s2">&quot;ID10512586&quot;</span><span class="p">,</span>
+    <span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj_verification</span><span class="o">.</span><span class="n">num_conflicts</span><span class="p">)</span>  <span class="c1"># 31</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj_verification</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>  <span class="c1"># &quot;Excluded&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="discovery">
+<h3>Discovery<a class="headerlink" href="#discovery" title="Link to this heading"></a></h3>
+<p>Search for paternity according to ICAR recommendations.</p>
+<p>input data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>               <span class="n">SNP_Name</span>      <span class="n">ID41988163</span>  <span class="n">ID10512586</span>
+<span class="mi">0</span>                <span class="n">ABCA12</span>               <span class="mi">0</span>           <span class="mi">0</span>
+<span class="mi">1</span>                 <span class="n">APAF1</span>               <span class="mi">2</span>           <span class="mi">2</span>
+<span class="mi">2</span>    <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span>               <span class="mi">2</span>           <span class="mi">2</span>
+<span class="mi">3</span>     <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">1020</span>               <span class="mi">1</span>           <span class="mi">1</span>
+<span class="mi">4</span>    <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10245</span>               <span class="mi">1</span>           <span class="mi">1</span>
+<span class="o">..</span>                  <span class="o">...</span>             <span class="o">...</span>         <span class="o">...</span>
+<span class="mi">617</span>       <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">5034</span>               <span class="mi">0</span>           <span class="mi">1</span>
+<span class="mi">618</span>       <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">6154</span>               <span class="mi">2</span>           <span class="mi">0</span>
+<span class="mi">619</span>       <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">6532</span>               <span class="mi">0</span>           <span class="mi">0</span>
+<span class="mi">620</span>       <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">8658</span>               <span class="mi">1</span>           <span class="mi">0</span>
+<span class="mi">621</span>       <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">8833</span>               <span class="mi">0</span>           <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.parentage</span> <span class="kn">import</span> <span class="n">Discovery</span><span class="p">,</span> <span class="n">isag_disc</span>
+
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="n">obj_discovery</span> <span class="o">=</span> <span class="n">Discovery</span><span class="p">(</span><span class="n">isag_marks</span><span class="o">=</span><span class="n">isag_disc</span><span class="p">()</span><span class="o">.</span><span class="n">markers</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">obj_discovery</span><span class="o">.</span><span class="n">search_parent</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span>
+    <span class="n">descendant</span><span class="o">=</span><span class="s2">&quot;ID41988163&quot;</span><span class="p">,</span>
+    <span class="n">parents</span><span class="o">=</span><span class="s2">&quot;ID10512586&quot;</span><span class="p">,</span>
+    <span class="n">snp_name_col</span><span class="o">=</span><span class="s2">&quot;SNP_Name&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj_discovery</span><span class="o">.</span><span class="n">num_conflicts</span><span class="p">)</span>  <span class="c1"># 77</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj_discovery</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>  <span class="c1"># &quot;Excluded&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj_discovery</span><span class="o">.</span><span class="n">perc_conflicts</span><span class="p">)</span>  <span class="c1"># 14.86 %</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 

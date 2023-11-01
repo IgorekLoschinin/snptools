@@ -42,11 +42,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../description.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#current-features">Current Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#the-dataexplore-application">The DataExplore application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#links">Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../description.html#citation">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../description.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Code Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">snptools</a></li>
 </ul>
 
@@ -82,10 +80,6 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="sd">&quot;&quot;&quot; </span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-
 
 <div class="viewcode-block" id="hwe">
 <a class="viewcode-back" href="../../statistics.html#statistics.hwe">[docs]</a>
@@ -94,9 +88,9 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">	</span><span class="sd">&quot;&quot;&quot; Python interpretation hwe - https://github.com/jeremymcrae/snphwe</span>
 
-<span class="sd">	:param obs_hets: Number of observed heterozygotes</span>
-<span class="sd">	:param obs_hom1: Number of observed homozygotes1</span>
-<span class="sd">	:param obs_hom2: Number of observed homozygotes2</span>
+<span class="sd">	:param obs_hets: Number of observed heterozygotes (AB, BA)</span>
+<span class="sd">	:param obs_hom1: Number of observed homozygotes1 (AA)</span>
+<span class="sd">	:param obs_hom2: Number of observed homozygotes2 (BB)</span>
 <span class="sd">	:return: This is where the p-value is returned</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 
@@ -180,7 +174,7 @@
 <span class="sd">	next in the absence of disturbing factors.</span>
 <span class="sd">	https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/</span>
 
-<span class="sd">	:param seq_snp: SNP sequence, - &#39;2212120&#39;</span>
+<span class="sd">	:param seq_snp: SNP sequence</span>
 <span class="sd">	:param freq: Allele frequency</span>
 <span class="sd">	:param crit_chi2: The critical value for a test (&quot;either / or&quot;:</span>
 <span class="sd">		observed and expected values are either one way or the other),</span>
