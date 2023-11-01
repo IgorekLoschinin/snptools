@@ -10,7 +10,12 @@ import pandas as pd
 
 
 class FinalReport(object):
-	""" File that contains SNP information
+	""" File that contains SNP information.
+
+	:argument allele: A variant form of a single nucleotide polymorphism
+		(SNP), a specific polymorphic site or a whole gene detectable at
+		a locus.  Type: 'AB', 'Forward', 'Top', 'Plus', 'Design'
+	:argument sep: Delimiter to use. Default value: "\\t"
 
 	Example:
 		[Header]
@@ -36,13 +41,6 @@ class FinalReport(object):
 			allele: str | list | None = None,
 			sep: str = "\t"
 	) -> None:
-		"""
-		:param allele: - A variant form of a single nucleotide polymorphism
-			(SNP), a specific polymorphic site or a whole gene detectable at
-			a locus.  Type: 'AB', 'Forward', 'Top', 'Plus', 'Design'
-		:param sep: - Delimiter to use. Default value: "\t"
-		"""
-
 		self._delimiter = sep
 		self._full_data = None
 
@@ -63,14 +61,13 @@ class FinalReport(object):
 			self, file_rep: Path | str, conv_file: Path | str = None
 	) -> bool:
 		""" Processes the FinalReport.txt file. Highlights meta information
-		and data
+		and data.
 
-		:param file_rep: - The file FinalReport.txt or another name.
-		:param conv_file: - The file that contains IDs of registration numbers
-			of animals
-
-		:return: - Returns true if file processing was successful, false if
-			there were errors
+		:param file_rep: The file FinalReport.txt or another name.
+		:param conv_file: The file that contains IDs of registration numbers
+			of animals.
+		:return: Returns true if file processing was successful, false if
+			there were errors.
 		"""
 
 		try:
@@ -110,8 +107,8 @@ class FinalReport(object):
 	def read(self, file_rep: Path) -> bool:
 		""" Reading data from the final_report file
 
-		:param file_rep: - path, pointer to the file to be read
-		:return: - Returns true if the read was successful, false if it failed
+		:param file_rep: path, pointer to the file to be read.
+		:return: Returns true if the read was successful, false if it failed.
 		"""
 		try:
 			self._full_data = file_rep.read_text().strip().split("\n")
@@ -121,7 +118,7 @@ class FinalReport(object):
 			return False
 
 	def __handler_header(self) -> None:
-		""" Processes data from a file, selects meta-information """
+		""" Processes data from a file, selects meta-information. """
 
 		for line in self._full_data:
 			if line == self.__class__.__PATTERN_DATA:
@@ -134,7 +131,7 @@ class FinalReport(object):
 				self.__header[key] = value
 
 	def __handler_data(self) -> None:
-		""" Processes data and forms an array for further processing """
+		""" Processes data and forms an array for further processing. """
 
 		temp = 1
 		for line in self._full_data:
@@ -158,8 +155,8 @@ class FinalReport(object):
 		""" Method that generates a list of field names choosing which alleles
 		to keep
 
-		:param names: - List of field names in the report file
-		:return: - Returns a filtered list of fields by alleles
+		:param names: List of field names in the report file.
+		:return: Returns a filtered list of fields by alleles.
 		"""
 
 		allele_templ = r'(^Allele\d\s[:-]\s{}\b)'
@@ -199,9 +196,9 @@ class FinalReport(object):
 
 	def __convert_s_id(self, path_file: Path) -> None:
 		"""Converts sample id which is in FinalReport to animal registration
-		number
+		number.
 
-		:param path_file: - xlsx file with animal numbers label
+		:param path_file: xlsx file with animal numbers label
 		"""
 
 		self.__map_rn = pd.read_excel(

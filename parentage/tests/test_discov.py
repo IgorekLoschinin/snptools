@@ -21,12 +21,9 @@ def obj_discovery() -> Discovery:
 
 class TestDiscovery(object):
 
-	def test_search_parent_0(
+	def test_search_parent_successfully(
 		self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
-		"""
-		successfully!
-		"""
 
 		assert obj_discovery.search_parent(
 			data=data,
@@ -40,7 +37,7 @@ class TestDiscovery(object):
 
 	def test_search_parent_1(self, data: pd.DataFrame) -> None:
 		"""
-		когда выбрасывается исключение на отсутствие данных с маркерами исаг
+		An exception is thrown for the absence of data with isag markers
 		"""
 		obj_discovery = Discovery()
 
@@ -61,8 +58,8 @@ class TestDiscovery(object):
 		self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
-		исключение когда количество необходимых маркеров для подтверждения
-		отцовства меньше установленного значения
+		Exception when the number of markers required to confirm paternity is
+		less than the established value.
 		"""
 
 		with pytest.raises(
@@ -82,7 +79,7 @@ class TestDiscovery(object):
 		self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
-		тест если передаваемые названия жифотных отсутствуют в датафрейме
+		Test if the transmitted animal names are not in the dataframe.
 		"""
 
 		# For descendant
@@ -113,7 +110,7 @@ class TestDiscovery(object):
 		self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
-		тест когда все данные снп не прочитанны - равны 5
+		Test when all snp data is not read - equal to 5.
 		"""
 		data[["BY000041988163", "EE10512586"]] = 5
 
@@ -134,7 +131,7 @@ class TestDiscovery(object):
 			self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
-		тест когда полное совпадение
+		Test when there is a complete match.
 		"""
 		data[["BY000041988163", "EE10512586"]] = 2
 
@@ -152,7 +149,7 @@ class TestDiscovery(object):
 			self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
-		тест на неполное совпание
+		Partial match test.
 		"""
 		data.loc[202:, "EE10512586"] = 1
 

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tests.plink package &mdash; snptools version 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5c1c9e08"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="parentage" href="parentage.html" />
+    <link rel="prev" title="format" href="format.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            snptools
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">snptools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="finalreport.html">finalreport</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="format.html">format</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="format.html#module-format">format package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="format.html#tests-package">tests package</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">tests.plink package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests-snp-package">tests.snp package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parentage.html">parentage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">snptools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">snptools</a></li>
+          <li class="breadcrumb-item"><a href="format.html">format</a></li>
+      <li class="breadcrumb-item active">tests.plink package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/format.tests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tests-plink-package">
+<h1>tests.plink package<a class="headerlink" href="#tests-plink-package" title="Link to this heading"></a></h1>
+<section id="module-format.tests.test_plink_fam">
+<span id="format-tests-test-plink-fam-module"></span><h2>format.tests.test_plink_fam module<a class="headerlink" href="#module-format.tests.test_plink_fam" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_fam.</span></span><span class="sig-name descname"><span class="pre">TestPlinkFormatPed</span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_check_data">
+<span class="sig-name descname"><span class="pre">test_fam_check_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_fam</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed.test_fam_check_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_check_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_empty">
+<span class="sig-name descname"><span class="pre">test_fam_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed.test_fam_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_raise_columns">
+<span class="sig-name descname"><span class="pre">test_fam_raise_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_fam</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed.test_fam_raise_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_raise_columns" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_raises_underscope_fid">
+<span class="sig-name descname"><span class="pre">test_fam_raises_underscope_fid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_fam</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed.test_fam_raises_underscope_fid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_raises_underscope_fid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_raises_underscope_sid">
+<span class="sig-name descname"><span class="pre">test_fam_raises_underscope_sid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_fam</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed.test_fam_raises_underscope_sid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_raises_underscope_sid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_true">
+<span class="sig-name descname"><span class="pre">test_fam_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_fam</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#TestPlinkFormatPed.test_fam_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.TestPlinkFormatPed.test_fam_true" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="format.tests.test_plink_fam.data_fam">
+<span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_fam.</span></span><span class="sig-name descname"><span class="pre">data_fam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_fam.html#data_fam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_fam.data_fam" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-format.tests.test_plink_lgen">
+<span id="format-tests-test-plink-lgen-module"></span><h2>format.tests.test_plink_lgen module<a class="headerlink" href="#module-format.tests.test_plink_lgen" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="format.tests.test_plink_lgen.TestPlinkFormatLgen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_lgen.</span></span><span class="sig-name descname"><span class="pre">TestPlinkFormatLgen</span></span><a class="reference internal" href="_modules/format/tests/test_plink_lgen.html#TestPlinkFormatLgen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_lgen.TestPlinkFormatLgen" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_lgen.TestPlinkFormatLgen.test_lgen_empty">
+<span class="sig-name descname"><span class="pre">test_lgen_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_lgen.html#TestPlinkFormatLgen.test_lgen_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_lgen.TestPlinkFormatLgen.test_lgen_empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_lgen.TestPlinkFormatLgen.test_lgen_raise_columns">
+<span class="sig-name descname"><span class="pre">test_lgen_raise_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_lgen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_lgen.html#TestPlinkFormatLgen.test_lgen_raise_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_lgen.TestPlinkFormatLgen.test_lgen_raise_columns" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_lgen.TestPlinkFormatLgen.test_lgen_true">
+<span class="sig-name descname"><span class="pre">test_lgen_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_lgen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_lgen.html#TestPlinkFormatLgen.test_lgen_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_lgen.TestPlinkFormatLgen.test_lgen_true" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="format.tests.test_plink_lgen.data_lgen">
+<span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_lgen.</span></span><span class="sig-name descname"><span class="pre">data_lgen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_lgen.html#data_lgen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_lgen.data_lgen" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-format.tests.test_plink_map">
+<span id="format-tests-test-plink-map-module"></span><h2>format.tests.test_plink_map module<a class="headerlink" href="#module-format.tests.test_plink_map" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="format.tests.test_plink_map.TestPlinkFormatMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_map.</span></span><span class="sig-name descname"><span class="pre">TestPlinkFormatMap</span></span><a class="reference internal" href="_modules/format/tests/test_plink_map.html#TestPlinkFormatMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_map.TestPlinkFormatMap" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_map.TestPlinkFormatMap.test_map_empty">
+<span class="sig-name descname"><span class="pre">test_map_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_map.html#TestPlinkFormatMap.test_map_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_map.TestPlinkFormatMap.test_map_empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_map.TestPlinkFormatMap.test_map_raise">
+<span class="sig-name descname"><span class="pre">test_map_raise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_map</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_map.html#TestPlinkFormatMap.test_map_raise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_map.TestPlinkFormatMap.test_map_raise" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_map.TestPlinkFormatMap.test_map_true">
+<span class="sig-name descname"><span class="pre">test_map_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_map</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_map.html#TestPlinkFormatMap.test_map_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_map.TestPlinkFormatMap.test_map_true" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="format.tests.test_plink_map.data_map">
+<span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_map.</span></span><span class="sig-name descname"><span class="pre">data_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_map.html#data_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_map.data_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-format.tests.test_plink_ped">
+<span id="format-tests-test-plink-ped-module"></span><h2>format.tests.test_plink_ped module<a class="headerlink" href="#module-format.tests.test_plink_ped" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_ped.</span></span><span class="sig-name descname"><span class="pre">TestPlinkFormatPed</span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_check_data">
+<span class="sig-name descname"><span class="pre">test_ped_check_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ped</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed.test_ped_check_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_check_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_empty">
+<span class="sig-name descname"><span class="pre">test_ped_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed.test_ped_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_raise_columns">
+<span class="sig-name descname"><span class="pre">test_ped_raise_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ped</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed.test_ped_raise_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_raise_columns" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_raises_underscope_fid">
+<span class="sig-name descname"><span class="pre">test_ped_raises_underscope_fid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ped</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed.test_ped_raises_underscope_fid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_raises_underscope_fid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_raises_underscope_sid">
+<span class="sig-name descname"><span class="pre">test_ped_raises_underscope_sid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ped</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed.test_ped_raises_underscope_sid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_raises_underscope_sid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_true">
+<span class="sig-name descname"><span class="pre">test_ped_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ped</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#TestPlinkFormatPed.test_ped_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.TestPlinkFormatPed.test_ped_true" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="format.tests.test_plink_ped.data_ped">
+<span class="sig-prename descclassname"><span class="pre">format.tests.test_plink_ped.</span></span><span class="sig-name descname"><span class="pre">data_ped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_plink_ped.html#data_ped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_plink_ped.data_ped" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="tests-snp-package">
+<h1>tests.snp package<a class="headerlink" href="#tests-snp-package" title="Link to this heading"></a></h1>
+<section id="module-format.tests.test_snp">
+<span id="format-tests-test-snp-module"></span><h2>format.tests.test_snp module<a class="headerlink" href="#module-format.tests.test_snp" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">format.tests.test_snp.</span></span><span class="sig-name descname"><span class="pre">TestSNP</span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_process_df">
+<span class="sig-name descname"><span class="pre">test_snp_process_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_fr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_process_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_process_df" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_process_df_empty">
+<span class="sig-name descname"><span class="pre">test_snp_process_df_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_process_df_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_process_df_empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_process_raises">
+<span class="sig-name descname"><span class="pre">test_snp_process_raises</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_fr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_process_raises"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_process_raises" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_process_uga_empty">
+<span class="sig-name descname"><span class="pre">test_snp_process_uga_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_process_uga_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_process_uga_empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_process_uga_true">
+<span class="sig-name descname"><span class="pre">test_snp_process_uga_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_fr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_process_uga_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_process_uga_true" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_to_file_uga1">
+<span class="sig-name descname"><span class="pre">test_snp_to_file_uga1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_fr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_to_file_uga1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_to_file_uga1" title="Link to this definition"></a></dt>
+<dd><p>The name sample_id is one length</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="format.tests.test_snp.TestSNP.test_snp_to_file_uga2">
+<span class="sig-name descname"><span class="pre">test_snp_to_file_uga2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_snp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_fr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#TestSNP.test_snp_to_file_uga2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.TestSNP.test_snp_to_file_uga2" title="Link to this definition"></a></dt>
+<dd><p>The name sample_id of different length</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="format.tests.test_snp.data_fr">
+<span class="sig-prename descclassname"><span class="pre">format.tests.test_snp.</span></span><span class="sig-name descname"><span class="pre">data_fr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#data_fr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.data_fr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="format.tests.test_snp.obj_snp">
+<span class="sig-prename descclassname"><span class="pre">format.tests.test_snp.</span></span><span class="sig-name descname"><span class="pre">obj_snp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="format.html#format.Snp" title="format._snp.Snp"><span class="pre">Snp</span></a></span></span><a class="reference internal" href="_modules/format/tests/test_snp.html#obj_snp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#format.tests.test_snp.obj_snp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="format.html" class="btn btn-neutral float-left" title="format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parentage.html" class="btn btn-neutral float-right" title="parentage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Igor Locshinin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -2,10 +2,6 @@
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
-__all__ = [
-	"allele_freq", "minor_allele_freq"
-]
-
 import pandas as pd
 
 
@@ -13,12 +9,12 @@ def allele_freq(
 		*, data: pd.DataFrame | str, id_col: str = None, seq_col: str = None
 ) -> pd.DataFrame | float | None:
 	""" The allele frequency represents the incidence of a gene variant in a
-	population
+	population.
 
-	:param data: - Data array
-	:param id_col: - Columns with snp names
-	:param seq_col: - Columns with value snp in format ucg - 0, 1, 2, 5
-	:return: - Return the alleles frequency
+	:param data: Data array.
+	:param id_col: Columns with snp names.
+	:param seq_col: Columns with value snp in format ucg - 0, 1, 2, 5.
+	:return: Return the alleles frequency.
 	"""
 
 	if isinstance(data, pd.DataFrame):
@@ -59,10 +55,10 @@ def allele_freq(
 
 def minor_allele_freq(value: float) -> float:
 	""" The minor allele frequency is therefore the frequency at which the
-	minor allele occurs within a population
+	minor allele occurs within a population.
 
-	:param value: - allele frequency
-	:return: - Return the minor alleles frequency
+	:param value: Allele frequency
+	:return: Return the minor alleles frequency
 	"""
 
 	if value > 0.5:

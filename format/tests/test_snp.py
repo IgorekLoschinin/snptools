@@ -3,7 +3,7 @@
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
 from . import DIR_FILES
-from .._snp import Snp
+from .. import Snp
 
 import pytest
 import pandas as pd

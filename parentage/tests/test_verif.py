@@ -21,12 +21,9 @@ def obj_verification() -> Verification:
 
 class TestVerification(object):
 
-	def test_check_on_0(
+	def test_check_on_successfully(
 		self, data: pd.DataFrame, obj_verification: Verification
 	) -> None:
-		"""
-		successfully!
-		"""
 
 		assert obj_verification.check_on(
 			data=data,
@@ -39,8 +36,7 @@ class TestVerification(object):
 
 	def test_check_on_1(self, data: pd.DataFrame) -> None:
 		"""
-		тест проверяет исключение на отсутствие данных о маркерах для
-		верификации
+		The test checks the exception for missing token data for verification.
 		"""
 		obj_verification = Verification()
 
@@ -60,7 +56,7 @@ class TestVerification(object):
 		self, data: pd.DataFrame, obj_verification: Verification
 	) -> None:
 		"""
-		исключение на низкий call rate у обоих животных
+		Exception for low call rate in both animals.
 		"""
 
 		with pytest.raises(
@@ -79,7 +75,7 @@ class TestVerification(object):
 		self, data: pd.DataFrame, obj_verification: Verification
 	) -> None:
 		"""
-		исключение когда парный call rate ниже порогового значения
+		Exception when paired call rate is below threshold.
 		"""
 
 		data.loc[228:, 'BY000041988163'] = 5
@@ -101,7 +97,7 @@ class TestVerification(object):
 		self, data: pd.DataFrame, obj_verification: Verification
 	) -> None:
 		"""
-		тест если передаваемые названия жифотных отсутствуют в датафрейме
+		Test if the transmitted animal names are not in the dataframe.
 		"""
 
 		# For descendant
@@ -130,7 +126,7 @@ class TestVerification(object):
 		self, data: pd.DataFrame, obj_verification: Verification
 	) -> None:
 		"""
-		тест когда все данные снп не прочитанны - равны 5
+		Test when all snp data is not read - equal to 5
 		"""
 		data[["BY000041988163", "EE10512586"]] = 5
 
@@ -150,7 +146,7 @@ class TestVerification(object):
 			self, data: pd.DataFrame, obj_verification: Verification
 	) -> None:
 		"""
-		тест когда полное совпадение
+		Test when there is a complete match
 		"""
 		data[["BY000041988163", "EE10512586"]] = 2
 

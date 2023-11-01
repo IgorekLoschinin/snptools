@@ -16,6 +16,7 @@
 
 !requirements.txt
 !*/tests/*/**
+!/docs/*/**
 
 *.idea*
 *__pycache__*

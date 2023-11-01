@@ -17,7 +17,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_1(self, report: FinalReport) -> None:
-		""" if both files do not exist """
+		""" If both files do not exist """
 
 		assert not report.handle(
 			DIR_FILES / "fr/f.txt", DIR_FILES / "fr/f.xlsx",
@@ -25,7 +25,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_2(self, report: FinalReport) -> None:
-		""" if the file to convert does not exist """
+		""" If the file to convert does not exist """
 
 		assert not report.handle(
 			DIR_FILES / "fr/file1.txt", DIR_FILES / "fr/f.xlsx",
@@ -33,7 +33,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_3(self, report: FinalReport) -> None:
-		""" if the data does not contain header data """
+		""" If the data does not contain header data """
 
 		report.handle(
 			DIR_FILES / "fr/file2.txt", DIR_FILES / "fr/file2.xlsx",
@@ -43,7 +43,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_4(self, report: FinalReport) -> None:
-		""" if the file contains only header and field names """
+		""" If the file contains only header and field names """
 
 		report.handle(
 			DIR_FILES / "fr/file3.txt", DIR_FILES / "fr/file3.xlsx",
@@ -53,7 +53,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_5(self, report: FinalReport) -> None:
-		""" if the data file is empty """
+		""" If the data file is empty """
 
 		assert not report.handle(
 			DIR_FILES / "fr/file5.txt", DIR_FILES / "fr/file5.xlsx",
@@ -61,7 +61,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_6(self, report: FinalReport) -> None:
-		""" if the conversion file is empty """
+		""" If the conversion file is empty """
 
 		assert report.handle(
 			DIR_FILES / "fr/file6.txt", DIR_FILES / "fr/file6.xlsx",
@@ -69,7 +69,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_7(self, report: FinalReport) -> None:
-		""" if the data file is not needed to convert ID name """
+		""" If the data file is not needed to convert ID name """
 
 		report.handle(DIR_FILES / "fr/file4.txt", None)
 
@@ -78,7 +78,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_8(self, report: FinalReport) -> None:
-		""" if files exist """
+		""" If files exist """
 
 		assert report.handle(
 			DIR_FILES / "fr/file1.txt", DIR_FILES / "fr/file1.xlsx",
