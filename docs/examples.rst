@@ -184,19 +184,19 @@ Output data view::
 
 Input data view::
 
-   SAMPLE_ID  SNP
-        1100  025
-        1101  022
-        1102  052
-        1103  022
+   SAMPLE_ID          SNP
+        1100  A A B B 0 0
+        1101  A A B B B B
+        1102  A A 0 0 B B
+        1103  A A B B B B
 
     or
 
-   SAMPLE_ID  SNP  FAMILY_ID  father  mother  sex
-        1100  025       1100       1       5    1
-        1101  022       1101       2       6    2
-        1102  052       1102       3       7    1
-        1103  022       1103       4       8    0
+   SAMPLE_ID          SNP  FAMILY_ID  father  mother  sex
+        1100  A A B B 0 0       1100       1       5    1
+        1101  A A B B B B       1101       2       6    2
+        1102  A A 0 0 B B       1102       3       7    1
+        1103  A A B B B B       1103       4       8    0
 
 Output data view::
 

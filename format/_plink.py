@@ -77,9 +77,9 @@ def make_ped(
         2. Sample ID
         3. Paternal ID (if unknown use 0)
         4. Maternal ID (if unknown use 0)
-        5. Sex (if unknown use 0)
-        6. Not used, set to 0
-        7. Rest of the columns: SNPs
+        5. Sex (1=male; 2=female; 0=unknown)
+        6. Affection (0=unknown; 1=unaffected; 2=affected)
+        7. Genotypes (space or tab separated, 2 for each marker. 0/-9=missing)
 
         Here is a brief example of a genotype PED file containing 5 samples
     with 10 homozygous SNPs:
@@ -101,8 +101,6 @@ def make_ped(
     :return: Returns an array of data in ped format to work with the plink
         program
     """
-
-    decode_code = {0: 'A A', 1: 'A B', 2: 'B B', 5: '0 0'}
 
     _fields = ["fid", "sid", "father", "mother", "sex", "not_used", "snp"]
     _f_dtype = dict(zip(_fields, (str for _ in range(len(_fields)))))
@@ -139,9 +137,7 @@ def make_ped(
     _ped["mother"] = data[mother_col] if mother_col is not None else 0
     _ped["sex"] = data[sex_col] if sex_col is not None else 0
     _ped["not_used"] = 0
-    _ped["snp"] = data[snp_col].apply(
-        lambda x: " ".join((decode_code[i] for i in map(int, tuple(x))))
-    )
+    _ped["snp"] = data[snp_col]
 
     return _ped[_fields].astype(_f_dtype)
 
