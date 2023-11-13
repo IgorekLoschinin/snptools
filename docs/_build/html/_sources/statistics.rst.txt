@@ -2,7 +2,7 @@ statistics
 ==========
 
 statistics package
--------------------
+------------------
 
 .. automodule:: statistics
    :members:
@@ -10,7 +10,7 @@ statistics package
    :show-inheritance:
 
 tests package
---------------
+-------------
 
 .. toctree::
    :maxdepth: 3

@@ -1,5 +1,5 @@
 finalreport
-===================
+===========
 
 finalreport package
 -------------------
@@ -10,7 +10,7 @@ finalreport package
    :show-inheritance:
 
 tests package
------------
+-------------
 
 .. toctree::
    :maxdepth: 3

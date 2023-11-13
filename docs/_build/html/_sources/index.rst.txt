@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to snptools documentation!
-====================================
+==================================
 
 .. toctree::
    :maxdepth: 2
