@@ -1,5 +1,5 @@
 tests.plink package
-====================
+===================
 
 format.tests.test\_plink\_fam module
 ------------------------------------
@@ -34,7 +34,7 @@ format.tests.test\_plink\_ped module
    :show-inheritance:
 
 tests.snp package
-====================
+=================
 
 format.tests.test\_snp module
 -----------------------------

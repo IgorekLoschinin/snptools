@@ -1,8 +1,8 @@
 format
-===================
+======
 
 format package
--------------------
+--------------
 
 .. automodule:: format
    :members:
@@ -10,7 +10,7 @@ format package
    :show-inheritance:
 
 tests package
---------------
+-------------
 
 .. toctree::
    :maxdepth: 3
