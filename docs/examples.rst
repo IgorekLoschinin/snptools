@@ -317,8 +317,8 @@ Output data view::
 
 
 
-Data filtering
---------------
+Statistics
+----------
 
 Poor quality or uninformative SNPs can be excluded from the analysis. This
 helps to reduce noise and improve the accuracy of the results.
