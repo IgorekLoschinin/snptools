@@ -205,7 +205,8 @@ class FinalReport(object):
 			path_file,
 			header=None,
 			names=['SID', 'UNIQ_KEY'],
-			dtype={'SID': str}
+			dtype={'SID': str},
+			index_col=False
 		)
 
 		if self.__map_rn.empty:
