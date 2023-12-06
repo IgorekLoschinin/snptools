@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def allele_freq(
-		*, data: pd.DataFrame | str, id_col: str = None, seq_col: str = None
+		data: pd.DataFrame | str, id_col: str = None, seq_col: str = None
 ) -> pd.DataFrame | float | None:
 	""" The allele frequency represents the incidence of a gene variant in a
 	population.
