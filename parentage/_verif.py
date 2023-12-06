@@ -47,7 +47,6 @@ class Verification(object):
 
     def check_on(
             self,
-            *,
             data: pd.DataFrame,
             descendant: str,
             parent: str,
