@@ -48,7 +48,6 @@ class Discovery(object):
 
     def search_parent(
             self,
-            *,
             data: pd.DataFrame,
             descendant: str,
             parents: str,

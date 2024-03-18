@@ -6,7 +6,6 @@ import pandas as pd
 
 
 def call_rate(
-		*,
 		data: pd.DataFrame | str,
 		id_col: str = None,
 		snp_col: str = None

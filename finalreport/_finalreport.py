@@ -204,7 +204,7 @@ class FinalReport(object):
 		self.__map_rn = pd.read_excel(
 			path_file,
 			header=None,
-			names=['SID', 'UNIQ_KEY'],
+			names=['SID', 'UNIQ_KEY', 'SEX'],
 			dtype={'SID': str},
 			index_col=False
 		)
