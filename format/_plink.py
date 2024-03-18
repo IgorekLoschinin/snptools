@@ -283,7 +283,7 @@ def make_lgen(
             _lgen["fid"] = 1
 
         _lgen["snp_name"] = data[snp_name]
-        _lgen[["allele1", "allele2"]] = data[alleles]
+        _lgen[["allele1", "allele2"]] = data[alleles].replace({'-': 0})
 
     except Exception as e:
         raise e
