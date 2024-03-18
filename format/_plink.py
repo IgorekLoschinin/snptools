@@ -47,7 +47,8 @@ def make_map(manifest: pd.DataFrame) -> pd.DataFrame:
     # chromosomes
     permute_cols = manifest[fields].\
         sort_values(by='Name').\
-        replace({'X': 30, 'Y': 31, 'MT': 33})
+        replace({'X': 30, 'Y': 31, 'MT': 33}).\
+        dropna(axis=0)
 
     # Insert distances in centimorganides
     permute_cols.insert(2, 'morgans', [0] * len(manifest))
