@@ -47,7 +47,8 @@ def make_map(manifest: pd.DataFrame) -> pd.DataFrame:
     # chromosomes
     permute_cols = manifest[fields].\
         sort_values(by='Name').\
-        replace({'X': 30, 'Y': 31, 'MT': 33})
+        replace({'X': 30, 'Y': 31, 'MT': 33}).\
+        dropna(axis=0)
 
     # Insert distances in centimorganides
     permute_cols.insert(2, 'morgans', [0] * len(manifest))
@@ -282,7 +283,7 @@ def make_lgen(
             _lgen["fid"] = 1
 
         _lgen["snp_name"] = data[snp_name]
-        _lgen[["allele1", "allele2"]] = data[alleles]
+        _lgen[["allele1", "allele2"]] = data[alleles].replace({'-': 0})
 
     except Exception as e:
         raise e
