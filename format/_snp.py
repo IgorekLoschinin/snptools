@@ -87,7 +87,9 @@ class Snp(object):
 
 			self.__data_snp.\
 				apply(
-					lambda x: " ".join([self._add_space(x[0], max_len), x[1]]),
+					lambda x: " ".join([
+						self._add_space(x.iloc[0], max_len), x.iloc[1]
+					]),
 					axis=1
 				).\
 				to_csv(file_path, index=False, header=False)
