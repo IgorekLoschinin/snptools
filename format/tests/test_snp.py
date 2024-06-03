@@ -29,7 +29,7 @@ class TestSNP(object):
 	) -> None:
 
 		obj_snp.process(data_fr)
-		assert obj_snp.data is not None and ~obj_snp.data.empty
+		assert obj_snp.data is not None and not obj_snp.data.empty
 		assert obj_snp.data.SNP.isin([
 			'02011015010000500', '01110152120222512'
 		]).all()
@@ -68,7 +68,7 @@ class TestSNP(object):
 	) -> None:
 
 		obj_snp.process(data_fr)
-		assert obj_snp.data is not None and ~obj_snp.data.empty
+		assert obj_snp.data is not None and not obj_snp.data.empty
 
 	@pytest.mark.parametrize("obj_snp", [None], indirect=True)
 	def test_snp_process_df_empty(self, obj_snp: Snp) -> None:
@@ -94,7 +94,7 @@ class TestSNP(object):
 		_file_save = _dir_sub / "data_snp.csv"
 
 		obj_snp.process(data_fr)
-		assert obj_snp.data is not None and ~obj_snp.data.empty
+		assert obj_snp.data is not None and not obj_snp.data.empty
 
 		obj_snp.to_file(_file_save)
 		assert _file_save.is_file() and _file_save.exists()
@@ -118,7 +118,7 @@ class TestSNP(object):
 		_file_save = _dir_sub / "data_snp.csv"
 
 		obj_snp.process(data_fr)
-		assert obj_snp.data is not None and ~obj_snp.data.empty
+		assert obj_snp.data is not None and not obj_snp.data.empty
 
 		obj_snp.to_file(_file_save)
 		assert _file_save.is_file() and _file_save.exists()
