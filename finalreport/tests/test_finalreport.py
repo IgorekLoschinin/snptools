@@ -2,6 +2,8 @@
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
+from numpy.f2py.symbolic import as_eq
+
 from . import DIR_FILES
 from .._finalreport import FinalReport
 
@@ -55,9 +57,14 @@ class TestFinalReport(object):
 	def test_handle_5(self, report: FinalReport) -> None:
 		""" If the data file is empty """
 
-		assert not report.handle(
-			DIR_FILES / "fr/file5.txt", DIR_FILES / "fr/file5.xlsx",
-		)
+		with pytest.raises(
+				Exception, match="Not data in file FinalReport.txt"
+		):
+			report.handle(
+				DIR_FILES / "fr/file5.txt", DIR_FILES / "fr/file5.xlsx",
+			)
+
+		assert report.snp_data is None
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_6(self, report: FinalReport) -> None:
@@ -66,6 +73,9 @@ class TestFinalReport(object):
 		assert report.handle(
 			DIR_FILES / "fr/file6.txt", DIR_FILES / "fr/file6.xlsx",
 		)
+
+		assert not report.snp_data.empty
+		assert len(report.header) != 0
 
 	@pytest.mark.parametrize("report", [None], indirect=True)
 	def test_handle_7(self, report: FinalReport) -> None:
@@ -151,7 +161,56 @@ class TestFinalReport(object):
 
 		assert report.snp_data.columns.difference(_fields).empty
 
+	@pytest.mark.parametrize("report", [("AB", "Top")], indirect=True)
+	def test_sample_allele_tuple(self, report: FinalReport) -> None:
+		report.handle(DIR_FILES / "fr/file4.txt", None)
+
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - Top', 'Allele2 - Top',
+			'Allele1 - AB', 'Allele2 - AB', 'GC Score', 'X', 'Y'
+		]
+
+		assert report.snp_data.columns.difference(_fields).empty
+
+	@pytest.mark.parametrize("report", [{"AB", "Top"}], indirect=True)
+	def test_sample_allele_set(self, report: FinalReport) -> None:
+		report.handle(DIR_FILES / "fr/file4.txt", None)
+
+		_fields = [
+			'SNP Name', 'Sample ID', 'Allele1 - Top', 'Allele2 - Top',
+			'Allele1 - AB', 'Allele2 - AB', 'GC Score', 'X', 'Y'
+		]
+
+		assert report.snp_data.columns.difference(_fields).empty
+
 	@pytest.mark.parametrize("report", ["GG"], indirect=True)
 	def test_sample_allele_not_exist(self, report: FinalReport) -> None:
 
-		assert not report.handle(DIR_FILES / "fr/file4.txt", None)
+		with pytest.raises(
+				Exception, match="Error. Allele GG not in data."
+		):
+			report.handle(DIR_FILES / "fr/file4.txt", None)
+
+	@pytest.mark.parametrize("report", ["AB"], indirect=True)
+	def test_7(self, report: FinalReport) -> None:
+
+		with pytest.raises(
+			Exception, match="Error. Unique keys contain Cyrillic alphabet."
+		):
+			report.handle(
+				DIR_FILES / "fr/file7.txt", DIR_FILES / "fr/file7.xlsx"
+			)
+
+	# 	assert not report.snp_data.empty
+	#
+	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
+	# def test_8(self, report: FinalReport) -> None:
+	# 	...
+	#
+	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
+	# def test_9(self, report: FinalReport) -> None:
+	# 	...
+	#
+	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
+	# def test_10(self, report: FinalReport) -> None:
+	# 	...
