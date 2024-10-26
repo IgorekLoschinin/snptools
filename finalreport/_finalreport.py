@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
+__all__ = ("FinalReport",)
 
 from pathlib import Path
 from functools import reduce
@@ -33,8 +34,8 @@ class FinalReport(object):
 		...
 	"""
 
-	__PATTERN_HEADER = "[Header]"
-	__PATTERN_DATA = "[Data]"
+	__PATTERN_HEADER = re.compile(r'(^\[Header\])')
+	__PATTERN_DATA = re.compile(r'(^\[Data\])')
 
 	def __init__(
 			self,
@@ -47,7 +48,7 @@ class FinalReport(object):
 		self.__header = {}
 		self.__snp_data = None
 		self.__allele = allele
-		self.__map_rn = None
+		self._map_rn = None
 
 	@property
 	def header(self) -> dict:
@@ -78,6 +79,7 @@ class FinalReport(object):
 			if not file_rep.is_file() and not file_rep.exists():
 				return False
 
+			# Processing conversion file
 			if conv_file is not None:
 				if isinstance(conv_file, str):
 					conv_file = Path(conv_file)
@@ -87,20 +89,24 @@ class FinalReport(object):
 
 				self.__convert_s_id(conv_file)
 
+			# Processing report file
 			if not self.read(file_rep):
 				return False
+
+			if self._full_data is None:
+				raise Exception("Not data in file FinalReport.txt")
 
 			self.__handler_header()
 			self.__handler_data()
 
-			if self.__map_rn is not None:
+			if self._map_rn is not None:
 				self.__snp_data['Sample ID'] = \
 					self.__snp_data['Sample ID'].map(
-						dict(zip(self.__map_rn.SID, self.__map_rn.UNIQ_KEY))
+						dict(zip(self._map_rn.SID, self._map_rn.UNIQ_KEY))
 					)
 
 		except Exception as e:
-			return False
+			raise e
 
 		return True
 
@@ -111,37 +117,47 @@ class FinalReport(object):
 		:return: Returns true if the read was successful, false if it failed.
 		"""
 		try:
-			self._full_data = file_rep.read_text().strip().split("\n")
-			return True
+			if len(data := file_rep.read_text()) != 0:
+				self._full_data = data.strip().split("\n")
+				return True
+
+			self._full_data = None
 
 		except Exception as e:
 			return False
+
+		return True
 
 	def __handler_header(self) -> None:
 		""" Processes data from a file, selects meta-information. """
 
 		for line in self._full_data:
-			if line == self.__class__.__PATTERN_DATA:
+			if self.__class__.__PATTERN_DATA.findall(line):
 				return
 
-			if line != self.__class__.__PATTERN_HEADER:
-				key = line.strip().split("\t")[0]
-				value = line.strip().split("\t")[1]
+			if self.__class__.__PATTERN_HEADER.findall(line):
+				continue
 
-				self.__header[key] = value
+			key = line.strip().split("\t")[0]
+			value = line.strip().split("\t")[1]
+
+			self.__header[key] = value
 
 	def __handler_data(self) -> None:
 		""" Processes data and forms an array for further processing. """
 
 		temp = 1
 		for line in self._full_data:
-			if line == self.__class__.__PATTERN_DATA:
+			if self.__class__.__PATTERN_DATA.findall(line):
 				break
 			temp += 1
 
 		names_col = self.__sample_by_allele(
 			self._full_data[temp].split(f"{self._delimiter}")
 		)
+
+		if names_col is None:
+			raise Exception(f"Error. Allele {self.__allele} not in data.")
 
 		self.__snp_data = pd.DataFrame(
 			[
@@ -201,7 +217,7 @@ class FinalReport(object):
 		:param path_file: xlsx file with animal numbers label
 		"""
 
-		self.__map_rn = pd.read_excel(
+		self._map_rn = pd.read_excel(
 			path_file,
 			header=None,
 			names=['SID', 'UNIQ_KEY', 'SEX'],
@@ -209,9 +225,14 @@ class FinalReport(object):
 			index_col=False
 		)
 
-		if self.__map_rn.empty:
-			self.__map_rn = None
+		if self._map_rn.empty:
+			self._map_rn = None
+			return
 
-		else:
-			if self.__map_rn.UNIQ_KEY.isna().any():
-				self.__map_rn.fillna('unknown', inplace=True)
+		self._map_rn.SID = self._map_rn.SID.str.strip()
+		self._map_rn.UNIQ_KEY = self._map_rn.UNIQ_KEY.str.strip()
+
+		#todo: проверка на русские символы!!!
+
+		if self._map_rn.UNIQ_KEY.isna().any():
+			self._map_rn.fillna('unknown', inplace=True)
