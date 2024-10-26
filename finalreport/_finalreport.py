@@ -232,7 +232,20 @@ class FinalReport(object):
 		self._map_rn.SID = self._map_rn.SID.str.strip()
 		self._map_rn.UNIQ_KEY = self._map_rn.UNIQ_KEY.str.strip()
 
-		#todo: проверка на русские символы!!!
+		if self._check_on_ru_symbols(self._map_rn.UNIQ_KEY):
+			raise Exception("Error. Unique keys contain Cyrillic alphabet.")
 
 		if self._map_rn.UNIQ_KEY.isna().any():
 			self._map_rn.fillna('unknown', inplace=True)
+
+	@staticmethod
+	def _check_on_ru_symbols(seq: pd.Series) -> bool | None:
+		"""
+
+		:param seq:
+		:return:
+		"""
+
+		return any(seq.apply(lambda x: bool(re.search('[а-яА-Я]', x))))
+
+

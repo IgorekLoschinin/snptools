@@ -190,3 +190,27 @@ class TestFinalReport(object):
 				Exception, match="Error. Allele GG not in data."
 		):
 			report.handle(DIR_FILES / "fr/file4.txt", None)
+
+	@pytest.mark.parametrize("report", ["AB"], indirect=True)
+	def test_7(self, report: FinalReport) -> None:
+
+		with pytest.raises(
+			Exception, match="Error. Unique keys contain Cyrillic alphabet."
+		):
+			report.handle(
+				DIR_FILES / "fr/file7.txt", DIR_FILES / "fr/file7.xlsx"
+			)
+
+	# 	assert not report.snp_data.empty
+	#
+	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
+	# def test_8(self, report: FinalReport) -> None:
+	# 	...
+	#
+	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
+	# def test_9(self, report: FinalReport) -> None:
+	# 	...
+	#
+	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
+	# def test_10(self, report: FinalReport) -> None:
+	# 	...
