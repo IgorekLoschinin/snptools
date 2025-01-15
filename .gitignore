@@ -15,7 +15,7 @@
 *.docx
 
 !requirements.txt
-!*/tests/*/**
+!/src/*/tests/*/**
 !/docs/*/**
 
 *.idea*

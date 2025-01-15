@@ -2,7 +2,6 @@
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
-from numpy.f2py.symbolic import as_eq
 
 from . import DIR_FILES
 from .._finalreport import FinalReport
