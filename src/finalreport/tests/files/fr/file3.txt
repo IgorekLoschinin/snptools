@@ -1,0 +1,10 @@
+[Header]
+GSGT Version	2.0.4
+Processing Date	10/14/2021 4:02 PM
+Content		BovineSNP50_v3_A1.bpm
+Num SNPs	53218
+Total SNPs	53218
+Num Samples	3
+Total Samples	3
+[Data]
+SNP Name	Sample ID	Allele1 - AB	Allele2 - AB	GC Score	GT Score
