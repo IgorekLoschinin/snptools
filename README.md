@@ -30,37 +30,45 @@ To install SNPTools, follow the steps below:
    ```
    import snptools
    ```
-   
+
+or 
+
+You can install snptools via pip from [PyPI](https://pypi.org/project/snplib/):
+```
+pip install snplib
+```
+
+
 ## Usage
 Snptools provides commands for a variety of operations. Here are examples of 
 usage:
 
 #### SNP data processing:
 ```
-from snptools.finalreport import FinalReport
+from snptools import FinalReport
 ```
 
 #### Computation of parentage:
 ```
-from snptools.parentage import Discovery, Verification
+from snptools import Discovery, Verification
 ```
 
 #### Preparation format files:
 ```
-from snptools.format import (
+from snptools import (
    Snp, make_fam, make_ped, make_lgen, make_map
 )
 ```
 
 #### Stat:
 ```
-from snptools.statistics import (
+from snptools import (
    hwe, hwe_test, call_rate, allele_freq, minor_allele_freq
 )
 ```
 
 ## Documentation
-Detailed documentation on how to use SNPTools is available see the docs.
+Detailed documentation on how to use SNPTools is available see the [docs](./docs/_build/index.html).
 
 ## License
 This project is licensed under the GNU General Public License - see the 
