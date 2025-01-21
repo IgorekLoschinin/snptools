@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "snplib"
-version = "1.0.2"
+version = "1.0.7"
 description = "Snptools is a tool for Single Nucleotide Polymorphism (SNP) data processing"
 authors = [
     {name = "Igor", email = "igor.loschinin@gmail.com"}
@@ -12,6 +12,10 @@ authors = [
 license = {text = "GNU"}
 readme = "README.md"
 requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
 dependencies = [
     "numpy>=1.26.1",
     "pandas>=2.1.1",
