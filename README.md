@@ -1,4 +1,7 @@
 # snptools
+<p align="center">
+  <img width="150" height="150" src="./iconlib.png">
+</p>
 
 **Snptools** is a tool for SNP (Single Nucleotide Polymorphism) data processing, 
 parentage calculation and call rate estimation.
@@ -15,29 +18,10 @@ with SNP data, including the following capabilities:
 - Processing and preparation of data in plink formats.
 
 ## Installation
-
-To install SNPTools, follow the steps below:
-
-1. Clone the repository into your project directory:
-   ```
-   git clone https://github.com/yourusername/snpTools.git
-   ```
-2. Set dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Use SNPTools:
-   ```
-   import snptools
-   ```
-
-or 
-
 You can install snptools via pip from [PyPI](https://pypi.org/project/snplib/):
 ```
 pip install snplib
 ```
-
 
 ## Usage
 Snptools provides commands for a variety of operations. Here are examples of 
@@ -45,24 +29,24 @@ usage:
 
 #### SNP data processing:
 ```
-from snptools import FinalReport
+from snplib import FinalReport
 ```
 
 #### Computation of parentage:
 ```
-from snptools import Discovery, Verification
+from snplib import Discovery, Verification
 ```
 
 #### Preparation format files:
 ```
-from snptools import (
+from snplib import (
    Snp, make_fam, make_ped, make_lgen, make_map
 )
 ```
 
 #### Stat:
 ```
-from snptools import (
+from snplib import (
    hwe, hwe_test, call_rate, allele_freq, minor_allele_freq
 )
 ```

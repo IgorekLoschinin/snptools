@@ -1,10 +1,23 @@
 [build-system]
-requires = ["setuptools>=75", "wheel"]
+requires = [
+    "setuptools>=75",
+    "setuptools-scm>=8.0",
+    "wheel"
+]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+snplib = ["*.pl"]
 
 [project]
 name = "snplib"
-version = "1.0.7"
+version = "1.0.8"
 description = "Snptools is a tool for Single Nucleotide Polymorphism (SNP) data processing"
 authors = [
     {name = "Igor", email = "igor.loschinin@gmail.com"}
@@ -25,7 +38,6 @@ dependencies = [
     "XlsxWriter>=3.1.9",
     "openpyxl>=3.1.2",
     "pydantic>=2.4.2",
-    "pytest>=7.4.2",
 ]
 
 [project.urls]
