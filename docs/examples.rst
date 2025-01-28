@@ -3,7 +3,7 @@ Code Examples
 
 Head file FinalReport
 ---------------------
-adfafrfa rfer f::
+::
 
     [Header]
     GSGT Version	2.0.4
@@ -26,11 +26,9 @@ adfafrfa rfer f::
 Processing the Finalreport.txt
 ------------------------------
 
-Override the right click popup menu
-
 .. code-block:: python
 
-        from snptools.finalreport import FinalReport
+        from snplib.finalreport import FinalReport
 
         obj_report = FinalReport()
         obj_report.handle("path/to/finalreport.txt")
@@ -38,14 +36,14 @@ Override the right click popup menu
         header = obj_report.header
         data = obj_report.snp_data
 
-Output pd.Dataframe::
+Output Dataframe::
 
-        "SNP Name" "Sample ID" "Allele1 - Forward" "Allele2 - Forward" "Allele1 - Top" "Allele2 - Top" "Allele1 - AB" "Allele2 - AB" "GC Score" X Y
-        ARS-BFGL-BAC-10172 HO840M003135245650 G G G G B B 0.9420 0.069 0.801
-        ARS-BFGL-BAC-1020 HO840M003135245650 G G G G B B 0.9489 0.033 0.700
-        ARS-BFGL-BAC-10245 HO840M003135245650 C C G G B B 0.7277 0.152 1.504
-        ARS-BFGL-BAC-10345 HO840M003135245650 A C A C A B 0.9411 0.598 0.572
-        ARS-BFGL-BAC-10375 HO840M003135245650 A G A G A B 0.9348 0.430 0.494
+    SNP Name	Sample ID	Allele1 - Forward	Allele2 - Forward	Allele1 - Top	Allele2 - Top	Allele1 - AB	Allele2 - AB	GC Score	X	Y
+    ARS-BFGL-BAC-10172	HO840M003135245650	G	G	G	G	B	B	0.9420	0.069	0.801
+    ARS-BFGL-BAC-1020	HO840M003135245650	G	G	G	G	B	B	0.9489	0.033	0.700
+    ARS-BFGL-BAC-10245	HO840M003135245650	C	C	G	G	B	B	0.7277	0.152	1.504
+    ARS-BFGL-BAC-10345	HO840M003135245650	A	C	A	C	A	B	0.9411	0.598	0.572
+    ARS-BFGL-BAC-10375	HO840M003135245650	A	G	A	G	A	B	0.9348	0.430	0.494
 
 
 Select alleles - AB or Top or Forward
@@ -66,7 +64,7 @@ Select alleles - AB or Top or Forward
 
 Output::
 
-        "SNP Name" "Sample ID" "Allele1 - AB" "Allele2 - AB" "GC Score" X Y
+        SNP Name    Sample ID    Allele1 - AB  Allele2 - AB     GC Score    X Y
         ARS-BFGL-BAC-10172 HO840M003135245650 B B 0.9420 0.069 0.801
         ARS-BFGL-BAC-1020 HO840M003135245650 B B 0.9489 0.033 0.700
         ARS-BFGL-BAC-10245 HO840M003135245650 B B 0.7277 0.152 1.504
@@ -99,7 +97,7 @@ blupf90 evaluation is the data file - processed file ``finalreport.txt``
 .. code-block:: python
 
     import pandas as pd
-    from snptools.format import Snp
+    from snplib.format import Snp
 
     data_finalreport = pd.read_csv("file.txt", sep="\t")
 
@@ -139,7 +137,7 @@ identifiable by file extension. https://www.cog-genomics.org/plink/1.9/formats
 .. code-block:: python
 
     import pandas as pd
-    from snptools.format import make_map
+    from snplib.format import make_map
 
     input_data = pd.read_csv(DIR_FILES / "./file_bovinesnp50.csv")
     data_map = make_map(input_data)
@@ -163,7 +161,7 @@ Output data view::
 .. code-block:: python
 
     import pandas as pd
-    from snptools.format import make_ped
+    from snplib.format import make_ped
 
     input_data = pd.read_csv("file.txt")
     data_ped = make_ped(
@@ -220,7 +218,7 @@ Output data view::
 .. code-block:: python
 
     import pandas as pd
-    from snptools.format import make_fam
+    from snplib.format import make_fam
 
     input_data = pd.read_csv("file.txt", sep=" ")
     data_fam = make_fam(input_data, "SAMPLE_ID", "SAMPLE_ID")
@@ -275,7 +273,7 @@ Output data view::
 .. code-block:: python
 
     import pandas as pd
-    from snptools.format import make_lgen
+    from snplib.format import make_lgen
 
     input_data = pd.read_csv("file.txt", sep=" ")
     data_lgen = make_lgen(
@@ -377,7 +375,7 @@ in_data::
 .. code-block:: python
 
     import pandas as pd
-    from snptools.statistics import call_rate
+    from snplib.statistics import call_rate
 
     input_data = pd.read_csv("file.txt", sep=" ")
     result = call_rate(data=input_data, id_col="SNP_NAME", snp_col="SNP")
@@ -436,7 +434,7 @@ in_data::
 .. code-block:: python
 
     import pandas as pd
-    from snptools.statistics import call_rate
+    from snplib.statistics import call_rate
 
     input_data = pd.read_csv("file.txt", sep=" ")
     result = call_rate(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
@@ -496,7 +494,7 @@ in_data::
 .. code-block:: python
 
     import pandas as pd
-    from snptools.statistics import allele_freq
+    from snplib.statistics import allele_freq
 
     input_data = pd.read_csv("file.txt", sep=" ")
     result = allele_freq(data=input_data, id_col="SNP_NAME", seq_col="SNP")
@@ -515,7 +513,7 @@ minor allele occurs within a population.
 
 .. code-block:: python
 
-    from snptools.statistics import minor_allele_freq as maf
+    from snplib.statistics import minor_allele_freq as maf
 
     result = maf(0.22)  # result == 0.22
 
@@ -533,7 +531,7 @@ distribution with 1 degree of freedom:
 
 .. code-block:: python
 
-    from snptools.statistics import hwe_test
+    from snplib.statistics import hwe_test
 
     result = hwe_test(seq_snp=pd.Series(list(map(int, "2212120"))), freq=0.714)  # True
     result = hwe_test(seq_snp=pd.Series(list(map(int, "02011015010000500"))), freq=0.2)  # True
@@ -544,7 +542,7 @@ The p-value used here is:
 
 .. code-block:: python
 
-    from snptools.statistics import hwe
+    from snplib.statistics import hwe
 
     hom1 = 10
     hets = 500
@@ -592,7 +590,7 @@ input data::
 
 .. code-block:: python
 
-    from snptools.parentage import Verification, isag_verif
+    from snplib.parentage import Verification, isag_verif
 
     input_data = pd.read_csv("file.txt", sep=" ")
 
@@ -631,7 +629,7 @@ input data::
 
 .. code-block:: python
 
-    from snptools.parentage import Discovery, isag_disc
+    from snplib.parentage import Discovery, isag_disc
 
     input_data = pd.read_csv("file.txt", sep=" ")
 

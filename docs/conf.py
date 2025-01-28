@@ -8,12 +8,12 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../src/snplib'))
 
 project = 'snptools'
-copyright = '2023, Igor Locshinin'
+copyright = '2025, Igor Locshinin'
 author = 'Igor Locshinin'
-release = 'version 1.0'
+release = 'version 1.0.8'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
