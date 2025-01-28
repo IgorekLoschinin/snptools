@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code Examples &mdash; snptools version 1.0 documentation</title>
+  <title>Code Examples &mdash; snptools version 1.0.8 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,14 +13,14 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5c1c9e08"></script>
+        <script src="_static/documentation_options.js?v=7967727a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="snptools" href="modules.html" />
-    <link rel="prev" title="Introduction" href="description.html" /> 
+    <link rel="next" title="snplib" href="modules.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,9 +44,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="description.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="description.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Code Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#head-file-finalreport">Head file FinalReport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#processing-the-finalreport-txt">Processing the Finalreport.txt</a></li>
@@ -69,7 +69,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">snptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">snplib</a></li>
 </ul>
 
         </div>
@@ -100,7 +100,6 @@
 <h1>Code Examples<a class="headerlink" href="#code-examples" title="Link to this heading"></a></h1>
 <section id="head-file-finalreport">
 <h2>Head file FinalReport<a class="headerlink" href="#head-file-finalreport" title="Link to this heading"></a></h2>
-<p>adfafrfa rfer f:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Header</span><span class="p">]</span>
 <span class="n">GSGT</span> <span class="n">Version</span>        <span class="mf">2.0.4</span>
 <span class="n">Processing</span> <span class="n">Date</span>     <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">9</span><span class="p">:</span><span class="mi">19</span> <span class="n">AM</span>
@@ -123,8 +122,7 @@
 </section>
 <section id="processing-the-finalreport-txt">
 <h2>Processing the Finalreport.txt<a class="headerlink" href="#processing-the-finalreport-txt" title="Link to this heading"></a></h2>
-<p>Override the right click popup menu</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.finalreport</span> <span class="kn">import</span> <span class="n">FinalReport</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">snplib.finalreport</span><span class="w"> </span><span class="kn">import</span> <span class="n">FinalReport</span>
 
 <span class="n">obj_report</span> <span class="o">=</span> <span class="n">FinalReport</span><span class="p">()</span>
 <span class="n">obj_report</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="s2">&quot;path/to/finalreport.txt&quot;</span><span class="p">)</span>
@@ -133,13 +131,13 @@
 <span class="n">data</span> <span class="o">=</span> <span class="n">obj_report</span><span class="o">.</span><span class="n">snp_data</span>
 </pre></div>
 </div>
-<p>Output pd.Dataframe:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;SNP Name&quot;</span> <span class="s2">&quot;Sample ID&quot;</span> <span class="s2">&quot;Allele1 - Forward&quot;</span> <span class="s2">&quot;Allele2 - Forward&quot;</span> <span class="s2">&quot;Allele1 - Top&quot;</span> <span class="s2">&quot;Allele2 - Top&quot;</span> <span class="s2">&quot;Allele1 - AB&quot;</span> <span class="s2">&quot;Allele2 - AB&quot;</span> <span class="s2">&quot;GC Score&quot;</span> <span class="n">X</span> <span class="n">Y</span>
-<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="n">HO840M003135245650</span> <span class="n">G</span> <span class="n">G</span> <span class="n">G</span> <span class="n">G</span> <span class="n">B</span> <span class="n">B</span> <span class="mf">0.9420</span> <span class="mf">0.069</span> <span class="mf">0.801</span>
-<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">1020</span> <span class="n">HO840M003135245650</span> <span class="n">G</span> <span class="n">G</span> <span class="n">G</span> <span class="n">G</span> <span class="n">B</span> <span class="n">B</span> <span class="mf">0.9489</span> <span class="mf">0.033</span> <span class="mf">0.700</span>
-<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10245</span> <span class="n">HO840M003135245650</span> <span class="n">C</span> <span class="n">C</span> <span class="n">G</span> <span class="n">G</span> <span class="n">B</span> <span class="n">B</span> <span class="mf">0.7277</span> <span class="mf">0.152</span> <span class="mf">1.504</span>
-<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10345</span> <span class="n">HO840M003135245650</span> <span class="n">A</span> <span class="n">C</span> <span class="n">A</span> <span class="n">C</span> <span class="n">A</span> <span class="n">B</span> <span class="mf">0.9411</span> <span class="mf">0.598</span> <span class="mf">0.572</span>
-<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10375</span> <span class="n">HO840M003135245650</span> <span class="n">A</span> <span class="n">G</span> <span class="n">A</span> <span class="n">G</span> <span class="n">A</span> <span class="n">B</span> <span class="mf">0.9348</span> <span class="mf">0.430</span> <span class="mf">0.494</span>
+<p>Output Dataframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SNP</span> <span class="n">Name</span>    <span class="n">Sample</span> <span class="n">ID</span>       <span class="n">Allele1</span> <span class="o">-</span> <span class="n">Forward</span>       <span class="n">Allele2</span> <span class="o">-</span> <span class="n">Forward</span>       <span class="n">Allele1</span> <span class="o">-</span> <span class="n">Top</span>   <span class="n">Allele2</span> <span class="o">-</span> <span class="n">Top</span>   <span class="n">Allele1</span> <span class="o">-</span> <span class="n">AB</span>    <span class="n">Allele2</span> <span class="o">-</span> <span class="n">AB</span>    <span class="n">GC</span> <span class="n">Score</span>        <span class="n">X</span>       <span class="n">Y</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span>  <span class="n">HO840M003135245650</span>      <span class="n">G</span>       <span class="n">G</span>       <span class="n">G</span>       <span class="n">G</span>       <span class="n">B</span>       <span class="n">B</span>       <span class="mf">0.9420</span>  <span class="mf">0.069</span>   <span class="mf">0.801</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">1020</span>   <span class="n">HO840M003135245650</span>      <span class="n">G</span>       <span class="n">G</span>       <span class="n">G</span>       <span class="n">G</span>       <span class="n">B</span>       <span class="n">B</span>       <span class="mf">0.9489</span>  <span class="mf">0.033</span>   <span class="mf">0.700</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10245</span>  <span class="n">HO840M003135245650</span>      <span class="n">C</span>       <span class="n">C</span>       <span class="n">G</span>       <span class="n">G</span>       <span class="n">B</span>       <span class="n">B</span>       <span class="mf">0.7277</span>  <span class="mf">0.152</span>   <span class="mf">1.504</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10345</span>  <span class="n">HO840M003135245650</span>      <span class="n">A</span>       <span class="n">C</span>       <span class="n">A</span>       <span class="n">C</span>       <span class="n">A</span>       <span class="n">B</span>       <span class="mf">0.9411</span>  <span class="mf">0.598</span>   <span class="mf">0.572</span>
+<span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10375</span>  <span class="n">HO840M003135245650</span>      <span class="n">A</span>       <span class="n">G</span>       <span class="n">A</span>       <span class="n">G</span>       <span class="n">A</span>       <span class="n">B</span>       <span class="mf">0.9348</span>  <span class="mf">0.430</span>   <span class="mf">0.494</span>
 </pre></div>
 </div>
 <p>Select alleles - AB or Top or Forward</p>
@@ -157,7 +155,7 @@
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;SNP Name&quot;</span> <span class="s2">&quot;Sample ID&quot;</span> <span class="s2">&quot;Allele1 - AB&quot;</span> <span class="s2">&quot;Allele2 - AB&quot;</span> <span class="s2">&quot;GC Score&quot;</span> <span class="n">X</span> <span class="n">Y</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SNP</span> <span class="n">Name</span>    <span class="n">Sample</span> <span class="n">ID</span>    <span class="n">Allele1</span> <span class="o">-</span> <span class="n">AB</span>  <span class="n">Allele2</span> <span class="o">-</span> <span class="n">AB</span>     <span class="n">GC</span> <span class="n">Score</span>    <span class="n">X</span> <span class="n">Y</span>
 <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="n">HO840M003135245650</span> <span class="n">B</span> <span class="n">B</span> <span class="mf">0.9420</span> <span class="mf">0.069</span> <span class="mf">0.801</span>
 <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">1020</span> <span class="n">HO840M003135245650</span> <span class="n">B</span> <span class="n">B</span> <span class="mf">0.9489</span> <span class="mf">0.033</span> <span class="mf">0.700</span>
 <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10245</span> <span class="n">HO840M003135245650</span> <span class="n">B</span> <span class="n">B</span> <span class="mf">0.7277</span> <span class="mf">0.152</span> <span class="mf">1.504</span>
@@ -184,8 +182,8 @@ plink - GBLUP, ssGBLUP, GWAS.</p>
 <p>The input data for obtaining the <code class="docutils literal notranslate"><span class="pre">snp.txt</span></code> file used for the genomic
 blupf90 evaluation is the data file - processed file <code class="docutils literal notranslate"><span class="pre">finalreport.txt</span></code></p>
 <p><strong>uga</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.format</span> <span class="kn">import</span> <span class="n">Snp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.format</span><span class="w"> </span><span class="kn">import</span> <span class="n">Snp</span>
 
 <span class="n">data_finalreport</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -221,8 +219,8 @@ blupf90 evaluation is the data file - processed file <code class="docutils liter
 identifiable by file extension. <a class="reference external" href="https://www.cog-genomics.org/plink/1.9/formats">https://www.cog-genomics.org/plink/1.9/formats</a>
 Распространненные фомраты для проведения GWAS анализа - <code class="docutils literal notranslate"><span class="pre">ped</span></code>, <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">fam</span></code>, <code class="docutils literal notranslate"><span class="pre">lgen</span></code>…</p>
 <p><strong>map</strong> - <a class="reference external" href="https://www.cog-genomics.org/plink/1.9/formats#map">https://www.cog-genomics.org/plink/1.9/formats#map</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.format</span> <span class="kn">import</span> <span class="n">make_map</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.format</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_map</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_FILES</span> <span class="o">/</span> <span class="s2">&quot;./file_bovinesnp50.csv&quot;</span><span class="p">)</span>
 <span class="n">data_map</span> <span class="o">=</span> <span class="n">make_map</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
@@ -243,8 +241,8 @@ information about the chip
 <a class="reference external" href="https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html">https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html</a></p>
 </div>
 <p><strong>ped</strong> - <a class="reference external" href="https://www.cog-genomics.org/plink/1.9/formats#ped">https://www.cog-genomics.org/plink/1.9/formats#ped</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.format</span> <span class="kn">import</span> <span class="n">make_ped</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.format</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_ped</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">)</span>
 <span class="n">data_ped</span> <span class="o">=</span> <span class="n">make_ped</span><span class="p">(</span>
@@ -297,8 +295,8 @@ information about the chip
 </pre></div>
 </div>
 <p><strong>fam</strong> - <a class="reference external" href="https://www.cog-genomics.org/plink/1.9/formats#fam">https://www.cog-genomics.org/plink/1.9/formats#fam</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.format</span> <span class="kn">import</span> <span class="n">make_fam</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.format</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_fam</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="n">data_fam</span> <span class="o">=</span> <span class="n">make_fam</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="s2">&quot;SAMPLE_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;SAMPLE_ID&quot;</span><span class="p">)</span>
@@ -349,8 +347,8 @@ information about the chip
 </pre></div>
 </div>
 <p><strong>lgen</strong> - <a class="reference external" href="https://www.cog-genomics.org/plink/1.9/formats#lgen">https://www.cog-genomics.org/plink/1.9/formats#lgen</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.format</span> <span class="kn">import</span> <span class="n">make_lgen</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.format</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_lgen</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="n">data_lgen</span> <span class="o">=</span> <span class="n">make_lgen</span><span class="p">(</span>
@@ -442,8 +440,8 @@ particular animal, the “call rate animal” is 50K/54K=93%</p>
 <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1110</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">call_rate</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">call_rate</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SNP_NAME&quot;</span><span class="p">,</span> <span class="n">snp_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span>
@@ -498,8 +496,8 @@ the “call rate marker” is 600/900 = 67%</p>
 <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">15718</span>     <span class="mi">14815</span>   <span class="mi">2</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">call_rate</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">call_rate</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">call_rate</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_df</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SAMPLE_ID&quot;</span><span class="p">,</span> <span class="n">snp_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span>
@@ -554,8 +552,8 @@ population.</p>
 <span class="n">ARS</span><span class="o">-</span><span class="n">BFGL</span><span class="o">-</span><span class="n">BAC</span><span class="o">-</span><span class="mi">10172</span> <span class="mi">1110</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">allele_freq</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">snplib.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">allele_freq</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">allele_freq</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;SNP_NAME&quot;</span><span class="p">,</span> <span class="n">seq_col</span><span class="o">=</span><span class="s2">&quot;SNP&quot;</span><span class="p">)</span>
@@ -571,7 +569,7 @@ population.</p>
 <p>The minor allele frequency is therefore the frequency at which the
 minor allele occurs within a population.</p>
 <p><strong>maf</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">minor_allele_freq</span> <span class="k">as</span> <span class="n">maf</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">snplib.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">minor_allele_freq</span> <span class="k">as</span> <span class="n">maf</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">maf</span><span class="p">(</span><span class="mf">0.22</span><span class="p">)</span>  <span class="c1"># result == 0.22</span>
 </pre></div>
@@ -585,7 +583,7 @@ next in the absence of disturbing factors.
 <a class="reference external" href="https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/">https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/</a></p>
 <p>To test the hypothesis that the data are within the HWE, a statistic a chi2
 distribution with 1 degree of freedom:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">hwe_test</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">snplib.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">hwe_test</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">hwe_test</span><span class="p">(</span><span class="n">seq_snp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;2212120&quot;</span><span class="p">))),</span> <span class="n">freq</span><span class="o">=</span><span class="mf">0.714</span><span class="p">)</span>  <span class="c1"># True</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">hwe_test</span><span class="p">(</span><span class="n">seq_snp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;02011015010000500&quot;</span><span class="p">))),</span> <span class="n">freq</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>  <span class="c1"># True</span>
@@ -593,7 +591,7 @@ distribution with 1 degree of freedom:</p>
 </pre></div>
 </div>
 <p>The p-value used here is:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.statistics</span> <span class="kn">import</span> <span class="n">hwe</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">snplib.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">hwe</span>
 
 <span class="n">hom1</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">hets</span> <span class="o">=</span> <span class="mi">500</span>
@@ -635,7 +633,7 @@ See Appendix list - <a class="reference external" href="https://www.icar.org/Gui
 <span class="mi">243</span>           <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">6532</span>               <span class="mi">0</span>           <span class="mi">0</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.parentage</span> <span class="kn">import</span> <span class="n">Verification</span><span class="p">,</span> <span class="n">isag_verif</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">snplib.parentage</span><span class="w"> </span><span class="kn">import</span> <span class="n">Verification</span><span class="p">,</span> <span class="n">isag_verif</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 
@@ -671,7 +669,7 @@ See Appendix list - <a class="reference external" href="https://www.icar.org/Gui
 <span class="mi">621</span>       <span class="n">UA</span><span class="o">-</span><span class="n">IFASA</span><span class="o">-</span><span class="mi">8833</span>               <span class="mi">0</span>           <span class="mi">0</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snptools.parentage</span> <span class="kn">import</span> <span class="n">Discovery</span><span class="p">,</span> <span class="n">isag_disc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">snplib.parentage</span><span class="w"> </span><span class="kn">import</span> <span class="n">Discovery</span><span class="p">,</span> <span class="n">isag_disc</span>
 
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 
@@ -697,14 +695,14 @@ See Appendix list - <a class="reference external" href="https://www.icar.org/Gui
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="description.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="modules.html" class="btn btn-neutral float-right" title="snptools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="snplib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Igor Locshinin.</p>
+    <p>&#169; Copyright 2025, Igor Locshinin.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

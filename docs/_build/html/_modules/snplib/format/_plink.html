@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>snplib.format._plink &mdash; snptools version 1.0.8 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7967727a"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">snplib</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">snptools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">snplib.format._plink</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for snplib.format._plink</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Igor Loschinin (igor.loschinin@gmail.com)&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;make_map&quot;</span><span class="p">,</span> <span class="s2">&quot;make_ped&quot;</span><span class="p">,</span> <span class="s2">&quot;make_fam&quot;</span><span class="p">,</span> <span class="s2">&quot;make_lgen&quot;</span>
+<span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="make_map">
+<a class="viewcode-back" href="../../../snplib.format.html#snplib.format.make_map">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_map</span><span class="p">(</span><span class="n">manifest</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; PLINK text fileset variant information file</span>
+<span class="sd">    https://www.cog-genomics.org/plink/1.9/formats#map</span>
+
+<span class="sd">    A text file with no header line, and one line per variant with the following 3-4 fields:</span>
+
+<span class="sd">        1. Chromosome code. PLINK 1.9 also permits contig names here, but most</span>
+<span class="sd">            older programs do not.</span>
+<span class="sd">        2. Variant identifier</span>
+<span class="sd">        3. Position in morgans or centimorgans (optional; also safe to use</span>
+<span class="sd">            dummy value of &#39;0&#39;)</span>
+<span class="sd">        4. Base-pair coordinate</span>
+
+<span class="sd">        All lines must have the same number of columns (so either no lines</span>
+<span class="sd">    contain the morgans/centimorgans column, or all of them do).</span>
+
+<span class="sd">    :param manifest: The file that is taken on the Illumina website with full</span>
+<span class="sd">    information about the chip</span>
+<span class="sd">    https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html</span>
+
+<span class="sd">    :return: Return data in formate .map</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Chr&#39;</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;MapInfo&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">all</span><span class="p">([</span>
+        <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">else</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fields</span>
+    <span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Manifest has no data to build map format!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Rearrange the columns and replace the names of the sex and mitochondrial</span>
+    <span class="c1"># chromosomes</span>
+    <span class="n">permute_cols</span> <span class="o">=</span> <span class="n">manifest</span><span class="p">[</span><span class="n">fields</span><span class="p">]</span><span class="o">.</span>\
+        <span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span><span class="o">.</span>\
+        <span class="n">replace</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="s1">&#39;MT&#39;</span><span class="p">:</span> <span class="mi">33</span><span class="p">})</span><span class="o">.</span>\
+        <span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Insert distances in centimorganides</span>
+    <span class="n">permute_cols</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;morgans&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">manifest</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">permute_cols</span></div>
+
+
+
+<div class="viewcode-block" id="make_ped">
+<a class="viewcode-back" href="../../../snplib.format.html#snplib.format.make_ped">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_ped</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">sid_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">snp_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">fid_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">father_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mother_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sex_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Original standard text format for sample pedigree information and</span>
+<span class="sd">    genotype calls. Normally must be accompanied by a .map file.</span>
+<span class="sd">    https://www.cog-genomics.org/plink/1.9/formats#ped</span>
+
+<span class="sd">        The PED file has 6 fixed columns at the beginning followed by the SNP</span>
+<span class="sd">    information. The columns should be separated by a whitespace or a tab. The</span>
+<span class="sd">    first six columns hold the following information:</span>
+
+<span class="sd">        1. Family ID (if unknown use the same id as for the sample id in</span>
+<span class="sd">            column two)</span>
+<span class="sd">        2. Sample ID</span>
+<span class="sd">        3. Paternal ID (if unknown use 0)</span>
+<span class="sd">        4. Maternal ID (if unknown use 0)</span>
+<span class="sd">        5. Sex (1=male; 2=female; 0=unknown)</span>
+<span class="sd">        6. Affection (0=unknown; 1=unaffected; 2=affected)</span>
+<span class="sd">        7. Genotypes (space or tab separated, 2 for each marker. 0/-9=missing)</span>
+
+<span class="sd">        Here is a brief example of a genotype PED file containing 5 samples</span>
+<span class="sd">    with 10 homozygous SNPs:</span>
+<span class="sd">        4304 4304 0 0 0 0 C C C C G G G G G G C C G G C C T T T T</span>
+<span class="sd">        6925 6925 0 0 0 0 C C C C T T G G A A C C G G C C T T T T</span>
+<span class="sd">        7319 7319 0 0 0 0 C C C C G G G G G G C C G G C C T T T T</span>
+<span class="sd">        6963 6963 0 0 0 0 A A C C T T G G A A C C G G C C T T T T</span>
+<span class="sd">        6968 6968 0 0 0 0 C C C C G G G G G G G G G G C C T T T T</span>
+
+<span class="sd">    :param data: Snp data that contain full or partial information on the</span>
+<span class="sd">        animal</span>
+<span class="sd">    :param sid_col: Sample ID. Column name in data</span>
+<span class="sd">    :param snp_col: Snp column name in data</span>
+<span class="sd">    :param fid_col: Family ID column name in data (if unknown use the same</span>
+<span class="sd">        id as for the sample id in column two)</span>
+<span class="sd">    :param father_col: Paternal ID column name in data (if unknown use 0)</span>
+<span class="sd">    :param mother_col: Maternal ID column name in data (if unknown use 0)</span>
+<span class="sd">    :param sex_col: Sex column name in data (if unknown use 0)</span>
+<span class="sd">    :return: Returns an array of data in ped format to work with the plink</span>
+<span class="sd">        program</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;sid&quot;</span><span class="p">,</span> <span class="s2">&quot;father&quot;</span><span class="p">,</span> <span class="s2">&quot;mother&quot;</span><span class="p">,</span> <span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;not_used&quot;</span><span class="p">,</span> <span class="s2">&quot;snp&quot;</span><span class="p">]</span>
+    <span class="n">_f_dtype</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">_fields</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_fields</span><span class="p">)))))</span>
+
+    <span class="n">_ped</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">_fields</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sid_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="ow">or</span> <span class="n">snp_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data has not in name columns!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Checked Sample ID on underscope - &#39;_&#39;</span>
+    <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sid_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_check_underscore</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="s2">&quot;Replace in &#39;Sample ID&#39; columns &#39;_&#39; on another a simbols&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Checked Family ID on underscope - &#39;_&#39;</span>
+    <span class="k">if</span> <span class="n">fid_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fid_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data has not in name columns </span><span class="si">{</span><span class="n">fid_col</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">hasobject</span> <span class="ow">and</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_check_underscore</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Replace in &#39;Family ID&#39; columns &#39;_&#39; on another a simbols&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sid_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;father&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">father_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">father_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;mother&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">mother_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">mother_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sex_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">sex_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;not_used&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">_ped</span><span class="p">[</span><span class="s2">&quot;snp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">snp_col</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">_ped</span><span class="p">[</span><span class="n">_fields</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">_f_dtype</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="make_fam">
+<a class="viewcode-back" href="../../../snplib.format.html#snplib.format.make_fam">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_fam</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">sid_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">fid_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">father_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mother_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sex_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sex_val</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">pheno_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pheno_val</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; PLINK sample information file</span>
+<span class="sd">    https://www.cog-genomics.org/plink/1.9/formats#fam</span>
+
+<span class="sd">        A text file with no header line, and one line per sample with the</span>
+<span class="sd">    following six fields:</span>
+
+<span class="sd">        1. Family ID (&#39;FID&#39;)</span>
+<span class="sd">        2. Within-family ID (&#39;IID&#39;; cannot be &#39;0&#39;)</span>
+<span class="sd">        3. Within-family ID of father (&#39;0&#39; if father isn&#39;t in dataset)</span>
+<span class="sd">        4. Within-family ID of mother (&#39;0&#39; if mother isn&#39;t in dataset)</span>
+<span class="sd">        5. Sex code (&#39;1&#39; = male, &#39;2&#39; = female, &#39;0&#39; = unknown)</span>
+<span class="sd">        6. Phenotype value (&#39;1&#39; = control, &#39;2&#39; = case, &#39;-9&#39;/&#39;0&#39;/non-numeric =</span>
+<span class="sd">            missing data if case/control)</span>
+
+<span class="sd">    :param data: Snp data that contain full or partial information on the</span>
+<span class="sd">        animal</span>
+<span class="sd">    :param fid_col: Family ID, default value &quot;1&quot;. Must not contain</span>
+<span class="sd">        underline - &quot;_&quot;</span>
+<span class="sd">    :param sid_col: Within-family ID (&#39;IID&#39;; cannot be &#39;0&#39;). Must not contain</span>
+<span class="sd">        underline - &quot;_&quot;</span>
+<span class="sd">    :param father_col: Within-family ID of father (&#39;0&#39; if father isn&#39;t in</span>
+<span class="sd">        dataset)</span>
+<span class="sd">    :param mother_col: Within-family ID of mother (&#39;0&#39; if mother isn&#39;t in</span>
+<span class="sd">        dataset)</span>
+<span class="sd">    :param sex_col: Sex column name in data</span>
+<span class="sd">    :param sex_val: Sex code (&#39;1&#39; = male, &#39;2&#39; = female, &#39;0&#39; = unknown)</span>
+<span class="sd">    :param pheno_col: Pheno column name in data</span>
+<span class="sd">    :param pheno_val: Phenotype value (&#39;1&#39; = control, &#39;2&#39; = case,</span>
+<span class="sd">        &#39;-9&#39;/&#39;0&#39;/non-numeric = missing data if case/control)</span>
+<span class="sd">    :return: Return data in formate .fam</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">,</span> <span class="s1">&#39;sid&#39;</span><span class="p">,</span> <span class="s1">&#39;father&#39;</span><span class="p">,</span> <span class="s1">&#39;mother&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;pheno&#39;</span><span class="p">]</span>
+    <span class="n">_f_dtype</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">_fields</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_fields</span><span class="p">)))))</span>
+
+    <span class="n">_fam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">_fields</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sid_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data has not in name columns </span><span class="si">{</span><span class="n">sid_col</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Checked Sample ID on underscope - &#39;_&#39;</span>
+    <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sid_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_check_underscore</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="s2">&quot;Replace in &#39;Sample ID&#39; columns &#39;_&#39; on another a simbols&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Checked Family ID on underscope - &#39;_&#39;</span>
+    <span class="k">if</span> <span class="n">fid_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fid_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data has not in name columns </span><span class="si">{</span><span class="n">fid_col</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">hasobject</span> <span class="ow">and</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_check_underscore</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Replace in &#39;Family ID&#39; columns &#39;_&#39; on another a simbols&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;father&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">father_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">father_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;mother&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">mother_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">mother_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">_fam</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sex_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">sex_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">sex_val</span>
+    <span class="n">_fam</span><span class="p">[</span><span class="s1">&#39;pheno&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pheno_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">pheno_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">pheno_val</span>
+
+    <span class="k">return</span> <span class="n">_fam</span><span class="p">[</span><span class="n">_fields</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">_f_dtype</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="make_lgen">
+<a class="viewcode-back" href="../../../snplib.format.html#snplib.format.make_lgen">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_lgen</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">sid_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">snp_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">alleles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">fid_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; PLINK long-format genotype file</span>
+<span class="sd">    https://www.cog-genomics.org/plink/1.9/formats#lgen</span>
+
+<span class="sd">        A text file with no header line, and one line per genotype call (or</span>
+<span class="sd">    just not-homozygous-major calls if &#39;lgen-ref&#39; was invoked) usually with</span>
+<span class="sd">    the following five fields:</span>
+
+<span class="sd">        1. Family ID</span>
+<span class="sd">        2. Within-family ID</span>
+<span class="sd">        3. Variant identifier</span>
+<span class="sd">        4. Allele call 1 (&#39;0&#39; for missing)</span>
+<span class="sd">        5. Allele call 2</span>
+
+<span class="sd">        There are several variations which are also handled by PLINK; see the</span>
+<span class="sd">    original discussion for details.</span>
+
+<span class="sd">    :param data: Data the after parsing FinalReport.txt</span>
+<span class="sd">    :param sid_col:</span>
+<span class="sd">    :param snp_name:</span>
+<span class="sd">    :param fid_col: Family ID, default value &quot;1&quot;</span>
+<span class="sd">    :param alleles:</span>
+<span class="sd">    :return: - Return data in formate .lgen</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">,</span> <span class="s1">&#39;sid&#39;</span><span class="p">,</span> <span class="s1">&#39;snp_name&#39;</span><span class="p">,</span> <span class="s1">&#39;allele1&#39;</span><span class="p">,</span> <span class="s1">&#39;allele2&#39;</span><span class="p">]</span>
+    <span class="n">_f_dtype</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">_fields</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_fields</span><span class="p">)))))</span>
+
+    <span class="n">_lgen</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">_fields</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Checked Sample ID on underscope - &#39;_&#39;</span>
+        <span class="n">_lgen</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sid_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_lgen</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_check_underscore</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Replace in &#39;Sample ID&#39; columns &#39;_&#39; on another a simbols&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Checked Family ID on underscope - &#39;_&#39;</span>
+        <span class="k">if</span> <span class="n">fid_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">hasobject</span> <span class="ow">and</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_check_underscore</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                    <span class="s2">&quot;Replace in &#39;Family ID&#39; columns &#39;_&#39; on another a simbols&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">_lgen</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">fid_col</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_lgen</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">_lgen</span><span class="p">[</span><span class="s2">&quot;snp_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">snp_name</span><span class="p">]</span>
+        <span class="n">_lgen</span><span class="p">[[</span><span class="s2">&quot;allele1&quot;</span><span class="p">,</span> <span class="s2">&quot;allele2&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">alleles</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">e</span>
+
+    <span class="k">return</span> <span class="n">_lgen</span><span class="p">[</span><span class="n">_fields</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">_f_dtype</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_underscore</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking for underscore in a string</span>
+
+<span class="sd">    :param value: String for checked</span>
+<span class="sd">    :return: Return True if there is an underline in the string, False if not</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_under_l</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">_under_l</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Igor Locshinin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

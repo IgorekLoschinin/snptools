@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>snplib.statistics._snphwe &mdash; snptools version 1.0.8 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7967727a"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            snptools
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">snplib</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">snptools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">snplib.statistics._snphwe</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for snplib.statistics._snphwe</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Igor Loschinin (igor.loschinin@gmail.com)&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="hwe">
+<a class="viewcode-back" href="../../../snplib.statistics.html#snplib.statistics.hwe">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hwe</span><span class="p">(</span>
+		<span class="n">obs_hets</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span> <span class="n">obs_hom1</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span> <span class="n">obs_hom2</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot; Python interpretation hwe - https://github.com/jeremymcrae/snphwe</span>
+
+<span class="sd">	:param obs_hets: Number of observed heterozygotes (AB, BA)</span>
+<span class="sd">	:param obs_hom1: Number of observed homozygotes1 (AA)</span>
+<span class="sd">	:param obs_hom2: Number of observed homozygotes2 (BB)</span>
+<span class="sd">	:return: This is where the p-value is returned</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="n">obs_hets</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">obs_hets</span><span class="p">)</span>
+	<span class="n">obs_hom1</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">obs_hom1</span><span class="p">)</span>
+	<span class="n">obs_hom2</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">obs_hom2</span><span class="p">)</span>
+
+	<span class="k">if</span> <span class="n">obs_hom1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">obs_hom2</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">obs_hets</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+		<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;snphwe: negative allele count&quot;</span><span class="p">)</span>
+
+	<span class="n">obs_homr</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">obs_hom1</span><span class="p">,</span> <span class="n">obs_hom2</span><span class="p">)</span>
+	<span class="n">obs_homc</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">obs_hom1</span><span class="p">,</span> <span class="n">obs_hom2</span><span class="p">)</span>
+
+	<span class="n">rare</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">obs_homr</span> <span class="o">+</span> <span class="n">obs_hets</span>
+	<span class="n">genotypes</span> <span class="o">=</span> <span class="n">obs_hets</span> <span class="o">+</span> <span class="n">obs_homc</span> <span class="o">+</span> <span class="n">obs_homr</span>
+
+	<span class="k">if</span> <span class="n">genotypes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+		<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;snphwe: zero genotypes&quot;</span><span class="p">)</span>
+
+	<span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">rare</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+	<span class="c1"># get distribution midpoint, but ensure midpoint and rare alleles have</span>
+	<span class="c1"># same parity</span>
+	<span class="n">mid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rare</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">genotypes</span> <span class="o">-</span> <span class="n">rare</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">genotypes</span><span class="p">))</span>
+	<span class="k">if</span> <span class="n">mid</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="n">rare</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+		<span class="n">mid</span> <span class="o">+=</span> <span class="mi">1</span>
+
+	<span class="n">probs</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+	<span class="n">_sum</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+
+	<span class="n">curr_homr</span> <span class="o">=</span> <span class="p">(</span><span class="n">rare</span> <span class="o">-</span> <span class="n">mid</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+	<span class="n">curr_homc</span> <span class="o">=</span> <span class="n">genotypes</span> <span class="o">-</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">curr_homr</span>
+	<span class="n">curr_hets</span> <span class="o">=</span> <span class="n">mid</span>
+	<span class="k">while</span> <span class="n">curr_hets</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="n">probs</span><span class="p">[</span><span class="n">curr_hets</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+			<span class="n">probs</span><span class="p">[</span><span class="n">curr_hets</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_hets</span> <span class="o">*</span> <span class="p">(</span><span class="n">curr_hets</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+			<span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">curr_homr</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">curr_homc</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">))</span>
+		<span class="p">)</span>
+		<span class="n">_sum</span> <span class="o">+=</span> <span class="n">probs</span><span class="p">[</span><span class="n">curr_hets</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
+
+		<span class="c1"># fewer heterozygotes -&gt; add one rare, one common homozygote</span>
+		<span class="n">curr_homr</span> <span class="o">+=</span> <span class="mi">1</span>
+		<span class="n">curr_homc</span> <span class="o">+=</span> <span class="mi">1</span>
+		<span class="n">curr_hets</span> <span class="o">-=</span> <span class="mi">2</span>
+
+	<span class="c1"># calculate probabilities from midpoint up</span>
+	<span class="n">curr_homr</span> <span class="o">=</span> <span class="p">(</span><span class="n">rare</span> <span class="o">-</span> <span class="n">mid</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+	<span class="n">curr_homc</span> <span class="o">=</span> <span class="n">genotypes</span> <span class="o">-</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">curr_homr</span>
+
+	<span class="n">curr_hets</span> <span class="o">=</span> <span class="n">mid</span>
+	<span class="k">while</span> <span class="n">curr_hets</span> <span class="o">&lt;=</span> <span class="n">rare</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+		<span class="n">probs</span><span class="p">[</span><span class="n">curr_hets</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> \
+			<span class="p">(</span><span class="n">probs</span><span class="p">[</span><span class="n">curr_hets</span><span class="p">]</span> <span class="o">*</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">curr_homr</span> <span class="o">*</span> <span class="n">curr_homc</span>
+			 <span class="o">/</span> <span class="p">((</span><span class="n">curr_hets</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">curr_hets</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)))</span>
+		<span class="n">_sum</span> <span class="o">+=</span> <span class="n">probs</span><span class="p">[</span><span class="n">curr_hets</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span>
+
+		<span class="c1"># add 2 heterozygotes -&gt; subtract one rare, one common homozygote</span>
+		<span class="n">curr_homr</span> <span class="o">-=</span> <span class="mi">1</span>
+		<span class="n">curr_homc</span> <span class="o">-=</span> <span class="mi">1</span>
+		<span class="n">curr_hets</span> <span class="o">+=</span> <span class="mi">2</span>
+
+	<span class="c1"># p-value calculation for p_hwe</span>
+	<span class="n">target</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[</span><span class="n">obs_hets</span><span class="p">]</span>
+	<span class="n">p_hwe</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+	<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">probs</span><span class="p">:</span>
+		<span class="k">if</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">target</span><span class="p">:</span>
+			<span class="n">p_hwe</span> <span class="o">+=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">_sum</span>
+
+	<span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">p_hwe</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="hwe_test">
+<a class="viewcode-back" href="../../../snplib.statistics.html#snplib.statistics.hwe_test">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hwe_test</span><span class="p">(</span>
+		<span class="n">seq_snp</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">freq</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">crit_chi2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.841</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot; The Hardy-Weinberg equilibrium is a principle stating that the genetic</span>
+<span class="sd">	variation in a population will remain constant from one generation to the</span>
+<span class="sd">	next in the absence of disturbing factors.</span>
+<span class="sd">	https://www.nature.com/scitable/definition/hardy-weinberg-equilibrium-122/</span>
+
+<span class="sd">	:param seq_snp: SNP sequence</span>
+<span class="sd">	:param freq: Allele frequency</span>
+<span class="sd">	:param crit_chi2: The critical value for a test (&quot;either / or&quot;:</span>
+<span class="sd">		observed and expected values are either one way or the other),</span>
+<span class="sd">		therefore with degrees of freedom = df = 1 is 3.84 at p = 0.05</span>
+<span class="sd">	:return: A decision is returned to exclude or retain the inspected snp</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="n">_seq</span> <span class="o">=</span> <span class="n">seq_snp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+	<span class="k">if</span> <span class="n">_seq</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="k">return</span> <span class="kc">True</span>
+
+	<span class="n">n_genotypes</span> <span class="o">=</span> <span class="n">_seq</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+	<span class="n">observed</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="mi">0</span><span class="p">:</span> <span class="p">(</span><span class="n">_seq</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+		<span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="n">_seq</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+		<span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="n">_seq</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+	<span class="p">}</span>
+
+	<span class="n">expected</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="mi">0</span><span class="p">:</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">freq</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_genotypes</span><span class="p">,</span>
+		<span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">freq</span><span class="p">)</span> <span class="o">*</span> <span class="n">freq</span><span class="p">))</span> <span class="o">*</span> <span class="n">n_genotypes</span><span class="p">,</span>
+		<span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="n">freq</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_genotypes</span>
+	<span class="p">}</span>
+
+	<span class="n">chi</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span>
+		<span class="p">((</span><span class="n">obs</span> <span class="o">-</span> <span class="n">exp</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">exp</span>
+		<span class="k">for</span> <span class="n">obs</span><span class="p">,</span> <span class="n">exp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">observed</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">expected</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+	<span class="p">])</span>
+
+	<span class="k">if</span> <span class="n">chi</span> <span class="o">&gt;</span> <span class="n">crit_chi2</span><span class="p">:</span>
+		<span class="k">return</span> <span class="kc">False</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">return</span> <span class="kc">True</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Igor Locshinin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
