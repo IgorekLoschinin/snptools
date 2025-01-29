@@ -14,23 +14,20 @@ def make_map(manifest: pd.DataFrame) -> pd.DataFrame:
     """ PLINK text fileset variant information file
     https://www.cog-genomics.org/plink/1.9/formats#map
 
-    A text file with no header line, and one line per variant with the following 3-4 fields:
+    A text file with no header line, and one line per variant with the
+    following 3-4 fields:
 
-        1. Chromosome code. PLINK 1.9 also permits contig names here, but most
-            older programs do not.
-        2. Variant identifier
-        3. Position in morgans or centimorgans (optional; also safe to use
-            dummy value of '0')
-        4. Base-pair coordinate
+        1. Chromosome code. PLINK 1.9 also permits contig names here, but most older programs do not.
+        2. Variant identifier.
+        3. Position in morgans or centimorgans (optional; also safe to use dummy value of '0').
+        4. Base-pair coordinate.
 
-        All lines must have the same number of columns (so either no lines
-    contain the morgans/centimorgans column, or all of them do).
+    All lines must have the same number of columns (so either no lines contain
+    the morgans/centimorgans column, or all of them do).
 
-    :param manifest: The file that is taken on the Illumina website with full
-    information about the chip
-    https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html
+    :param manifest: The file that is taken on the Illumina website with full information about the chip https://support.illumina.com/downloads/bovinesnp50-v3-0-product-files.html.
 
-    :return: Return data in formate .map
+    :return: Return data in formate .map.
     """
 
     fields = ['Chr', 'Name', 'MapInfo']
@@ -69,12 +66,11 @@ def make_ped(
     genotype calls. Normally must be accompanied by a .map file.
     https://www.cog-genomics.org/plink/1.9/formats#ped
 
-        The PED file has 6 fixed columns at the beginning followed by the SNP
+    The PED file has 6 fixed columns at the beginning followed by the SNP
     information. The columns should be separated by a whitespace or a tab. The
     first six columns hold the following information:
 
-        1. Family ID (if unknown use the same id as for the sample id in
-            column two)
+        1. Family ID (if unknown use the same id as for the sample id in column two)
         2. Sample ID
         3. Paternal ID (if unknown use 0)
         4. Maternal ID (if unknown use 0)
@@ -82,25 +78,23 @@ def make_ped(
         6. Affection (0=unknown; 1=unaffected; 2=affected)
         7. Genotypes (space or tab separated, 2 for each marker. 0/-9=missing)
 
-        Here is a brief example of a genotype PED file containing 5 samples
+    Here is a brief example of a genotype PED file containing 5 samples
     with 10 homozygous SNPs:
-        4304 4304 0 0 0 0 C C C C G G G G G G C C G G C C T T T T
-        6925 6925 0 0 0 0 C C C C T T G G A A C C G G C C T T T T
-        7319 7319 0 0 0 0 C C C C G G G G G G C C G G C C T T T T
-        6963 6963 0 0 0 0 A A C C T T G G A A C C G G C C T T T T
-        6968 6968 0 0 0 0 C C C C G G G G G G G G G G C C T T T T
 
-    :param data: Snp data that contain full or partial information on the
-        animal
-    :param sid_col: Sample ID. Column name in data
-    :param snp_col: Snp column name in data
-    :param fid_col: Family ID column name in data (if unknown use the same
-        id as for the sample id in column two)
-    :param father_col: Paternal ID column name in data (if unknown use 0)
-    :param mother_col: Maternal ID column name in data (if unknown use 0)
-    :param sex_col: Sex column name in data (if unknown use 0)
-    :return: Returns an array of data in ped format to work with the plink
-        program
+    4304 4304 0 0 0 0 C C C C G G G G G G C C G G C C T T T T
+    6925 6925 0 0 0 0 C C C C T T G G A A C C G G C C T T T T
+    7319 7319 0 0 0 0 C C C C G G G G G G C C G G C C T T T T
+    6963 6963 0 0 0 0 A A C C T T G G A A C C G G C C T T T T
+    6968 6968 0 0 0 0 C C C C G G G G G G G G G G C C T T T T
+
+    :param data: Snp data that contain full or partial information on the animal.
+    :param sid_col: Sample ID. Column name in data.
+    :param snp_col: Snp column name in data.
+    :param fid_col: Family ID column name in data (if unknown use the same id as for the sample id in column two).
+    :param father_col: Paternal ID column name in data (if unknown use 0).
+    :param mother_col: Maternal ID column name in data (if unknown use 0).
+    :param sex_col: Sex column name in data (if unknown use 0).
+    :return: Returns an array of data in ped format to work with the plink program.
     """
 
     _fields = ["fid", "sid", "father", "mother", "sex", "not_used", "snp"]
@@ -153,37 +147,29 @@ def make_fam(
         sex_val: int = 0,
         pheno_col: str = None,
         pheno_val: int = -9
-
 ) -> pd.DataFrame | None:
     """ PLINK sample information file
     https://www.cog-genomics.org/plink/1.9/formats#fam
 
-        A text file with no header line, and one line per sample with the
-    following six fields:
+    A text file with no header line, and one line per sample with the following
+    six fields:
 
         1. Family ID ('FID')
         2. Within-family ID ('IID'; cannot be '0')
         3. Within-family ID of father ('0' if father isn't in dataset)
         4. Within-family ID of mother ('0' if mother isn't in dataset)
         5. Sex code ('1' = male, '2' = female, '0' = unknown)
-        6. Phenotype value ('1' = control, '2' = case, '-9'/'0'/non-numeric =
-            missing data if case/control)
+        6. Phenotype value ('1' = control, '2' = case, '-9'/'0'/non-numeric = missing data if case/control)
 
-    :param data: Snp data that contain full or partial information on the
-        animal
-    :param fid_col: Family ID, default value "1". Must not contain
-        underline - "_"
-    :param sid_col: Within-family ID ('IID'; cannot be '0'). Must not contain
-        underline - "_"
-    :param father_col: Within-family ID of father ('0' if father isn't in
-        dataset)
-    :param mother_col: Within-family ID of mother ('0' if mother isn't in
-        dataset)
+    :param data: Snp data that contain full or partial information on the animal
+    :param fid_col: Family ID, default value "1". Must not contain underline - "_"
+    :param sid_col: Within-family ID ('IID'; cannot be '0'). Must not contain underline - "_"
+    :param father_col: Within-family ID of father ('0' if father isn't in dataset)
+    :param mother_col: Within-family ID of mother ('0' if mother isn't in dataset)
     :param sex_col: Sex column name in data
     :param sex_val: Sex code ('1' = male, '2' = female, '0' = unknown)
     :param pheno_col: Pheno column name in data
-    :param pheno_val: Phenotype value ('1' = control, '2' = case,
-        '-9'/'0'/non-numeric = missing data if case/control)
+    :param pheno_val: Phenotype value ('1' = control, '2' = case,'-9'/'0'/non-numeric = missing data if case/control)
     :return: Return data in formate .fam
     """
 
@@ -236,7 +222,7 @@ def make_lgen(
     """ PLINK long-format genotype file
     https://www.cog-genomics.org/plink/1.9/formats#lgen
 
-        A text file with no header line, and one line per genotype call (or
+    A text file with no header line, and one line per genotype call (or
     just not-homozygous-major calls if 'lgen-ref' was invoked) usually with
     the following five fields:
 
@@ -246,7 +232,7 @@ def make_lgen(
         4. Allele call 1 ('0' for missing)
         5. Allele call 2
 
-        There are several variations which are also handled by PLINK; see the
+    There are several variations which are also handled by PLINK; see the
     original discussion for details.
 
     :param data: Data the after parsing FinalReport.txt
@@ -254,7 +240,7 @@ def make_lgen(
     :param snp_name:
     :param fid_col: Family ID, default value "1"
     :param alleles:
-    :return: - Return data in formate .lgen
+    :return: Return data in formate .lgen
     """
     _fields = ['fid', 'sid', 'snp_name', 'allele1', 'allele2']
     _f_dtype = dict(zip(_fields, (str for _ in range(len(_fields)))))
@@ -295,7 +281,7 @@ def _check_underscore(value: str) -> bool:
     """ Checking for underscore in a string
 
     :param value: String for checked
-    :return: Return True if there is an underline in the string, False if not
+    :return: Return True if there is an underline in the string, False if not.
     """
     _under_l = re.compile(r"_")
 

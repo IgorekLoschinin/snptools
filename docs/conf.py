@@ -53,4 +53,4 @@ html_theme = 'sphinx_rtd_theme'
 # of the sidebar.
 html_logo = 'logo.png'
 
-html_static_path = ['_static']
+# html_static_path = ['_static']
