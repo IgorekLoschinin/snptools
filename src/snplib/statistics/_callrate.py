@@ -15,11 +15,12 @@ def call_rate(
 	not missing. In the following example, we filter using a call rate of 95%,
 	meaning we retain SNPs for which there is less than 5% missing data.
 
-		Of the say, 54K markers in the chip, 50K have been genotyped for a
-	particular animal, the “call rate animal” is 50K/54K=93%
-		Of the say, 900 animals genotyped for marker CL635944_160.1, how many
+	Of the say, 54K markers in the chip, 50K have been genotyped for a
+	particular animal, the “call rate animal” is 50K/54K=93%.
+
+	Of the say, 900 animals genotyped for marker CL635944_160.1, how many
 	have actually been successfully read? Assume that 600 have been read, then
-	the “call rate marker” is 600/900 = 67%
+	the “call rate marker” is 600/900 = 67%.
 
 	:param data: Pre-processed data on which the call rate is calculated.
 	:param id_col: The name of the column with the id of the animals or
