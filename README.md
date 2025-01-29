@@ -52,7 +52,7 @@ from snplib import (
 ```
 
 ## Documentation
-Detailed documentation on how to use SNPTools is available see the [docs](./docs/_build/index.html).
+Detailed documentation on how to use SNPTools is available see the [docs](docs/_build/index.html).
 
 ## License
 This project is licensed under the GNU General Public License - see the 
