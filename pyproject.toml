@@ -17,7 +17,7 @@ snplib = ["*.pl"]
 
 [project]
 name = "snplib"
-version = "1.0.8"
+version = "1.0.10"
 description = "Snptools is a tool for Single Nucleotide Polymorphism (SNP) data processing"
 authors = [
     {name = "Igor", email = "igor.loschinin@gmail.com"}
