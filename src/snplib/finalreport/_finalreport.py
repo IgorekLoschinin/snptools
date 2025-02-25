@@ -7,11 +7,15 @@ from pathlib import Path
 from functools import reduce
 
 import re
+
+from numpy import nan
 import pandas as pd
 
 
 class FinalReport(object):
-	""" File that contains SNP information.
+	""" File that contains SNP information. File processing is triggered by the
+	handle method. If values in 'SID' or 'UNIQ_KEY' were missing in the xlsx
+	conversion file, the processed data will contain NAN values.
 
 	:argument allele: A variant form of a single nucleotide polymorphism
 		(SNP), a specific polymorphic site or a whole gene detectable at
@@ -235,17 +239,15 @@ class FinalReport(object):
 		if self._check_on_ru_symbols(self._map_rn.UNIQ_KEY):
 			raise Exception("Error. Unique keys contain Cyrillic alphabet.")
 
-		if self._map_rn.UNIQ_KEY.isna().any():
-			self._map_rn.fillna('unknown', inplace=True)
-
 	@staticmethod
 	def _check_on_ru_symbols(seq: pd.Series) -> bool | None:
+		""" Checial verification of the Cyrillic
+
+		:param seq: Squeezed for verification.
+		:return: Truth if there are no symbols of Cyril and there is a lie if
+			there is.
 		"""
 
-		:param seq:
-		:return:
-		"""
-
-		return any(seq.apply(lambda x: bool(re.search('[а-яА-Я]', x))))
-
-
+		return seq.apply(
+			lambda x: bool(re.search('[а-яА-Я]', x)) if x is not nan else x
+		).any()

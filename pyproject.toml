@@ -17,7 +17,7 @@ snplib = ["*.pl"]
 
 [project]
 name = "snplib"
-version = "1.0.10"
+version = "1.1.10"
 description = "Snptools is a tool for Single Nucleotide Polymorphism (SNP) data processing"
 authors = [
     {name = "Igor", email = "igor.loschinin@gmail.com"}
@@ -30,14 +30,14 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "numpy>=1.26.1",
-    "pandas>=2.1.1",
-    "six>=1.16.0",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
+    "six>=1.17.0",
     "swifter>=1.4.0",
     "xlrd>=2.0.1",
-    "XlsxWriter>=3.1.9",
-    "openpyxl>=3.1.2",
-    "pydantic>=2.4.2",
+    "XlsxWriter>=3.2.2",
+    "openpyxl>=3.1.5",
+    "pydantic>=2.10.6",
 ]
 
 [project.urls]
