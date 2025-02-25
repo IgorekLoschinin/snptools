@@ -192,6 +192,7 @@ class TestFinalReport(object):
 
 	@pytest.mark.parametrize("report", ["AB"], indirect=True)
 	def test_7(self, report: FinalReport) -> None:
+		""" An error is checked if the name of the number is Kirilitsa """
 
 		with pytest.raises(
 			Exception, match="Error. Unique keys contain Cyrillic alphabet."
@@ -200,16 +201,29 @@ class TestFinalReport(object):
 				DIR_FILES / "fr/file7.txt", DIR_FILES / "fr/file7.xlsx"
 			)
 
-	# 	assert not report.snp_data.empty
-	#
-	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
-	# def test_8(self, report: FinalReport) -> None:
-	# 	...
-	#
-	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
-	# def test_9(self, report: FinalReport) -> None:
-	# 	...
-	#
-	# @pytest.mark.parametrize("report", ["AB"], indirect=True)
-	# def test_10(self, report: FinalReport) -> None:
-	# 	...
+		assert report.snp_data is None
+
+	@pytest.mark.parametrize("report", ["AB"], indirect=True)
+	def test_8(self, report: FinalReport) -> None:
+		""" Checking for processing empty values in SID """
+
+		report.handle(
+			DIR_FILES / "fr/file8.txt",
+			DIR_FILES / "fr/file8.xlsx"
+		)
+
+		assert report.snp_data is not None
+		assert not report.snp_data.empty
+		assert report.snp_data['Sample ID'].isna().any()
+
+	@pytest.mark.parametrize("report", ["AB"], indirect=True)
+	def test_9(self, report: FinalReport) -> None:
+		""" Checking for missing values in SID """
+		report.handle(
+			DIR_FILES / "fr/file9.txt",
+			DIR_FILES / "fr/file9.xlsx"
+		)
+
+		assert report.snp_data is not None
+		assert not report.snp_data.empty
+		assert report.snp_data['Sample ID'].isna().any()
