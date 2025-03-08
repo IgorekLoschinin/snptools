@@ -276,7 +276,6 @@ class FinalReport(object):
 			path_file,
 			header=None,
 			names=['SID', 'UNIQ_KEY', 'SEX'],
-			dtype={'SID': str},
 			index_col=False
 		)
 
@@ -284,7 +283,9 @@ class FinalReport(object):
 			self._map_rn = None
 			return
 
-		self._map_rn.SID = self._map_rn.SID.str.strip()
+		if self._map_rn.SID.dtypes == "O":
+			self._map_rn.SID = self._map_rn.SID.str.strip()
+
 		self._map_rn.UNIQ_KEY = self._map_rn.UNIQ_KEY.str.strip()
 
 		if self._check_on_ru_symbols(self._map_rn.UNIQ_KEY):
