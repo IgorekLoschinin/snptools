@@ -3,13 +3,12 @@
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 __all__ = ("FinalReport",)
 
-from pathlib import Path
-from functools import reduce
-
 import re
+from functools import reduce
+from pathlib import Path
 
-from numpy import nan
 import pandas as pd
+from numpy import nan
 
 
 class FinalReport(object):
@@ -17,10 +16,14 @@ class FinalReport(object):
 	handle method. If values in 'SID' or 'UNIQ_KEY' were missing in the xlsx
 	conversion file, the processed data will contain NAN values.
 
-	:argument allele: A variant form of a single nucleotide polymorphism
-		(SNP), a specific polymorphic site or a whole gene detectable at
-		a locus.  Type: 'AB', 'Forward', 'Top', 'Plus', 'Design'
-	:argument sep: Delimiter to use. Default value: "\\t"
+	:param allele: A variant form of a single nucleotide polymorphism (SNP), a
+		specific polymorphic site or a whole gene detectable at a locus. Type:
+		'AB', 'Forward', 'Top', 'Plus', 'Design'.
+	:param sep: Delimiter to use. Default value: "\\t".
+	:param usecols: Selection of fields for reading. Accelerates processing
+		and reduces memory.
+	:param dtype: Data type(s) to apply to either the whole dataset or
+		individual columns. E.g., {'a': np.float64, 'b': np.int32, 'c': 'Int64'}.
 
 	Example:
 		[Header]
@@ -38,20 +41,34 @@ class FinalReport(object):
 		...
 	"""
 
-	__PATTERN_HEADER = re.compile(r'(^\[Header\])')
-	__PATTERN_DATA = re.compile(r'(^\[Data\])')
+	__PATTERN_HEADER = re.compile(r'(^\[Header])')
+	__PATTERN_DATA = re.compile(r'(^\[Data])')
+
+	__slots__ = (
+		"_delimiter",
+		"__allele",
+		"__usecols",
+		"__dtype",
+		"__snp_data",
+		"__header",
+		"_map_rn",
+	)
 
 	def __init__(
 			self,
 			allele: str | list | None = None,
+			usecols: list[str] | None = None,
+			dtype: dict | None = None,
 			sep: str = "\t"
 	) -> None:
 		self._delimiter = sep
-		self._full_data = None
-
-		self.__header = {}
-		self.__snp_data = None
 		self.__allele = allele
+		self.__usecols = usecols
+		self.__dtype = dtype
+
+		# self._full_data = None
+		self.__snp_data: pd.DataFrame | None = None
+		self.__header = {}
 		self._map_rn = None
 
 	@property
@@ -77,6 +94,9 @@ class FinalReport(object):
 
 		try:
 
+			if self.__allele is not None and self.__usecols is not None:
+				raise Exception("Error. Usecols is used for allele is none.")
+
 			if isinstance(file_rep, str):
 				file_rep = Path(file_rep)
 
@@ -93,17 +113,11 @@ class FinalReport(object):
 
 				self.__convert_s_id(conv_file)
 
-			# Processing report file
-			if not self.read(file_rep):
-				return False
+			# # Processing report file
+			self.__handler_header(file_rep)
+			self.__handler_data(file_rep)
 
-			if self._full_data is None:
-				raise Exception("Not data in file FinalReport.txt")
-
-			self.__handler_header()
-			self.__handler_data()
-
-			if self._map_rn is not None:
+			if not self.__snp_data.empty and self._map_rn is not None:
 				self.__snp_data['Sample ID'] = \
 					self.__snp_data['Sample ID'].map(
 						dict(zip(self._map_rn.SID, self._map_rn.UNIQ_KEY))
@@ -114,62 +128,99 @@ class FinalReport(object):
 
 		return True
 
-	def read(self, file_rep: Path) -> bool:
-		""" Reading data from the final_report file
+	def __handler_header(self, file_rep: Path) -> None:
+		""" Processes data from a file, selects meta-information.
 
 		:param file_rep: path, pointer to the file to be read.
-		:return: Returns true if the read was successful, false if it failed.
 		"""
-		try:
-			if len(data := file_rep.read_text()) != 0:
-				self._full_data = data.strip().split("\n")
-				return True
 
-			self._full_data = None
+		with open(file_rep, 'r') as file:
 
-		except Exception as e:
-			return False
+			for line in file:
+				if self.__class__.__PATTERN_DATA.findall(line.strip()):
+					return
 
-		return True
+				if self.__class__.__PATTERN_HEADER.findall(line.strip()) or\
+					len(line.strip()) == 0:
+					continue
 
-	def __handler_header(self) -> None:
-		""" Processes data from a file, selects meta-information. """
+				key = line.strip().split("\t")[0]
+				value = line.strip().split("\t")[1]
 
-		for line in self._full_data:
-			if self.__class__.__PATTERN_DATA.findall(line):
+				self.__header[key] = value
+
+	def __handler_data(self, file_rep: Path) -> None:
+		""" Processes data and forms an array for further processing.
+
+		:param file_rep: path, pointer to the file to be read.
+		"""
+
+		with open(file_rep, 'r') as file:
+
+			# Search for the data start index and skip
+			for line in file:
+				if self.__class__.__PATTERN_DATA.findall(line.strip()):
+					break
+
+			# line column
+			orig_name_col = file.readline().strip().split(self._delimiter)
+
+			if self.__allele is None and self.__usecols is None:
+				self.__snp_data = pd.read_csv(
+					file,
+					sep=self._delimiter,
+					header=None,
+					names=orig_name_col,
+					dtype=self.__dtype,
+					low_memory=True,
+					na_filter=True
+				)
+
 				return
 
-			if self.__class__.__PATTERN_HEADER.findall(line):
-				continue
+			sub_n_col = self.__processing_columns(orig_name_col)
+			self.__snp_data = pd.read_csv(
+				file,
+				sep=self._delimiter,
+				header=None,
+				names=orig_name_col,
+				usecols=sub_n_col,
+				dtype=self.__dtype,
+				low_memory=True,
+				na_filter=True
+			)
 
-			key = line.strip().split("\t")[0]
-			value = line.strip().split("\t")[1]
+			return
 
-			self.__header[key] = value
+	def __processing_columns(self, lst_col: list[str]) -> list[str] | None:
+		""" Processing the line with all the names of the fields and the
+		sample of them.
 
-	def __handler_data(self) -> None:
-		""" Processes data and forms an array for further processing. """
+		:param lst_col: List of all fields.
+		:return: Returns a tuple with a list of names of selected fields.
+		"""
 
-		temp = 1
-		for line in self._full_data:
-			if self.__class__.__PATTERN_DATA.findall(line):
-				break
-			temp += 1
+		if self.__usecols is not None:
+			check_n_col = [
+				item for item in self.__usecols if item in lst_col
+			]
 
-		names_col = self.__sample_by_allele(
-			self._full_data[temp].split(f"{self._delimiter}")
-		)
+			# Check on empty list
+			if check_n_col:
+				return self.__usecols
 
-		if names_col is None:
-			raise Exception(f"Error. Allele {self.__allele} not in data.")
+			raise Exception(
+				f"Error. The USECOLS list contains not true fields."
+			)
 
-		self.__snp_data = pd.DataFrame(
-			[
-				item_data.split(f"{self._delimiter}")
-				for item_data in self._full_data[temp + 1:]
-			],
-			columns=self._full_data[temp].split(f"{self._delimiter}")
-		)[names_col]
+		# processing alleles
+		sample_n_col = self.__sample_by_allele(lst_col)
+		if sample_n_col is None:
+			raise Exception(
+				f"Error. Allele {self.__allele} not in data."
+			)
+
+		return sample_n_col
 
 	def __sample_by_allele(self, names: list[str]) -> list[str] | None:
 		""" Method that generates a list of field names choosing which alleles

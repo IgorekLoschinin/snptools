@@ -73,6 +73,31 @@ Output::
 
         ...
 
+To handle large files, use `usecols` and `dtype`. This reduces memory
+consumption and speeds up processing.
+
+.. note::
+    `usecols` is used when `allele` is **None**.
+
+.. code-block:: python
+
+        alleles_ab = FinalReport(
+            usecols=['SNP Name', 'Sample ID', 'Allele1 - AB', 'Allele2 - AB'],
+            dtype={'SNP Name': 'category'}
+        )
+        alleles_ab.handle("path/to/finalreport.txt")
+        data_ab = alleles_ab.snp_data
+
+Output::
+
+        SNP Name    Sample ID    Allele1 - AB  Allele2 - AB
+        ARS-BFGL-BAC-10172 HO840M003135245650 B B
+        ARS-BFGL-BAC-1020 HO840M003135245650 B B
+        ARS-BFGL-BAC-10245 HO840M003135245650 B B
+        ARS-BFGL-BAC-10345 HO840M003135245650 A B
+        ARS-BFGL-BAC-10375 HO840M003135245650 A B
+        ...
+
 Preparation SNP files
 ---------------------
 
