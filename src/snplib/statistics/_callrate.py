@@ -33,7 +33,7 @@ def call_rate(
 
 	if isinstance(data, pd.DataFrame):
 		try:
-			if data[snp_col].dtype.hasobject:
+			if data[snp_col].dtype.name == "str":
 				if not data[snp_col].str.isdigit().all():
 					return None
 

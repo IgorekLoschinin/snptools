@@ -52,7 +52,7 @@ class TestAlleleFreq(object):
 	) -> None:
 		data_df.SNP = [
 			np.random.choice(["A", "C", "G", "T"])
-			for _ in range(data_df.SNP.shape[0])
+			for _ in range(data_df.shape[0])
 		]
 		assert allele_freq(
 			data=data_df, id_col="SNP_NAME", seq_col="SNP"

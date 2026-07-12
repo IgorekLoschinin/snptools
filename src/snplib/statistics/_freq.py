@@ -19,7 +19,7 @@ def allele_freq(
 
 	if isinstance(data, pd.DataFrame):
 		try:
-			if data[seq_col].dtype.hasobject:
+			if data[seq_col].dtype.name == "str":
 				if not data[seq_col].str.isdigit().all():
 					return None
 

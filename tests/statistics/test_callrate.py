@@ -57,7 +57,7 @@ class TestCallRateAnimal(object):
 	) -> None:
 		data_df.SNP = [
 			np.random.choice(["A", "C", "G", "T"])
-			for _ in range(data_df.SNP.shape[0])
+			for _ in range(data_df.shape[0])
 		]
 		result = call_rate(data=data_df, id_col="SAMPLE_ID", snp_col="SNP")
 
