@@ -2,6 +2,8 @@
 # coding: utf-8
 __author__ = "Igor Loschinin (igor.loschinin@gmail.com)"
 
+import numpy as np
+
 from . import DIR_DATA
 from snptools.src.snplib.parentage import (
 	Discovery,
@@ -13,19 +15,112 @@ import pandas as pd
 
 
 @pytest.fixture
-def data() -> pd.DataFrame:
-	return pd.read_csv(DIR_DATA / "parentage_test_disc.csv", sep=" ")
-
-
-@pytest.fixture
 def obj_discovery() -> Discovery:
 	return Discovery(isag_markers=isag_disc().markers)
 
 
+@pytest.fixture
+def data() -> pd.DataFrame:
+	return pd.read_csv(DIR_DATA / "parentage_test_disc.csv", sep=" ")
+
+
+def generate_dam_vector(
+		base_df: pd.DataFrame,
+		n_conflicts: int,
+		descendant_col: str,
+		sire_col: str,
+		n_missing: int = 0,
+		seed: int = 42,
+) -> pd.Series:
+	""" Generates vector results for ISAG markers.
+
+	:param descendant_col: Descendant column name
+	:param sire_col: Sibling column name
+	:param base_df: DataFrame with the columns SNP_Name, descendant, and sire
+	:param n_conflicts: Number of constraints to create
+	:param n_missing: Number of scores equivalent to 5 (missing)
+	:param seed: Seeds for reproducibility
+	:return: pd.Series with the index SNP_Name
+	"""
+	rng = np.random.default_rng(seed)
+	df = base_df.copy()
+
+	# Candidates for conflicts: descendant==1 and sire ∈ {0,2}
+	conflict_candidates = df.index[
+		(df[descendant_col] == 1) & (df[sire_col].isin([0, 2]))
+		].tolist()
+
+	if n_conflicts > len(conflict_candidates):
+		raise ValueError(
+			f"Cannot create {n_conflicts} conflicts: "
+			f"only {len(conflict_candidates)} candidates available"
+		)
+
+	conflict_idx = rng.choice(
+		conflict_candidates, size=n_conflicts, replace=False
+	)
+	non_conflict_idx = np.setdiff1d(df.index, conflict_idx)
+
+	dam = np.empty(len(df), dtype=int)
+
+	# 1) In conflict positions: dam = sire (both homozygotes, descendant 1)
+	dam[conflict_idx] = df.loc[conflict_idx, sire_col].values
+
+	# 2) In other positions: valid values without conflict
+	for i in non_conflict_idx:
+		desc = df.loc[i, descendant_col]
+		sire = df.loc[i, sire_col]
+
+		# All valid combinations (sire, dam, desc) without conflict
+		valid_dams = [
+			d
+			for d in (0, 1, 2)
+			if not (sire == d and sire in (0, 2) and desc == 1)
+		]
+		dam[i] = rng.choice(valid_dams)
+
+	# 3) Missing (5)
+	if n_missing > 0:
+		missing_idx = rng.choice(df.index, size=n_missing, replace=False)
+		dam[missing_idx] = 5
+
+	return pd.Series(dam, index=df["SNP_Name"], name="dam")
+
+
+@pytest.fixture
+def data_mat(request) -> pd.DataFrame:
+
+	desc_col = "BY000041988163"
+	sire_col = "EE10512586"
+
+	n_conflicts, n_missing, seed = request.param
+
+	base = pd.read_csv(DIR_DATA / "parentage_test_disc.csv", sep=" ")
+
+	dam_vec = generate_dam_vector(
+		base,
+		descendant_col=desc_col,
+		sire_col=sire_col,
+		n_conflicts=n_conflicts,
+		n_missing=n_missing,
+		seed=seed
+	).reset_index()
+
+	trio = base[[desc_col, sire_col]].copy()
+	trio[["SNP_Name", "dam"]] = dam_vec.values
+
+	return trio[["SNP_Name", "dam", desc_col, sire_col]]
+
+
 class TestDiscovery(object):
 
+	snp_name_col = "SNP_Name"
+	descendant = "BY000041988163"
+	sire = "EE10512586"
+	dam = "dam"
+
 	def test_search_parent_successfully(
-		self, data: pd.DataFrame, obj_discovery: Discovery
+			self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 
 		assert obj_discovery.search_parent(
@@ -45,7 +140,7 @@ class TestDiscovery(object):
 		obj_discovery = Discovery()
 
 		with pytest.raises(
-			ValueError, match="Error. No array of snp names to verify"
+				ValueError, match="Error. No array of snp names to verify"
 		):
 			obj_discovery.search_parent(
 				data=data,
@@ -58,7 +153,7 @@ class TestDiscovery(object):
 		assert obj_discovery.perc_conflicts_sing is None
 
 	def test_search_parent_2(
-		self, data: pd.DataFrame, obj_discovery: Discovery
+			self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
 		Exception when the number of markers required to confirm paternity is
@@ -76,7 +171,7 @@ class TestDiscovery(object):
 		assert obj_discovery.perc_conflicts_sing == 15.72
 
 	def test_search_parent_3(
-		self, data: pd.DataFrame, obj_discovery: Discovery
+			self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
 		Test if the transmitted animal names are not in the dataframe.
@@ -107,7 +202,7 @@ class TestDiscovery(object):
 		assert obj_discovery.perc_conflicts_sing is None
 
 	def test_search_parent_4(
-		self, data: pd.DataFrame, obj_discovery: Discovery
+			self, data: pd.DataFrame, obj_discovery: Discovery
 	) -> None:
 		"""
 		Test when all snp data is not read - equal to 5.
@@ -160,142 +255,87 @@ class TestDiscovery(object):
 		assert obj_discovery.num_conflicts_sing == 5
 		assert obj_discovery.perc_conflicts_sing == 0.97
 
-	# def test_search_mating_confirmed(
-	# 		self, data: pd.DataFrame, obj_discovery: Discovery
-	# ) -> None:
-	# 	"""
-	# 	Test mating with 0 conflicts (Confirmed).
-	# 	"""
-	# 	data_copy = data.copy()
-	# 	snp_name_col = "SNP_Name"
-	# 	descendant = "BY000041988163"
-	# 	sire = "EE10512586"
-	#
-	# 	data_copy = data_copy.set_index(snp_name_col)
-	# 	desc_vals = data_copy[descendant]
-	# 	sire_vals = data_copy[sire]
-	#
-	# 	# Create a dam with 0 conflicts
-	# 	dam_vals = sire_vals.copy()
-	# 	mask = (desc_vals == 1) & (sire_vals.isin([0, 2]))
-	# 	dam_vals[mask] = 2 - sire_vals[mask]
-	#
-	# 	data_copy["Dam_0"] = dam_vals
-	# 	data_copy = data_copy.reset_index()
-	#
-	# 	obj_discovery.search_mating(
-	# 		data=data_copy,
-	# 		descendant=descendant,
-	# 		sire=sire,
-	# 		dam="Dam_0",
-	# 		snp_name_col=snp_name_col
-	# 	)
-	#
-	# 	markers = obj_discovery._Discovery__isag_markers
-	# 	num_common, num_conflicts, perc_conflicts = _calculate_step2(
-	# 		data_copy, descendant, sire, "Dam_0", snp_name_col, markers
-	# 	)
-	#
-	# 	assert obj_discovery.status_step2 == "Confirmed"
-	# 	assert obj_discovery.num_conflicts_step2 == num_conflicts
-	# 	assert obj_discovery.perc_conflicts_step2 == perc_conflicts
-	#
-	# def test_search_mating_possible(
-	# 		self, data: pd.DataFrame, obj_discovery: Discovery
-	# ) -> None:
-	# 	"""
-	# 	Test mating with ~1.63% conflicts (Possible).
-	# 	"""
-	# 	data_copy = data.copy()
-	# 	snp_name_col = "SNP_Name"
-	# 	descendant = "BY000041988163"
-	# 	sire = "EE10512586"
-	#
-	# 	data_copy = data_copy.set_index(snp_name_col)
-	# 	desc_vals = data_copy[descendant]
-	# 	sire_vals = data_copy[sire]
-	#
-	# 	# Start with 0 conflicts dam
-	# 	dam_vals = sire_vals.copy()
-	# 	mask = (desc_vals == 1) & (sire_vals.isin([0, 2]))
-	# 	dam_vals[mask] = 2 - sire_vals[mask]
-	#
-	# 	# Force 10 conflicts
-	# 	conflict_snp_names = data_copy.index[
-	# 		(desc_vals == 1) & (sire_vals.isin([0, 2])) & (desc_vals != 5) & (
-	# 					sire_vals != 5)]
-	# 	dam_vals.loc[conflict_snp_names[:10]] = sire_vals.loc[
-	# 		conflict_snp_names[:10]]
-	#
-	# 	data_copy["Dam_Possible"] = dam_vals
-	# 	data_copy = data_copy.reset_index()
-	#
-	# 	obj_discovery.search_mating(
-	# 		data=data_copy,
-	# 		descendant=descendant,
-	# 		sire=sire,
-	# 		dam="Dam_Possible",
-	# 		snp_name_col=snp_name_col
-	# 	)
-	#
-	# 	markers = obj_discovery._Discovery__isag_markers
-	# 	num_common, num_conflicts, perc_conflicts = _calculate_step2(
-	# 		data_copy, descendant, sire, "Dam_Possible", snp_name_col, markers
-	# 	)
-	#
-	# 	assert obj_discovery.status_step2 == "Possible"
-	# 	assert obj_discovery.num_conflicts_step2 == num_conflicts
-	# 	assert obj_discovery.perc_conflicts_step2 == perc_conflicts
-	#
-	# def test_search_mating_excluded(
-	# 		self, data: pd.DataFrame, obj_discovery: Discovery
-	# ) -> None:
-	# 	"""
-	# 	Test mating with high conflicts (Excluded).
-	# 	"""
-	# 	data_copy = data.copy()
-	# 	snp_name_col = "SNP_Name"
-	# 	descendant = "BY000041988163"
-	# 	sire = "EE10512586"
-	#
-	# 	# Dam is identical to sire, which will cause many conflicts
-	# 	data_copy["Dam_Excluded"] = data_copy[sire]
-	#
-	# 	obj_discovery.search_mating(
-	# 		data=data_copy,
-	# 		descendant=descendant,
-	# 		sire=sire,
-	# 		dam="Dam_Excluded",
-	# 		snp_name_col=snp_name_col
-	# 	)
-	#
-	# 	markers = obj_discovery._Discovery__isag_markers
-	# 	num_common, num_conflicts, perc_conflicts = _calculate_step2(
-	# 		data_copy, descendant, sire, "Dam_Excluded", snp_name_col, markers
-	# 	)
-	#
-	# 	assert obj_discovery.status_step2 == "Excluded"
-	# 	assert obj_discovery.num_conflicts_step2 == num_conflicts
-	# 	assert obj_discovery.perc_conflicts_step2 == perc_conflicts
-	#
-	# def test_search_mating_not_checked(
-	# 		self, data: pd.DataFrame, obj_discovery: Discovery
-	# ) -> None:
-	# 	"""
-	# 	Status 'Not Checked' when the number of common markers for trio is less than 400.
-	# 	"""
-	# 	data_copy = data.copy()
-	# 	data_copy["Dam_Fake"] = data_copy["EE10512586"]
-	#
-	# 	obj_discovery.search_mating(
-	# 		data=data_copy[:-250],
-	# 		# Slicing to ensure < 400 common SNPs for trio
-	# 		descendant="BY000041988163",
-	# 		sire="EE10512586",
-	# 		dam="Dam_Fake",
-	# 		snp_name_col="SNP_Name"
-	# 	)
-	#
-	# 	assert obj_discovery.status_step2 == "Not Checked"
-	# 	assert obj_discovery.num_conflicts_step2 == 0
-	# 	assert obj_discovery.perc_conflicts_step2 is None
+	@pytest.mark.parametrize("data_mat", [(0, 200, 1)], indirect=True)
+	def test_search_mating_not_checked(
+			self, data_mat: pd.DataFrame, obj_discovery: Discovery
+	) -> None:
+
+		obj_discovery.search_mating(
+			data=data_mat,
+			descendant=self.descendant,
+			sire=self.sire,
+			dam=self.dam,
+			snp_name_col=self.snp_name_col
+		)
+
+		assert obj_discovery.status_mating == "Not Checked"
+		assert obj_discovery.num_conflicts_mating == 0
+		assert obj_discovery.perc_conflicts_mating is None
+
+	@pytest.mark.parametrize("data_mat", [(0, 0, 2)], indirect=True)
+	def test_search_mating_none_status(
+			self, data_mat: pd.DataFrame, obj_discovery: Discovery
+	) -> None:
+
+		obj_discovery.search_mating(
+			data=data_mat,
+			descendant=self.descendant,
+			sire=self.sire,
+			dam=self.dam,
+			snp_name_col=self.snp_name_col
+		)
+
+		assert obj_discovery.status_mating is None
+		assert obj_discovery.num_conflicts_mating == 0
+		assert obj_discovery.perc_conflicts_mating == 0
+
+	@pytest.mark.parametrize("data_mat", [(3, 0, 3)], indirect=True)
+	def test_search_mating_confirmed(
+			self, data_mat: pd.DataFrame, obj_discovery: Discovery
+	) -> None:
+
+		obj_discovery.search_mating(
+			data=data_mat,
+			descendant=self.descendant,
+			sire=self.sire,
+			dam=self.dam,
+			snp_name_col=self.snp_name_col
+		)
+
+		assert obj_discovery.status_mating == 'Confirmed'
+		assert obj_discovery.num_conflicts_mating == 2
+		assert obj_discovery.perc_conflicts_mating == 0.39
+
+	@pytest.mark.parametrize("data_mat", [(10, 0, 4)], indirect=True)
+	def test_search_mating_possible(
+			self, data_mat: pd.DataFrame, obj_discovery: Discovery
+	) -> None:
+
+		obj_discovery.search_mating(
+			data=data_mat,
+			descendant=self.descendant,
+			sire=self.sire,
+			dam=self.dam,
+			snp_name_col=self.snp_name_col
+		)
+
+		assert obj_discovery.status_mating == 'Possible'
+		assert obj_discovery.num_conflicts_mating == 9
+		assert obj_discovery.perc_conflicts_mating == 1.74
+
+	@pytest.mark.parametrize("data_mat", [(30, 0, 5)], indirect=True)
+	def test_search_mating_excluded(
+			self, data_mat: pd.DataFrame, obj_discovery: Discovery
+	) -> None:
+
+		obj_discovery.search_mating(
+			data=data_mat,
+			descendant=self.descendant,
+			sire=self.sire,
+			dam=self.dam,
+			snp_name_col=self.snp_name_col
+		)
+
+		assert obj_discovery.status_mating == 'Excluded'
+		assert obj_discovery.num_conflicts_mating == 24
+		assert obj_discovery.perc_conflicts_mating == 4.64

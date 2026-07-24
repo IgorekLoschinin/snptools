@@ -39,17 +39,25 @@ class Discovery(object):
 		return self.__status_sing
 
 	@property
-	def status_mating(self) -> str | None:
-		""" The status of the mating combination (Step 2). """
-		return self.__status_mat
-
-	@property
 	def num_conflicts_sing(self) -> pd.Series | int | None:
 		return self.__num_conflicts_sing
 
 	@property
 	def perc_conflicts_sing(self) -> pd.Series | float | None:
 		return self.__perc_conflicts_sing
+
+	@property
+	def status_mating(self) -> str | None:
+		""" The status of the mating combination (Step 2). """
+		return self.__status_mat
+
+	@property
+	def num_conflicts_mating(self) -> pd.Series | int | None:
+		return self.__num_conflicts_mat
+
+	@property
+	def perc_conflicts_mating(self) -> pd.Series | float | None:
+		return self.__perc_conflicts_mat
 
 	def search_parent(
 			self,
@@ -123,20 +131,11 @@ class Discovery(object):
 			raise ValueError("Error. No array of snp names to verify")
 
 		sample_by_markers = data.loc[
-			data[snp_name_col].isin(self._isag_markers)
+			data[snp_name_col].isin(self._isag_markers) & \
+			((data[descendant] != 5) & (data[sire] != 5) & (data[dam] != 5))
 		].set_index(snp_name_col)
 
-		desc_vals = sample_by_markers[descendant]
-		sire_vals = sample_by_markers[sire]
-		dam_vals = sample_by_markers[dam]
-
-		# Общие валидные SNP для трио
-		valid_desc = desc_vals != 5
-		valid_sire = sire_vals != 5
-		valid_dam = dam_vals != 5
-		common_valid = valid_desc & valid_sire & valid_dam
-
-		self.__num_common_mat = common_valid.sum()
+		self.__num_common_mat = sample_by_markers.shape[0]
 
 		if self.__num_common_mat < 400:
 			self.__num_conflicts_mat = 0
@@ -144,13 +143,16 @@ class Discovery(object):
 			self.__status_mat = 'Not Checked'
 			return
 
-		# Конфликты для трио: оба родителя гомозиготы по ОДНОМУ аллелю,
-		# а потомок гетерозиготен
-		parents_homozygous_same = (sire_vals.isin([0, 2])) & (
-			dam_vals.isin([0, 2])) & (sire_vals == dam_vals)
-		progeny_heterozygous = (desc_vals == 1)
+		# Conflicts for trios: both parents are homozygous for ONE allele,
+		# and the offspring is heterozygous
+		parents_homozygous_same = \
+			(sample_by_markers[sire].isin([0, 2])) &\
+			(sample_by_markers[dam].isin([0, 2])) &\
+			(sample_by_markers[sire] == sample_by_markers[dam])
 
-		conflicts = parents_homozygous_same & progeny_heterozygous & common_valid
+		progeny_heterozygous = (sample_by_markers[descendant] == 1)
+
+		conflicts = parents_homozygous_same & progeny_heterozygous
 		self.__num_conflicts_mat = conflicts.sum()
 
 		perc_conflicts = (self.__num_conflicts_mat / self.__num_common_mat) * 100
