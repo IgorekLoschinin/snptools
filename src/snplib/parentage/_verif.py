@@ -142,16 +142,7 @@ class Verification(object):
             ((data[descendant] != 5) & (data[sire] != 5) & (data[dam] != 5))
         ].set_index(snp_name_col)
 
-        # desc_vals = sample[descendant]
-        # sire_vals = sample[sire]
-        # dam_vals = sample[dam]
-        #
-        # valid_desc = desc_vals != 5
-        # valid_sire = sire_vals != 5
-        # valid_dam = dam_vals != 5
-        #
-        # # 1. Finding common valid SNPs for the trio
-        # common_valid = valid_desc & valid_sire & valid_dam
+        # 1. Finding common valid SNPs for the trio
         self._num_common_mat = sample_data.shape[0]
 
         if self._num_common_mat < min_common_trio:
